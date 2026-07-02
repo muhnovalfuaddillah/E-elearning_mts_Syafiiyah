@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Kalender Akademik - Pembelajaran Digital')
 @section('breadcrumb', 'Kalender')
@@ -9,11 +9,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -24,7 +24,7 @@
         <!-- Form Tambah Agenda (Kiri) -->
         <div class="lg:col-span-1">
             <div class="luxury-card p-6">
-                <h5 class="text-white font-bold text-lg mb-4 pb-2 border-b border-white/10"><i class="fas fa-calendar-plus text-purple-400"></i> Tambah Agenda Akademik</h5>
+                <h5 class="text-white font-bold text-lg mb-4 pb-2 border-b border-white/10"><i class="fas fa-calendar-plus text-blue-400"></i> Tambah Agenda Akademik</h5>
                 
                 <form action="{{ route('admin.calendar.store') }}" method="POST">
                     @csrf
@@ -32,12 +32,12 @@
                         <div>
                             <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Judul Agenda</label>
                             <input type="text" name="title" required placeholder="Contoh: UTS Semester Ganjil"
-                                   class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                   class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                         </div>
 
                         <div>
                             <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Tipe Kegiatan</label>
-                            <select name="type" required class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                            <select name="type" required class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                                 <option value="umum" class="text-black bg-white">Kegiatan Umum (Ungu)</option>
                                 <option value="libur" class="text-black bg-white">Libur Sekolah (Merah)</option>
                                 <option value="ujian" class="text-black bg-white">Jadwal Ujian (Kuning)</option>
@@ -49,24 +49,24 @@
                             <div>
                                 <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Mulai</label>
                                 <input type="date" name="start_date" required
-                                       class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                       class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                             </div>
                             <div>
                                 <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Selesai (Opsional)</label>
                                 <input type="date" name="end_date"
-                                       class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                       class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                             </div>
                         </div>
 
                         <div>
                             <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Keterangan Singkat</label>
                             <textarea name="description" rows="3" placeholder="Tambahkan informasi rinci mengenai agenda..."
-                                      class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none"></textarea>
+                                      class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"></textarea>
                         </div>
                     </div>
 
                     <div class="mt-6">
-                        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-bold text-sm shadow-glow flex items-center justify-center gap-1.5">
+                        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-bold text-sm shadow-glow flex items-center justify-center gap-1.5">
                             <i class="fas fa-save"></i> Simpan Agenda
                         </button>
                     </div>
@@ -109,9 +109,9 @@
                                                 'libur' => 'bg-red-500/20 text-red-400 border border-red-500/30',
                                                 'ujian' => 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30',
                                                 'kegiatan' => 'bg-blue-500/20 text-blue-400 border border-blue-500/30',
-                                                'umum' => 'bg-purple-500/20 text-purple-400 border border-purple-500/30',
+                                                'umum' => 'bg-blue-500/20 text-blue-400 border border-blue-500/30',
                                             ];
-                                            $class = $types[$item->type] ?? 'bg-purple-500/20 text-purple-400';
+                                            $class = $types[$item->type] ?? 'bg-blue-500/20 text-blue-400';
                                         @endphp
                                         <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider {{ $class }}">
                                             {{ $item->type }}

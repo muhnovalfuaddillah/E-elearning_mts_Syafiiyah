@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Detail Jurnal Mengajar - Pembelajaran Digital')
 @section('breadcrumb', 'Detail Jurnal')
@@ -10,7 +10,7 @@
     <div class="max-w-2xl mx-auto">
 
         <!-- Back Link -->
-        <a href="{{ route('admin.jurnal.index') }}" class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-semibold mb-6 transition-colors">
+        <a href="{{ route('admin.jurnal.index') }}" class="inline-flex items-center text-blue-400 hover:text-emerald-300 text-sm font-semibold mb-6 transition-colors">
             <i class="fas fa-arrow-left mr-2"></i> Kembali ke Rekap Jurnal
         </a>
 
@@ -18,8 +18,8 @@
         <div class="luxury-card overflow-hidden">
             <div class="p-6 border-b border-white/10 bg-white/5 flex justify-between items-center">
                 <div>
-                    <h5 class="text-white font-bold text-lg"><i class="fas fa-file-alt text-purple-400 mr-2"></i> Detail Pelaksanaan Pembelajaran</h5>
-                    <p class="text-white/40 text-xs md:text-sm mt-1">Dibuat oleh Guru: <strong class="text-purple-300">{{ $jurnal->guru->name }}</strong></p>
+                    <h5 class="text-white font-bold text-lg"><i class="fas fa-file-alt text-blue-400 mr-2"></i> Detail Pelaksanaan Pembelajaran</h5>
+                    <p class="text-white/40 text-xs md:text-sm mt-1">Dibuat oleh Guru: <strong class="text-emerald-300">{{ $jurnal->guru->name }}</strong></p>
                 </div>
                 <div class="flex items-center gap-2">
                     <form action="{{ route('admin.jurnal.destroy', $jurnal->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus jurnal ini sebagai Administrator?')" class="inline">
@@ -41,7 +41,7 @@
                     </div>
                     <div>
                         <span class="text-white/40 block text-xs uppercase tracking-wider mb-0.5">Pertemuan Pembelajaran</span>
-                        <strong class="text-purple-300 text-base">Pertemuan Ke-{{ $jurnal->pertemuan_ke }}</strong>
+                        <strong class="text-emerald-300 text-base">Pertemuan Ke-{{ $jurnal->pertemuan_ke }}</strong>
                     </div>
                     <div>
                         <span class="text-white/40 block text-xs uppercase tracking-wider mb-0.5">Kelas</span>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Kehadiran Saya - Pembelajaran Digital')
 @section('breadcrumb', 'Absensi')
@@ -56,7 +56,7 @@
                                     </td>
                                     <td class="p-3 md:p-4 text-center text-sm">
                                         @if($item->status == 'H')
-                                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Hadir</span>
+                                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">Hadir</span>
                                         @elseif($item->status == 'S')
                                             <span class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">Sakit</span>
                                         @elseif($item->status == 'I')
@@ -101,7 +101,7 @@
             <!-- Presentase Card -->
             <div class="luxury-card p-6 text-center">
                 <h5 class="text-white font-bold text-base mb-4 pb-2 border-b border-white/10 text-left">
-                    <i class="fas fa-percent text-emerald-400"></i> Rangkuman Persentase
+                    <i class="fas fa-percent text-blue-400"></i> Rangkuman Persentase
                 </h5>
                 <div class="inline-flex items-center justify-center relative w-32 h-32 my-4">
                     <!-- Progress circle (CSS simulated) -->

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Nilai Saya - Pembelajaran Digital')
 @section('breadcrumb', 'Penilaian')
@@ -54,9 +54,9 @@
                                     <td class="p-3 md:p-4 text-center font-bold text-sm">
                                         @php
                                             $val = $item->nilai_akhir;
-                                            $badgeColor = 'text-purple-400 bg-purple-500/10 border-purple-500/20';
+                                            $badgeColor = 'text-blue-400 bg-blue-500/10 border-blue-500/20';
                                             if ($val >= 85) {
-                                                $badgeColor = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+                                                $badgeColor = 'text-blue-400 bg-blue-500/10 border-blue-500/20';
                                             } elseif ($val >= 75) {
                                                 $badgeColor = 'text-blue-400 bg-blue-500/10 border-blue-500/20';
                                             } elseif ($val > 0) {
@@ -86,7 +86,7 @@
         <div class="space-y-6">
             <div class="luxury-card p-6">
                 <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                    <i class="fas fa-chart-pie text-pink-400 text-lg"></i>
+                    <i class="fas fa-chart-pie text-teal-400 text-lg"></i>
                     <h5 class="text-white font-bold text-lg">Analisis Akademik</h5>
                 </div>
                 
@@ -95,7 +95,7 @@
                 </div>
 
                  <div class="mt-6 p-4 bg-white/5 rounded-xl border border-white/5 text-xs text-white/50 leading-relaxed">
-                     <p class="font-bold text-purple-400 mb-1.5"><i class="fas fa-info-circle"></i> Info Rumus Nilai Akhir:</p>
+                     <p class="font-bold text-blue-400 mb-1.5"><i class="fas fa-info-circle"></i> Info Rumus Nilai Akhir:</p>
                      <ul class="list-disc list-inside space-y-1">
                          <li>Bobot Rata Harian: <strong>40%</strong> (Rata-rata Harian 1-6)</li>
                          <li>Bobot Nilai UTS: <strong>30%</strong></li>

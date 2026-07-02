@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Data Mata Pelajaran - Pembelajaran Digital')
 @section('breadcrumb', 'Mata Pelajaran')
@@ -28,7 +28,7 @@
                 <div>
                     <p class="text-white/50 text-xs uppercase tracking-wider">Total Mapel</p>
                     <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $mapel->total() }}</h3>
-                    <p class="text-emerald-400 text-xs md:text-sm mt-2"><i class="fas fa-book"></i> Aktif</p>
+                    <p class="text-blue-400 text-xs md:text-sm mt-2"><i class="fas fa-book"></i> Aktif</p>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12">
                     <i class="fas fa-book text-white text-base md:text-xl"></i>
@@ -72,8 +72,8 @@
                         {{ $gurus->count() }}
                     </h3>
                 </div>
-                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-purple-500/20">
-                    <i class="fas fa-chalkboard-teacher text-purple-400 text-base md:text-xl"></i>
+                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-blue-500/20">
+                    <i class="fas fa-chalkboard-teacher text-blue-400 text-base md:text-xl"></i>
                 </div>
             </div>
         </div>
@@ -91,21 +91,21 @@
                                id="searchInput"
                                placeholder="Cari kode atau nama mata pelajaran..." 
                                value="{{ request('search') }}"
-                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         @if(request('search'))
                             <i class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-white/40 cursor-pointer hover:text-white" onclick="clearSearch()"></i>
                         @endif
                     </div>
                 </div>
                 <div class="w-full md:w-48">
-                    <select name="sort_by" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="sort_by" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="created_at" {{ request('sort_by') == 'created_at' ? 'selected' : '' }}>Terbaru</option>
                         <option value="nama_mapel" {{ request('sort_by') == 'nama_mapel' ? 'selected' : '' }}>Nama Mapel</option>
                         <option value="kode_mapel" {{ request('sort_by') == 'kode_mapel' ? 'selected' : '' }}>Kode Mapel</option>
                     </select>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm">
+                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm">
                         <i class="fas fa-search"></i> Cari
                     </button>
                     <a href="{{ route('admin.mata-pelajaran.index') }}" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm flex items-center justify-center">
@@ -118,11 +118,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm md:text-base">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -162,7 +162,7 @@
                     <p class="text-white/40 text-sm">Menampilkan {{ $mapel->firstItem() ?? 0 }} - {{ $mapel->lastItem() ?? 0 }} dari {{ $mapel->total() }} data</p>
                 </div>
                 <div>
-                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-emerald-500/20 rounded-lg text-emerald-400 text-sm flex items-center gap-2">
+                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm flex items-center gap-2">
                         <i class="fas fa-plus"></i> Tambah Mapel
                     </button>
                 </div>
@@ -185,7 +185,7 @@
                     <tr class="border-b border-white/5 hover:bg-white/5">
                         <td class="p-3 md:p-4 text-white/80 text-sm">{{ $mapel->firstItem() + $index }}</td>
                         <td class="p-3 md:p-4">
-                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400">
+                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                 {{ $item->kode_mapel }}
                             </span>
                         </td>
@@ -222,7 +222,7 @@
                             <div class="text-center">
                                 <i class="fas fa-book text-6xl text-white/20 mb-4"></i>
                                 <p class="text-white/50">Tidak ada data mata pelajaran</p>
-                                <button type="button" onclick="openCreateModal()" class="mt-4 px-4 py-2 bg-purple-500/20 rounded-lg text-purple-400 text-sm">
+                                <button type="button" onclick="openCreateModal()" class="mt-4 px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm">
                                     <i class="fas fa-plus"></i> Tambah Mapel
                                 </button>
                             </div>
@@ -246,7 +246,7 @@
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 @else
-                    <a href="{{ $mapel->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $mapel->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 @endif
@@ -254,15 +254,15 @@
                 {{-- Pagination Elements --}}
                 @foreach ($mapel->getUrlRange(1, $mapel->lastPage()) as $page => $url)
                     @if($page == $mapel->currentPage())
-                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">{{ $page }}</a>
+                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm">{{ $page }}</a>
                     @else
-                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">{{ $page }}</a>
+                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">{{ $page }}</a>
                     @endif
                 @endforeach
 
                 {{-- Next Button --}}
                 @if($mapel->hasMorePages())
-                    <a href="{{ $mapel->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $mapel->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-right"></i>
                     </a>
                 @else
@@ -281,7 +281,7 @@
     <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl w-full max-w-[95%] md:max-w-md mx-4 my-8 shadow-2xl border border-white/10">
         <div class="p-4 md:p-6 border-b border-white/10 flex justify-between items-center">
             <h3 class="text-white text-lg md:text-xl font-bold">
-                <i class="fas fa-plus-circle text-purple-400 mr-2"></i>
+                <i class="fas fa-plus-circle text-blue-400 mr-2"></i>
                 Tambah Mapel
             </h3>
             <button type="button" onclick="closeCreateModal()" class="text-white/50 hover:text-white">
@@ -294,18 +294,18 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Kode Mapel <span class="text-red-400">*</span></label>
                     <input type="text" name="kode_mapel" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                            placeholder="Contoh: MP-MAT-10">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Nama Mata Pelajaran <span class="text-red-400">*</span></label>
                     <input type="text" name="nama_mapel" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                            placeholder="Contoh: Matematika Wajib">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Guru Pengampu</label>
-                    <select name="guru_id" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="guru_id" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="">-- Pilih Guru Pengampu --</option>
                         @foreach($gurus as $g)
                             <option value="{{ $g->id }}">{{ $g->name }}</option>
@@ -317,7 +317,7 @@
                 <button type="button" onclick="closeCreateModal()" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm">
                     Batal
                 </button>
-                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
                     <i class="fas fa-save"></i> Simpan
                 </button>
             </div>
@@ -344,16 +344,16 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Kode Mapel <span class="text-red-400">*</span></label>
                     <input type="text" name="kode_mapel" id="edit_kode_mapel" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Nama Mata Pelajaran <span class="text-red-400">*</span></label>
                     <input type="text" name="nama_mapel" id="edit_nama_mapel" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Guru Pengampu</label>
-                    <select name="guru_id" id="edit_guru_id" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="guru_id" id="edit_guru_id" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="">-- Pilih Guru Pengampu --</option>
                         @foreach($gurus as $g)
                             <option value="{{ $g->id }}">{{ $g->name }}</option>

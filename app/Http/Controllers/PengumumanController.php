@@ -135,7 +135,7 @@ class PengumumanController extends Controller
         $pengumuman = Pengumuman::findOrFail($id);
 
         // Authorization check
-        if (auth()->user()->role !== 'admin' && $pengumuman->user_id !== auth()->id()) {
+        if (auth()->user()->role !== 'admin' && $pengumuman->user_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -169,7 +169,7 @@ class PengumumanController extends Controller
         $pengumuman = Pengumuman::findOrFail($id);
 
         // Authorization check
-        if (auth()->user()->role !== 'admin' && $pengumuman->user_id !== auth()->id()) {
+        if (auth()->user()->role !== 'admin' && $pengumuman->user_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 

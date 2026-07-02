@@ -18,28 +18,23 @@ class MataPelajaranSeeder extends Seeder
         $guruId = $guru ? $guru->id : null;
 
         $subjects = [
-            // Mata Pelajaran Wajib
+            // Mata Pelajaran Umum / Nasional
             ['kode_mapel' => 'MP-IND', 'nama_mapel' => 'Bahasa Indonesia'],
             ['kode_mapel' => 'MP-ING', 'nama_mapel' => 'Bahasa Inggris'],
-            ['kode_mapel' => 'MP-MAT', 'nama_mapel' => 'Matematika Wajib'],
-            ['kode_mapel' => 'MP-AGM', 'nama_mapel' => 'Pendidikan Agama Islam'],
+            ['kode_mapel' => 'MP-MAT', 'nama_mapel' => 'Matematika'],
             ['kode_mapel' => 'MP-PPK', 'nama_mapel' => 'Pendidikan Pancasila dan Kewarganegaraan'],
-            ['kode_mapel' => 'MP-SEJ', 'nama_mapel' => 'Sejarah Indonesia'],
+            ['kode_mapel' => 'MP-IPA', 'nama_mapel' => 'Ilmu Pengetahuan Alam (IPA)'],
+            ['kode_mapel' => 'MP-IPS', 'nama_mapel' => 'Ilmu Pengetahuan Sosial (IPS)'],
             ['kode_mapel' => 'MP-PJK', 'nama_mapel' => 'Pendidikan Jasmani, Olahraga, dan Kesehatan'],
             ['kode_mapel' => 'MP-SBK', 'nama_mapel' => 'Seni Budaya'],
-            ['kode_mapel' => 'MP-PKW', 'nama_mapel' => 'Prakarya dan Kewirausahaan'],
+            ['kode_mapel' => 'MP-PRK', 'nama_mapel' => 'Prakarya / Informatika'],
 
-            // Peminatan MIPA (Matematika dan Ilmu Pengetahuan Alam)
-            ['kode_mapel' => 'MP-FIS', 'nama_mapel' => 'Fisika'],
-            ['kode_mapel' => 'MP-KIM', 'nama_mapel' => 'Kimia'],
-            ['kode_mapel' => 'MP-BIO', 'nama_mapel' => 'Biologi'],
-            ['kode_mapel' => 'MP-MTP', 'nama_mapel' => 'Matematika Peminatan'],
-
-            // Peminatan IPS (Ilmu Pengetahuan Sosial)
-            ['kode_mapel' => 'MP-GEO', 'nama_mapel' => 'Geografi'],
-            ['kode_mapel' => 'MP-SOS', 'nama_mapel' => 'Sosiologi'],
-            ['kode_mapel' => 'MP-EKO', 'nama_mapel' => 'Ekonomi'],
-            ['kode_mapel' => 'MP-SJP', 'nama_mapel' => 'Sejarah Peminatan'],
+            // Mata Pelajaran Ciri Khas Madrasah (Kemenag)
+            ['kode_mapel' => 'MP-ARAB', 'nama_mapel' => 'Bahasa Arab'],
+            ['kode_mapel' => 'MP-QURAN', 'nama_mapel' => 'Al-Qur\'an Hadis'],
+            ['kode_mapel' => 'MP-AKIDAH', 'nama_mapel' => 'Akidah Akhlak'],
+            ['kode_mapel' => 'MP-FIKIH', 'nama_mapel' => 'Fikih'],
+            ['kode_mapel' => 'MP-SKI', 'nama_mapel' => 'Sejarah Kebudayaan Islam (SKI)'],
         ];
 
         foreach ($subjects as $subject) {

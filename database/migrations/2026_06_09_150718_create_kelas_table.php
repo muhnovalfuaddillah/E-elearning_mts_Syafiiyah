@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_kelas', 20)->unique();
             $table->string('nama_kelas', 100);
-            $table->enum('tingkat', ['10', '11', '12']);
+            $table->enum('tingkat', ['7', '8', '9', '10', '11', '12']);
             $table->string('jurusan', 50);
             $table->text('deskripsi')->nullable();
             $table->timestamps();

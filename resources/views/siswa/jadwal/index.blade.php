@@ -18,7 +18,7 @@
                 <p class="text-white/50 text-sm">Jadwal pelajaran mingguan kelas Anda.</p>
             </div>
         </div>
-        <div class="px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 text-sm font-semibold shrink-0">
+        <div class="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl text-blue-400 text-sm font-semibold shrink-0">
             Kelas: {{ $siswa->kelas->kode_kelas }}
         </div>
     </div>
@@ -30,9 +30,9 @@
                 <!-- Header Hari -->
                 <div class="p-4 bg-white/5 border-b border-white/10 flex justify-between items-center">
                     <span class="text-white font-bold text-base flex items-center gap-2">
-                        <i class="far fa-calendar-check text-indigo-400"></i> {{ $hari }}
+                        <i class="far fa-calendar-check text-blue-400"></i> {{ $hari }}
                     </span>
-                    <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full font-semibold">
+                    <span class="text-xs bg-blue-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-semibold">
                         {{ $listJadwal->count() }} Sesi
                     </span>
                 </div>
@@ -43,12 +43,12 @@
                         <div class="py-3.5 first:pt-1 last:pb-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group">
                             <div class="flex items-start gap-3">
                                 <!-- Clock Icon & Time -->
-                                <div class="w-20 shrink-0 font-mono text-indigo-400 font-bold text-sm bg-indigo-500/10 px-2.5 py-1 rounded-lg border border-indigo-500/20 text-center">
+                                <div class="w-20 shrink-0 font-mono text-blue-400 font-bold text-sm bg-blue-500/10 px-2.5 py-1 rounded-lg border border-blue-500/20 text-center">
                                     {{ \Carbon\Carbon::parse($session->jam_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($session->jam_selesai)->format('H:i') }}
                                 </div>
                                 <!-- Subject and Guru -->
                                 <div>
-                                    <h6 class="text-white font-bold text-sm sm:text-base group-hover:text-indigo-300 transition-colors">
+                                    <h6 class="text-white font-bold text-sm sm:text-base group-hover:text-emerald-300 transition-colors">
                                         {{ $session->mapel->nama_mapel }}
                                     </h6>
                                     <p class="text-white/50 text-xs mt-0.5">
@@ -59,7 +59,7 @@
                             
                             <!-- Room details -->
                             <div class="flex items-center gap-2 self-start sm:self-auto sm:text-right">
-                                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-pink-500/20 text-pink-300 border border-pink-500/30">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30">
                                     <i class="fas fa-door-open mr-1"></i> {{ $session->ruangan ?? 'Kelas Reguler' }}
                                 </span>
                             </div>

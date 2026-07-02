@@ -21,7 +21,7 @@
                 <div>
                     <p class="text-white/50 text-xs uppercase tracking-wider">Total Pengumuman</p>
                     <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ $pengumuman->total() }}</h3>
-                    <p class="text-indigo-400 text-xs mt-2"><i class="fas fa-bullhorn"></i> Aktif</p>
+                    <p class="text-blue-400 text-xs mt-2"><i class="fas fa-bullhorn"></i> Aktif</p>
                 </div>
                 <div class="luxury-icon w-12 h-12">
                     <i class="fas fa-bullhorn text-white text-xl"></i>
@@ -36,10 +36,10 @@
                     <h3 class="text-2xl font-bold stat-number mt-1 text-white">
                         {{ \App\Models\Pengumuman::where('tipe', 'sekolah')->count() }}
                     </h3>
-                    <p class="text-emerald-400 text-xs mt-2"><i class="fas fa-globe"></i> Untuk Semua</p>
+                    <p class="text-blue-400 text-xs mt-2"><i class="fas fa-globe"></i> Untuk Semua</p>
                 </div>
-                <div class="luxury-icon w-12 h-12 bg-emerald-500/20">
-                    <i class="fas fa-globe text-emerald-400 text-xl"></i>
+                <div class="luxury-icon w-12 h-12 bg-blue-500/20">
+                    <i class="fas fa-globe text-blue-400 text-xl"></i>
                 </div>
             </div>
         </div>
@@ -51,10 +51,10 @@
                     <h3 class="text-2xl font-bold stat-number mt-1 text-white">
                         {{ \App\Models\Pengumuman::where('tipe', 'kelas')->count() }}
                     </h3>
-                    <p class="text-pink-400 text-xs mt-2"><i class="fas fa-chalkboard"></i> Spesifik Kelas</p>
+                    <p class="text-teal-400 text-xs mt-2"><i class="fas fa-chalkboard"></i> Spesifik Kelas</p>
                 </div>
-                <div class="luxury-icon w-12 h-12 bg-pink-500/20">
-                    <i class="fas fa-users text-pink-400 text-xl"></i>
+                <div class="luxury-icon w-12 h-12 bg-teal-500/20">
+                    <i class="fas fa-users text-teal-400 text-xl"></i>
                 </div>
             </div>
         </div>
@@ -62,11 +62,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -103,7 +103,7 @@
                     <p class="text-white/40 text-sm">Kelola pengumuman sekolah atau kelas di sini</p>
                 </div>
                 <div>
-                    <button onclick="openCreateModal()" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
+                    <button onclick="openCreateModal()" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
                         <i class="fas fa-plus mr-2"></i> Tambah Pengumuman
                     </button>
                 </div>
@@ -128,17 +128,17 @@
                     <tr class="border-b border-white/5 hover:bg-white/5">
                         <td class="p-4 text-white/80 text-sm">{{ $pengumuman->firstItem() + $index }}</td>
                         <td class="p-4">
-                            <a href="{{ route('announcements.show-detail', $item->id) }}" class="text-white font-medium hover:text-purple-400 transition-colors text-sm">
+                            <a href="{{ route('announcements.show-detail', $item->id) }}" class="text-white font-medium hover:text-blue-400 transition-colors text-sm">
                                 {{ $item->judul }}
                             </a>
                         </td>
                         <td class="p-4">
                             @if($item->tipe === 'sekolah')
-                                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-400">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                     Sekolah
                                 </span>
                             @else
-                                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-pink-500/20 text-pink-400">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-teal-500/20 text-teal-400">
                                     Kelas
                                 </span>
                             @endif
@@ -206,13 +206,13 @@
                 @csrf
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Judul Pengumuman</label>
-                    <input type="text" name="judul" required placeholder="Contoh: Libur Semester Ganjil" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <input type="text" name="judul" required placeholder="Contoh: Libur Semester Ganjil" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Tipe Pengumuman</label>
-                        <select name="tipe" id="create_tipe" onchange="toggleCreateKelasSelect()" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="tipe" id="create_tipe" onchange="toggleCreateKelasSelect()" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             @if(auth()->user()->role === 'admin')
                                 <option value="sekolah">Sekolah (Semua)</option>
                             @endif
@@ -222,7 +222,7 @@
 
                     <div id="create_kelas_container">
                         <label class="block text-white/70 text-sm mb-2 font-medium">Pilih Kelas</label>
-                        <select name="kelas_id" id="create_kelas_id" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" id="create_kelas_id" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="">-- Pilih Kelas --</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}">{{ $k->kode_kelas }}</option>
@@ -233,14 +233,14 @@
 
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Isi Pengumuman</label>
-                    <textarea name="isi" rows="6" required placeholder="Tuliskan detail isi pengumuman..." class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm"></textarea>
+                    <textarea name="isi" rows="6" required placeholder="Tuliskan detail isi pengumuman..." class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm"></textarea>
                 </div>
 
                 <div class="flex justify-end gap-3 pt-4 border-t border-white/10">
                     <button type="button" onclick="closeCreateModal()" class="px-4 py-2 bg-white/5 rounded-xl text-white/70 hover:text-white text-sm font-semibold">
                         Batal
                     </button>
-                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
+                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
                         Publikasikan
                     </button>
                 </div>
@@ -265,13 +265,13 @@
                 @method('PUT')
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Judul Pengumuman</label>
-                    <input type="text" name="judul" id="edit_judul" required placeholder="Contoh: Libur Semester Ganjil" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <input type="text" name="judul" id="edit_judul" required placeholder="Contoh: Libur Semester Ganjil" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Tipe Pengumuman</label>
-                        <select name="tipe" id="edit_tipe" onchange="toggleEditKelasSelect()" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="tipe" id="edit_tipe" onchange="toggleEditKelasSelect()" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             @if(auth()->user()->role === 'admin')
                                 <option value="sekolah">Sekolah (Semua)</option>
                             @endif
@@ -281,7 +281,7 @@
 
                     <div id="edit_kelas_container">
                         <label class="block text-white/70 text-sm mb-2 font-medium">Pilih Kelas</label>
-                        <select name="kelas_id" id="edit_kelas_id" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" id="edit_kelas_id" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="">-- Pilih Kelas --</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}">{{ $k->kode_kelas }}</option>
@@ -292,14 +292,14 @@
 
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Isi Pengumuman</label>
-                    <textarea name="isi" id="edit_isi" rows="6" required placeholder="Tuliskan detail isi pengumuman..." class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm"></textarea>
+                    <textarea name="isi" id="edit_isi" rows="6" required placeholder="Tuliskan detail isi pengumuman..." class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm"></textarea>
                 </div>
 
                 <div class="flex justify-end gap-3 pt-4 border-t border-white/10">
                     <button type="button" onclick="closeEditModal()" class="px-4 py-2 bg-white/5 rounded-xl text-white/70 hover:text-white text-sm font-semibold">
                         Batal
                     </button>
-                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
+                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
                         Simpan Perubahan
                     </button>
                 </div>

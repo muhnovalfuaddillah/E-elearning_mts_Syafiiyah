@@ -29,7 +29,7 @@
                 <div>
                     <p class="text-white/50 text-xs uppercase tracking-wider">Total Kelas</p>
                     <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->total() }}</h3>
-                    <p class="text-emerald-400 text-xs md:text-sm mt-2"><i class="fas fa-school"></i> Active</p>
+                    <p class="text-blue-400 text-xs md:text-sm mt-2"><i class="fas fa-school"></i> Active</p>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12">
                     <i class="fas fa-school text-white text-base md:text-xl"></i>
@@ -43,8 +43,8 @@
                     <p class="text-white/50 text-xs uppercase tracking-wider">Kelas X</p>
                     <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->where('tingkat', '10')->count() + $kelas->where('tingkat', 'X')->count() }}</h3>
                 </div>
-                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-emerald-500/20">
-                    <i class="fas fa-layer-group text-emerald-400 text-base md:text-xl"></i>
+                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-blue-500/20">
+                    <i class="fas fa-layer-group text-blue-400 text-base md:text-xl"></i>
                 </div>
             </div>
         </div>
@@ -67,8 +67,8 @@
                     <p class="text-white/50 text-xs uppercase tracking-wider">Kelas XII</p>
                     <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->where('tingkat', '12')->count() + $kelas->where('tingkat', 'XII')->count() }}</h3>
                 </div>
-                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-purple-500/20">
-                    <i class="fas fa-layer-group text-purple-400 text-base md:text-xl"></i>
+                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-blue-500/20">
+                    <i class="fas fa-layer-group text-blue-400 text-base md:text-xl"></i>
                 </div>
             </div>
         </div>
@@ -86,14 +86,14 @@
                                id="searchInput"
                                placeholder="Cari kode kelas, nama kelas, atau jurusan..." 
                                value="{{ request('search') }}"
-                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm md:text-base">
+                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm md:text-base">
                         @if(request('search'))
                             <i class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-white/40 cursor-pointer hover:text-white" onclick="clearSearch()"></i>
                         @endif
                     </div>
                 </div>
                 <div class="w-full md:w-40">
-                    <select name="tingkat" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm md:text-base">
+                    <select name="tingkat" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm md:text-base">
                         <option value="" class="text-black bg-white">Semua Tingkat</option>
                         <option value="10" class="text-black bg-white" {{ request('tingkat') == '10' || request('tingkat') == 'X' ? 'selected' : '' }}>Kelas X</option>
                         <option value="11" class="text-black bg-white" {{ request('tingkat') == '11' || request('tingkat') == 'XI' ? 'selected' : '' }}>Kelas XI</option>
@@ -101,14 +101,14 @@
                     </select>
                 </div>
                 <div class="w-full md:w-40">
-                    <select name="sort_by" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm md:text-base">
+                    <select name="sort_by" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm md:text-base">
                         <option value="created_at" {{ request('sort_by') == 'created_at' ? 'selected' : '' }}>Terbaru</option>
                         <option value="kode_kelas" {{ request('sort_by') == 'kode_kelas' ? 'selected' : '' }}>Kode Kelas</option>
                         <option value="nama_kelas" {{ request('sort_by') == 'nama_kelas' ? 'selected' : '' }}>Nama Kelas</option>
                     </select>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm md:text-base">
+                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm md:text-base">
                         <i class="fas fa-search"></i> Cari
                     </button>
                     <a href="{{ route('admin.kelas.index') }}" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm md:text-base">
@@ -121,11 +121,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm md:text-base">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -151,7 +151,7 @@
                     <p class="text-white/40 text-sm">Menampilkan {{ $kelas->firstItem() }} - {{ $kelas->lastItem() }} dari {{ $kelas->total() }} data</p>
                 </div>
                 <div>
-                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-emerald-500/20 rounded-lg text-emerald-400 text-sm md:text-base">
+                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm md:text-base">
                         <i class="fas fa-plus"></i> Tambah Data Kelas
                     </button>
                 </div>
@@ -175,7 +175,7 @@
                     <tr class="border-b border-white/5 hover:bg-white/5">
                         <td class="p-3 md:p-4 text-white/80 text-sm">{{ $kelas->firstItem() + $index }}</td>
                         <td class="p-3 md:p-4">
-                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400">
+                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                 {{ $item->kode_kelas }}
                             </span>
                         </td>
@@ -209,7 +209,7 @@
                             <div class="text-center">
                                 <i class="fas fa-school text-6xl text-white/20 mb-4"></i>
                                 <p class="text-white/50">Tidak ada data kelas</p>
-                                <button type="button" onclick="openCreateModal()" class="mt-4 px-4 py-2 bg-purple-500/20 rounded-lg text-purple-400">
+                                <button type="button" onclick="openCreateModal()" class="mt-4 px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400">
                                     <i class="fas fa-plus"></i> Tambah Kelas
                                 </button>
                             </div>
@@ -233,7 +233,7 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
         @else
-            <a href="{{ $kelas->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+            <a href="{{ $kelas->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                 <i class="fas fa-chevron-left"></i>
             </a>
         @endif
@@ -241,15 +241,15 @@
         {{-- Pagination Elements --}}
         @foreach ($kelas->getUrlRange(1, $kelas->lastPage()) as $page => $url)
             @if($page == $kelas->currentPage())
-                <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">{{ $page }}</a>
+                <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm">{{ $page }}</a>
             @else
-                <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">{{ $page }}</a>
+                <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">{{ $page }}</a>
             @endif
         @endforeach
 
         {{-- Next Button --}}
         @if($kelas->hasMorePages())
-            <a href="{{ $kelas->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+            <a href="{{ $kelas->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                 <i class="fas fa-chevron-right"></i>
             </a>
         @else
@@ -270,7 +270,7 @@
     <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl w-full max-w-[95%] md:max-w-md mx-4 shadow-2xl border border-white/10">
         <div class="p-4 md:p-6 border-b border-white/10 flex justify-between items-center">
             <h3 class="text-white text-lg md:text-xl font-bold">
-                <i class="fas fa-plus-circle text-purple-400 mr-2"></i>
+                <i class="fas fa-plus-circle text-blue-400 mr-2"></i>
                 Tambah Kelas
             </h3>
             <button type="button" onclick="closeCreateModal()" class="text-white/50 hover:text-white">
@@ -283,18 +283,18 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Kode Kelas <span class="text-red-400">*</span></label>
                     <input type="text" name="kode_kelas" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                            placeholder="Contoh: XII-RPL-1">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Nama Kelas <span class="text-red-400">*</span></label>
                     <input type="text" name="nama_kelas" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                            placeholder="Contoh: XII Rekayasa Perangkat Lunak 1">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Tingkat <span class="text-red-400">*</span></label>
-                    <select name="tingkat" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="tingkat" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="">Pilih Tingkat</option>
                         <option value="10">Kelas 10</option>
                         <option value="11">Kelas 11</option>
@@ -304,7 +304,7 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Jurusan <span class="text-red-400">*</span></label>
                     <input type="text" name="jurusan" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                            placeholder="Contoh: Rekayasa Perangkat Lunak">
                 </div>
             </div>
@@ -312,7 +312,7 @@
                 <button type="button" onclick="closeCreateModal()" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm">
                     Batal
                 </button>
-                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm">
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm">
                     <i class="fas fa-save"></i> Simpan
                 </button>
             </div>
@@ -339,16 +339,16 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Kode Kelas <span class="text-red-400">*</span></label>
                     <input type="text" name="kode_kelas" id="edit_kode_kelas" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Nama Kelas <span class="text-red-400">*</span></label>
                     <input type="text" name="nama_kelas" id="edit_nama_kelas" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Tingkat <span class="text-red-400">*</span></label>
-                    <select name="tingkat" id="edit_tingkat" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="tingkat" id="edit_tingkat" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="10">Kelas 10</option>
                         <option value="11">Kelas 11</option>
                         <option value="12">Kelas 12</option>
@@ -357,7 +357,7 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Jurusan <span class="text-red-400">*</span></label>
                     <input type="text" name="jurusan" id="edit_jurusan" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
             </div>
             <div class="p-4 md:p-6 border-t border-white/10 flex gap-3 justify-end">

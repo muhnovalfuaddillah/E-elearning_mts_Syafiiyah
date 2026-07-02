@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Rekap Penilaian Siswa - Pembelajaran Digital')
 @section('breadcrumb', 'Penilaian')
@@ -28,7 +28,7 @@
                 <div>
                     <p class="text-white/50 text-xs uppercase tracking-wider">Total Data Nilai</p>
                     <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $penilaian->total() }}</h3>
-                    <p class="text-emerald-400 text-xs md:text-sm mt-2"><i class="fas fa-list-ol"></i> Records</p>
+                    <p class="text-blue-400 text-xs md:text-sm mt-2"><i class="fas fa-list-ol"></i> Records</p>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12">
                     <i class="fas fa-graduation-cap text-white text-base md:text-xl"></i>
@@ -58,8 +58,8 @@
                         {{ number_format(\App\Models\Penilaian::max('nilai_akhir') ?? 0, 1) }}
                     </h3>
                 </div>
-                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-emerald-500/20">
-                    <i class="fas fa-award text-emerald-400 text-base md:text-xl"></i>
+                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-blue-500/20">
+                    <i class="fas fa-award text-blue-400 text-base md:text-xl"></i>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                                id="searchInput"
                                placeholder="Cari berdasarkan nama atau NIS siswa..." 
                                value="{{ request('search') }}"
-                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         @if(request('search'))
                             <i class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-white/40 cursor-pointer hover:text-white" onclick="clearSearch()"></i>
                         @endif
@@ -99,7 +99,7 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <div>
-                        <select name="kelas_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Kelas</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}" class="text-black bg-white" {{ request('kelas_id') == $k->id ? 'selected' : '' }}>
@@ -109,7 +109,7 @@
                         </select>
                     </div>
                     <div>
-                        <select name="mapel_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="mapel_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Mapel</option>
                             @foreach($mapels as $m)
                                 <option value="{{ $m->id }}" class="text-black bg-white" {{ request('mapel_id') == $m->id ? 'selected' : '' }}>
@@ -119,14 +119,14 @@
                         </select>
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <select name="sort_by" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="sort_by" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="created_at" {{ request('sort_by') == 'created_at' ? 'selected' : '' }}>Terbaru</option>
                             <option value="nilai_akhir" {{ request('sort_by') == 'nilai_akhir' ? 'selected' : '' }}>Nilai Akhir</option>
                         </select>
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm">
+                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm">
                         <i class="fas fa-search"></i> Cari
                     </button>
                     <a href="{{ route('admin.penilaian.index') }}" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm flex items-center justify-center">
@@ -139,11 +139,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm md:text-base">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -181,7 +181,7 @@
                     <tr class="border-b border-white/5 hover:bg-white/5">
                         <td class="p-3 md:p-4 text-white/80 text-sm">{{ $penilaian->firstItem() + $index }}</td>
                         <td class="p-3 md:p-4">
-                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400">
+                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                 {{ $item->siswa->nis ?? '-' }}
                             </span>
                         </td>
@@ -192,7 +192,7 @@
                         <td class="p-3 md:p-4 text-center text-white font-semibold text-sm">{{ $item->nilai_uts ?? '-' }}</td>
                         <td class="p-3 md:p-4 text-center text-white font-semibold text-sm">{{ $item->nilai_uas ?? '-' }}</td>
                         <td class="p-3 md:p-4 text-center">
-                            <span class="px-2 py-1 rounded-lg text-xs font-bold {{ $item->nilai_akhir >= 75 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400' }}">
+                            <span class="px-2 py-1 rounded-lg text-xs font-bold {{ $item->nilai_akhir >= 75 ? 'bg-blue-500/20 text-blue-400' : 'bg-red-500/20 text-red-400' }}">
                                 {{ number_format($item->nilai_akhir, 1) }}
                             </span>
                         </td>
@@ -230,21 +230,21 @@
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 @else
-                    <a href="{{ $penilaian->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $penilaian->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 @endif
 
                 @foreach ($penilaian->getUrlRange(1, $penilaian->lastPage()) as $page => $url)
                     @if($page == $penilaian->currentPage())
-                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">{{ $page }}</a>
+                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm">{{ $page }}</a>
                     @else
-                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">{{ $page }}</a>
+                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">{{ $page }}</a>
                     @endif
                 @endforeach
 
                 @if($penilaian->hasMorePages())
-                    <a href="{{ $penilaian->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $penilaian->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-right"></i>
                     </a>
                 @else

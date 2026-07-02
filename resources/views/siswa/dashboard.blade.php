@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Dashboard Siswa - Pembelajaran Digital')
 @section('breadcrumb', 'Dashboard')
@@ -8,24 +8,24 @@
 <div class="w-full px-4 md:px-6 py-6">
 
     <!-- Welcome Card -->
-    <div class="luxury-card p-6 mb-8 relative overflow-hidden bg-gradient-to-r from-purple-900/40 to-pink-900/40 border border-purple-500/20">
-        <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="luxury-card p-6 mb-8 relative overflow-hidden bg-gradient-to-r from-emerald-900/40 to-teal-900/40 border border-blue-500/20">
+        <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/20 text-purple-400 border border-purple-500/30 uppercase tracking-wider">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30 uppercase tracking-wider">
                     Siswa Aktif
                 </span>
                 <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-3">
                     Selamat Datang Kembali, <span class="gradient-text">{{ $siswa->nama }}</span>!
                 </h2>
                 <p class="text-white/60 text-sm mt-1">
-                    Anda terdaftar di kelas <strong class="text-blue-300">{{ $kelas->nama_lengkap }}</strong>. Berikut adalah ikhtisar akademik Anda hari ini.
+                    Anda terdaftar di kelas <strong class="text-teal-300">{{ $kelas->nama_lengkap }}</strong>. Berikut adalah ikhtisar akademik Anda hari ini.
                 </p>
             </div>
             
             <!-- Quick QR Scan Trigger Button -->
             <div>
-                <button onclick="openScannerModal()" class="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-bold text-sm shadow-glow flex items-center gap-2 hover:translate-y-[-2px] transition-all">
+                <button onclick="openScannerModal()" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl text-white font-bold text-sm shadow-glow flex items-center gap-2 hover:translate-y-[-2px] transition-all">
                     <i class="fas fa-qrcode text-lg"></i> Scan QR Absensi Kelas
                 </button>
             </div>
@@ -43,10 +43,10 @@
                         {{ number_format($persentaseKehadiran, 1) }}%
                     </h3>
                     <p class="text-white/40 text-xs mt-2">
-                        <span class="text-emerald-400 font-semibold">{{ $hadir }} Hadir</span> | {{ $sakit + $izin }} S/I | {{ $alpa }} Alpa
+                        <span class="text-blue-400 font-semibold">{{ $hadir }} Hadir</span> | {{ $sakit + $izin }} S/I | {{ $alpa }} Alpa
                     </p>
                 </div>
-                <div class="luxury-icon w-12 h-12 bg-emerald-500/20 text-emerald-400">
+                <div class="luxury-icon w-12 h-12 bg-blue-500/20 text-blue-400">
                     <i class="fas fa-user-check text-xl"></i>
                 </div>
             </div>
@@ -98,15 +98,15 @@
             <div class="luxury-card p-6">
                 <div class="flex justify-between items-center mb-4 pb-3 border-b border-white/10">
                     <h5 class="text-white font-bold text-lg flex items-center gap-2">
-                        <i class="fas fa-calendar-alt text-purple-400"></i> Kalender Akademik
+                        <i class="fas fa-calendar-alt text-amber-400"></i> Kalender Akademik
                     </h5>
                     <span class="text-xs text-white/40">Agenda Kegiatan Sekolah</span>
                 </div>
                 <!-- Mini Agenda Lists -->
                 <div class="space-y-4">
                     @forelse($calendarEvents as $event)
-                        <div class="flex items-start gap-4 p-3 bg-white/5 rounded-xl border border-white/5 hover:border-purple-500/30 transition">
-                            <div class="shrink-0 w-12 text-center py-1 rounded-lg {{ $event->type == 'libur' ? 'bg-red-500/20 text-red-400' : ($event->type == 'ujian' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-purple-500/20 text-purple-400') }}">
+                        <div class="flex items-start gap-4 p-3 bg-white/5 rounded-xl border border-white/5 hover:border-blue-500/30 transition">
+                            <div class="shrink-0 w-12 text-center py-1 rounded-lg {{ $event->type == 'libur' ? 'bg-red-500/20 text-red-400' : ($event->type == 'ujian' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-blue-500/20 text-blue-400') }}">
                                 <span class="block text-xs font-bold uppercase">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</span>
                                 <span class="block text-lg font-extrabold">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</span>
                             </div>
@@ -115,7 +115,7 @@
                                 <p class="text-white/50 text-xs mt-0.5 truncate">{{ $event->description ?? 'Tidak ada deskripsi agenda.' }}</p>
                             </div>
                             <div class="shrink-0 self-center">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider {{ $event->type == 'libur' ? 'bg-red-500/20 text-red-400 border border-red-500/30' : ($event->type == 'ujian' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-purple-500/20 text-purple-400 border border-purple-500/30') }}">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider {{ $event->type == 'libur' ? 'bg-red-500/20 text-red-400 border border-red-500/30' : ($event->type == 'ujian' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30') }}">
                                     {{ $event->type }}
                                 </span>
                             </div>
@@ -133,7 +133,7 @@
             <div class="luxury-card p-6">
                 <div class="flex justify-between items-center mb-6 pb-3 border-b border-white/10">
                     <h5 class="text-white font-bold text-lg flex items-center gap-2">
-                        <i class="fas fa-chart-bar text-purple-400"></i> Statistik Nilai Saya
+                        <i class="fas fa-chart-bar text-blue-400"></i> Statistik Nilai Saya
                     </h5>
                     <span class="text-xs text-white/40">Visualisasi Nilai Akhir Mapel</span>
                 </div>
@@ -147,19 +147,19 @@
         <div class="space-y-6">
             <div class="luxury-card p-6">
                 <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                    <i class="fas fa-bullhorn text-pink-400 text-lg"></i>
+                    <i class="fas fa-bullhorn text-amber-400 text-lg"></i>
                     <h5 class="text-white font-bold text-lg">Pengumuman Terkini</h5>
                 </div>
                 <div class="space-y-4">
                     @foreach($announcements as $ann)
-                        <div class="p-4 bg-white/5 rounded-xl border border-white/5 hover:border-pink-500/20 transition-all">
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/5 hover:border-amber-500/20 transition-all">
                             <div class="flex justify-between items-start gap-2">
                                 <h6 class="text-white font-semibold text-sm leading-tight">{{ $ann['title'] }}</h6>
                                 <span class="text-[10px] text-white/30 whitespace-nowrap">{{ $ann['date'] }}</span>
                             </div>
                             <p class="text-white/60 text-xs mt-2 leading-relaxed">{{ $ann['content'] }}</p>
                             <div class="mt-3 flex items-center justify-between">
-                                <span class="text-[10px] text-pink-400 font-semibold"><i class="fas fa-user-tie"></i> {{ $ann['author'] }}</span>
+                                <span class="text-[10px] text-amber-400 font-semibold"><i class="fas fa-user-tie"></i> {{ $ann['author'] }}</span>
                             </div>
                         </div>
                     @endforeach
@@ -178,7 +178,7 @@
     <!-- Modal Box -->
     <div class="relative bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 rounded-2xl w-full max-w-md p-6 overflow-hidden">
         <div class="flex justify-between items-center mb-4 pb-3 border-b border-white/10">
-            <h5 class="text-white font-bold text-lg"><i class="fas fa-qrcode text-purple-400 mr-1.5"></i> Scan Absensi QR</h5>
+            <h5 class="text-white font-bold text-lg"><i class="fas fa-qrcode text-blue-400 mr-1.5"></i> Scan Absensi QR</h5>
             <button onclick="closeScannerModal()" class="text-white/40 hover:text-white"><i class="fas fa-times"></i></button>
         </div>
         
@@ -186,7 +186,7 @@
         <div class="w-full aspect-square bg-black rounded-xl overflow-hidden relative border border-white/10" id="qr-reader-container">
             <div id="qr-reader" class="w-full h-full"></div>
             <!-- Laser Scanner Line Animation -->
-            <div class="absolute inset-x-0 top-0 h-0.5 bg-purple-500/80 animate-bounce pointer-events-none shadow-[0_0_10px_#a855f7]"></div>
+            <div class="absolute inset-x-0 top-0 h-0.5 bg-blue-500/80 animate-bounce pointer-events-none shadow-[0_0_10px_#3b82f6]"></div>
         </div>
         
         <!-- Manual Token Entry Option -->
@@ -195,8 +195,8 @@
             <form id="manualTokenForm" onsubmit="submitManualToken(event)">
                 <div class="flex gap-2">
                     <input type="text" id="manual_token" name="token" placeholder="Masukkan 6 digit kode token absensi" required
-                           class="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
-                    <button type="submit" class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-lg text-white font-semibold text-sm">
+                           class="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
+                    <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold text-sm">
                         Kirim
                     </button>
                 </div>
@@ -450,12 +450,12 @@
                 datasets: [{
                     label: 'Nilai Akhir',
                     data: dataValues,
-                    backgroundColor: 'rgba(168, 85, 247, 0.4)',
-                    borderColor: 'rgba(168, 85, 247, 1)',
+                    backgroundColor: 'rgba(59, 130, 246, 0.4)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
                     borderWidth: 1.5,
                     borderRadius: 8,
-                    hoverBackgroundColor: 'rgba(236, 72, 153, 0.5)',
-                    hoverBorderColor: 'rgba(236, 72, 153, 1)',
+                    hoverBackgroundColor: 'rgba(245, 158, 11, 0.5)',
+                    hoverBorderColor: 'rgba(245, 158, 11, 1)',
                 }]
             },
             options: {

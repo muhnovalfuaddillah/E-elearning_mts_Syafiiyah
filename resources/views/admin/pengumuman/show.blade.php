@@ -21,11 +21,11 @@
             <div class="p-6 md:p-8 border-b border-white/10 bg-white/5 relative">
                 <div class="absolute top-6 right-6">
                     @if($pengumuman->tipe === 'sekolah')
-                        <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30">
                             Sekolah
                         </span>
                     @else
-                        <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-pink-500/20 text-pink-400 border border-pink-500/30">
+                        <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-teal-500/20 text-teal-400 border border-teal-500/30">
                             Kelas: {{ $pengumuman->kelas->kode_kelas }}
                         </span>
                     @endif
@@ -37,12 +37,12 @@
 
                 <div class="flex flex-wrap gap-4 items-center mt-4 text-white/50 text-xs md:text-sm">
                     <div class="flex items-center gap-2">
-                        <i class="fas fa-user-circle text-purple-400"></i>
+                        <i class="fas fa-user-circle text-blue-400"></i>
                         <span>Diposting oleh: <strong class="text-white/80">{{ $pengumuman->user->name }}</strong></span>
                     </div>
                     <div class="w-1.5 h-1.5 rounded-full bg-white/20"></div>
                     <div class="flex items-center gap-2">
-                        <i class="fas fa-calendar-day text-indigo-400"></i>
+                        <i class="fas fa-calendar-day text-blue-400"></i>
                         <span>{{ $pengumuman->created_at->format('d F Y - H:i') }}</span>
                     </div>
                 </div>

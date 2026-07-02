@@ -20,7 +20,7 @@
             <div class="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Pilih Kelas</label>
-                    <select name="kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="">-- Pilih Kelas --</option>
                         @foreach($kelas as $k)
                             <option value="{{ $k->id }}" {{ $selectedKelasId == $k->id ? 'selected' : '' }}>
@@ -31,7 +31,7 @@
                 </div>
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Pilih Mata Pelajaran</label>
-                    <select name="mapel_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="mapel_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="">-- Pilih Mapel --</option>
                         <option value="all" {{ $selectedMapelId == 'all' ? 'selected' : '' }}>-- Semua Mata Pelajaran (Rekap Kelas) --</option>
                         @foreach($mapels as $m)
@@ -43,14 +43,14 @@
                 </div>
             </div>
             <div class="flex gap-2 w-full md:w-auto">
-                <button type="submit" class="w-full md:w-auto px-5 py-2.5 bg-purple-500/20 border border-purple-500/30 rounded-xl text-purple-400 font-semibold text-sm hover:bg-purple-500/30 transition-all">
+                <button type="submit" class="w-full md:w-auto px-5 py-2.5 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-semibold text-sm hover:bg-blue-500/30 transition-all">
                     <i class="fas fa-search mr-1.5"></i> Tampilkan
                 </button>
                 @if($selectedKelasId && $selectedMapelId)
-                    <a href="{{ route(auth()->user()->role . '.laporan.nilai', ['kelas_id' => $selectedKelasId, 'mapel_id' => $selectedMapelId, 'export' => 'pdf']) }}" target="_blank" class="w-full md:w-auto px-5 py-2.5 bg-pink-500/20 border border-pink-500/30 rounded-xl text-pink-400 font-semibold text-sm hover:bg-pink-500/35 transition-all text-center">
+                    <a href="{{ route(auth()->user()->role . '.laporan.nilai', ['kelas_id' => $selectedKelasId, 'mapel_id' => $selectedMapelId, 'export' => 'pdf']) }}" target="_blank" class="w-full md:w-auto px-5 py-2.5 bg-teal-500/20 border border-teal-500/30 rounded-xl text-teal-400 font-semibold text-sm hover:bg-teal-500/35 transition-all text-center">
                         <i class="fas fa-file-pdf mr-1.5"></i> Cetak PDF
                     </a>
-                    <a href="{{ route(auth()->user()->role . '.laporan.nilai', ['kelas_id' => $selectedKelasId, 'mapel_id' => $selectedMapelId, 'export' => 'excel']) }}" class="w-full md:w-auto px-5 py-2.5 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-semibold text-sm hover:bg-emerald-500/35 transition-all text-center">
+                    <a href="{{ route(auth()->user()->role . '.laporan.nilai', ['kelas_id' => $selectedKelasId, 'mapel_id' => $selectedMapelId, 'export' => 'excel']) }}" class="w-full md:w-auto px-5 py-2.5 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-semibold text-sm hover:bg-blue-500/35 transition-all text-center">
                         <i class="fas fa-file-excel mr-1.5"></i> Ekspor Excel
                     </a>
                 @endif
@@ -79,8 +79,8 @@
                                 @foreach($allMapels as $m)
                                     <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">{{ $m->nama_mapel }}</th>
                                 @endforeach
-                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-300">Rata-rata</th>
-                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-pink-500/10 text-pink-300">Rank Kelas</th>
+                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-blue-500/10 text-emerald-300">Rata-rata</th>
+                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-teal-500/10 text-teal-300">Rank Kelas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,8 +100,8 @@
                                     @endphp
                                     <td class="p-4 text-center text-white/80 text-sm font-mono">{{ $g ? ($g->nilai_akhir ?? '-') : '-' }}</td>
                                 @endforeach
-                                <td class="p-4 text-center bg-purple-500/5 text-purple-300 font-bold font-mono">{{ round($avg, 1) }}</td>
-                                <td class="p-4 text-center bg-pink-500/5 text-pink-300 font-bold font-mono">#{{ $rank }}</td>
+                                <td class="p-4 text-center bg-blue-500/5 text-emerald-300 font-bold font-mono">{{ round($avg, 1) }}</td>
+                                <td class="p-4 text-center bg-teal-500/5 text-teal-300 font-bold font-mono">#{{ $rank }}</td>
                             </tr>
                             @empty
                             <tr>
@@ -122,7 +122,7 @@
                         <h6 class="text-white font-semibold text-lg">Pratinjau Rekapitulasi Nilai Siswa</h6>
                         <p class="text-white/40 text-sm">Mata Pelajaran: {{ $selectedMapel ? $selectedMapel->nama_mapel : '' }}</p>
                     </div>
-                    <div class="px-3 py-1 rounded-xl text-xs font-semibold bg-purple-500/10 border border-purple-500/20 text-purple-400">
+                    <div class="px-3 py-1 rounded-xl text-xs font-semibold bg-blue-500/10 border border-blue-500/20 text-blue-400">
                         Guru Pengampu: {{ $selectedMapel && $selectedMapel->guru ? $selectedMapel->guru->name : 'Belum ditentukan' }}
                     </div>
                 </div>
@@ -136,11 +136,11 @@
                                 <th class="text-left p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">Nama Siswa</th>
                                 <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider w-48">Rata Harian (40%)</th>
                                 <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">Nilai UTS (30%)</th>
-                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider text-purple-300">Rank UTS</th>
+                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider text-emerald-300">Rank UTS</th>
                                 <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">Nilai UAS (30%)</th>
-                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider text-purple-300">Rank UAS</th>
-                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-300">Nilai Akhir</th>
-                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-pink-500/10 text-pink-300">Rank Akhir</th>
+                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider text-emerald-300">Rank UAS</th>
+                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-blue-500/10 text-emerald-300">Nilai Akhir</th>
+                                <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-teal-500/10 text-teal-300">Rank Akhir</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,12 +176,12 @@
                                     </div>
                                 </td>
                                 <td class="p-4 text-center text-white/80 text-sm font-mono">{{ $uts ?? '-' }}</td>
-                                <td class="p-4 text-center text-purple-300 text-sm font-bold font-mono">#{{ $rankUts }}</td>
+                                <td class="p-4 text-center text-emerald-300 text-sm font-bold font-mono">#{{ $rankUts }}</td>
                                 <td class="p-4 text-center text-white/80 text-sm font-mono">{{ $uas ?? '-' }}</td>
-                                <td class="p-4 text-center text-purple-300 text-sm font-bold font-mono">#{{ $rankUas }}</td>
-                                <td class="p-4 text-center bg-purple-500/5">
+                                <td class="p-4 text-center text-emerald-300 text-sm font-bold font-mono">#{{ $rankUas }}</td>
+                                <td class="p-4 text-center bg-blue-500/5">
                                     <span class="px-2.5 py-1 rounded-lg text-xs font-bold font-mono 
-                                        @if($nilaiAkhir !== '-' && $nilaiAkhir >= 80) bg-emerald-500/20 text-emerald-400
+                                        @if($nilaiAkhir !== '-' && $nilaiAkhir >= 80) bg-blue-500/20 text-blue-400
                                         @elseif($nilaiAkhir !== '-' && $nilaiAkhir >= 70) bg-blue-500/20 text-blue-400
                                         @elseif($nilaiAkhir !== '-') bg-red-500/20 text-red-400
                                         @else bg-white/5 text-white/40
@@ -189,7 +189,7 @@
                                         {{ $nilaiAkhir }}
                                     </span>
                                 </td>
-                                <td class="p-4 text-center bg-pink-500/5 text-pink-300 text-sm font-bold font-mono">#{{ $rankFinal }}</td>
+                                <td class="p-4 text-center bg-teal-500/5 text-teal-300 text-sm font-bold font-mono">#{{ $rankFinal }}</td>
                             </tr>
                             @empty
                             <tr>
@@ -206,7 +206,7 @@
         @endif
     @else
         <div class="luxury-card p-10 text-center text-white/30">
-            <i class="fas fa-info-circle text-4xl mb-3 block text-purple-500/20"></i>
+            <i class="fas fa-info-circle text-4xl mb-3 block text-blue-500/20"></i>
             Silakan pilih kelas dan mata pelajaran terlebih dahulu untuk melihat pratinjau rekap nilai.
         </div>
     @endif

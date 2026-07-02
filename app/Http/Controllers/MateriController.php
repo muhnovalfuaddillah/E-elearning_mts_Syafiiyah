@@ -154,7 +154,7 @@ class MateriController extends Controller
 
         if ($request->hasFile('file_materi')) {
             // Hapus file lama dari storage
-            if ($materi->file_materi && Storage::disk('public')->exists($materi->file_materi)) {
+            if (!empty($materi->file_materi) && Storage::disk('public')->exists($materi->file_materi)) {
                 Storage::disk('public')->delete($materi->file_materi);
             }
 
@@ -187,7 +187,7 @@ class MateriController extends Controller
         $materi = Materi::findOrFail($id);
 
         // Hapus file pendukung dari storage
-        if ($materi->file_materi && Storage::disk('public')->exists($materi->file_materi)) {
+        if (!empty($materi->file_materi) && Storage::disk('public')->exists($materi->file_materi)) {
             Storage::disk('public')->delete($materi->file_materi);
         }
 

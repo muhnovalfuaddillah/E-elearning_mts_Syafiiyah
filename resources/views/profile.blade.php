@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Profil Saya - Pembelajaran Digital')
 @section('breadcrumb', 'Profil')
@@ -9,11 +9,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -41,14 +41,14 @@
         <div class="lg:col-span-1">
             <div class="luxury-card p-6 text-center">
                 <!-- Avatar Simulation -->
-                <div class="w-24 h-24 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mx-auto flex items-center justify-center text-white text-3xl font-extrabold shadow-glow relative border-2 border-white/20">
+                <div class="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto flex items-center justify-center text-white text-3xl font-extrabold shadow-glow relative border-2 border-white/20">
                     {{ strtoupper(substr($user->name, 0, 1)) }}
                     <!-- Status Indicator -->
-                    <span class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-[#0a0a0a] rounded-full"></span>
+                    <span class="absolute bottom-1 right-1 w-4 h-4 bg-blue-500 border-2 border-[#0a0a0a] rounded-full"></span>
                 </div>
 
                 <h4 class="text-white font-bold text-lg mt-4">{{ $user->name }}</h4>
-                <p class="text-purple-400 text-xs font-semibold uppercase tracking-wider mt-1">{{ $user->role }}</p>
+                <p class="text-blue-400 text-xs font-semibold uppercase tracking-wider mt-1">{{ $user->role }}</p>
                 <p class="text-white/40 text-xs mt-1">{{ $user->email }}</p>
 
                 <!-- Detailed metadata based on role -->
@@ -99,7 +99,7 @@
             <div class="luxury-card overflow-hidden">
                 <!-- Tab Headers -->
                 <div class="flex border-b border-white/10 bg-white/5">
-                    <button onclick="switchTab('edit-profile')" id="tab-edit-profile-btn" class="flex-1 py-4 text-center text-sm font-bold text-purple-400 border-b-2 border-purple-500 focus:outline-none transition">
+                    <button onclick="switchTab('edit-profile')" id="tab-edit-profile-btn" class="flex-1 py-4 text-center text-sm font-bold text-blue-400 border-b-2 border-blue-500 focus:outline-none transition">
                         <i class="fas fa-user-edit mr-1.5"></i> Edit Profil
                     </button>
                     <button onclick="switchTab('change-password')" id="tab-change-password-btn" class="flex-1 py-4 text-center text-sm font-bold text-white/50 hover:text-white border-b-2 border-transparent focus:outline-none transition">
@@ -117,13 +117,13 @@
                             <div class="md:col-span-2">
                                 <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Nama Lengkap</label>
                                 <input type="text" name="name" value="{{ old('name', $user->name) }}" required
-                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Alamat Email</label>
                                 <input type="email" name="email" value="{{ old('email', $user->email) }}" required
-                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <!-- Additional Fields based on role -->
@@ -131,29 +131,29 @@
                                 <div>
                                     <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Nomor Telepon</label>
                                     <input type="text" name="telp" value="{{ old('telp', $user->telp) }}" placeholder="Contoh: 0812345678"
-                                           class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                           class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Alamat Lengkap</label>
                                     <textarea name="alamat" rows="4" placeholder="Masukkan alamat lengkap tinggal saat ini..."
-                                              class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">{{ old('alamat', $user->alamat) }}</textarea>
+                                              class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">{{ old('alamat', $user->alamat) }}</textarea>
                                 </div>
                             @elseif($user->role === 'siswa')
                                 <div>
                                     <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Nomor Telepon (WA)</label>
                                     <input type="text" name="telp" value="{{ old('telp', $user->siswa->telp ?? '') }}" placeholder="Contoh: 0812345678"
-                                           class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                           class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Alamat Lengkap Siswa</label>
                                     <textarea name="alamat" rows="4" placeholder="Masukkan alamat lengkap tempat tinggal saat ini..."
-                                              class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">{{ old('alamat', $user->siswa->alamat ?? '') }}</textarea>
+                                              class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">{{ old('alamat', $user->siswa->alamat ?? '') }}</textarea>
                                 </div>
                             @endif
                         </div>
 
                         <div class="mt-8 pt-4 border-t border-white/10 flex justify-end">
-                            <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-bold text-sm shadow-glow flex items-center gap-1.5">
+                            <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-bold text-sm shadow-glow flex items-center gap-1.5">
                                 <i class="fas fa-save"></i> Simpan Profil
                             </button>
                         </div>
@@ -170,24 +170,24 @@
                             <div>
                                 <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Password Saat Ini</label>
                                 <input type="password" name="current_password" required placeholder="Masukkan password saat ini untuk keamanan"
-                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
                                 <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Password Baru</label>
                                 <input type="password" name="password" required placeholder="Minimal 4 karakter"
-                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
                                 <label class="text-white/70 text-xs block mb-1.5 uppercase tracking-wider font-semibold">Konfirmasi Password Baru</label>
                                 <input type="password" name="password_confirmation" required placeholder="Ketik ulang password baru Anda"
-                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                                       class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                             </div>
                         </div>
 
                         <div class="mt-8 pt-4 border-t border-white/10 flex justify-end">
-                            <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-bold text-sm shadow-glow flex items-center gap-1.5">
+                            <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-bold text-sm shadow-glow flex items-center gap-1.5">
                                 <i class="fas fa-key"></i> Ganti Password
                             </button>
                         </div>
@@ -211,14 +211,14 @@
             editProfileTab.classList.remove('hidden');
             changePasswordTab.classList.add('hidden');
             
-            editProfileBtn.className = "flex-1 py-4 text-center text-sm font-bold text-purple-400 border-b-2 border-purple-500 focus:outline-none transition";
+            editProfileBtn.className = "flex-1 py-4 text-center text-sm font-bold text-blue-400 border-b-2 border-blue-500 focus:outline-none transition";
             changePasswordBtn.className = "flex-1 py-4 text-center text-sm font-bold text-white/50 hover:text-white border-b-2 border-transparent focus:outline-none transition";
         } else {
             editProfileTab.classList.add('hidden');
             changePasswordTab.classList.remove('hidden');
             
             editProfileBtn.className = "flex-1 py-4 text-center text-sm font-bold text-white/50 hover:text-white border-b-2 border-transparent focus:outline-none transition";
-            changePasswordBtn.className = "flex-1 py-4 text-center text-sm font-bold text-purple-400 border-b-2 border-purple-500 focus:outline-none transition";
+            changePasswordBtn.className = "flex-1 py-4 text-center text-sm font-bold text-blue-400 border-b-2 border-blue-500 focus:outline-none transition";
         }
     }
 </script>

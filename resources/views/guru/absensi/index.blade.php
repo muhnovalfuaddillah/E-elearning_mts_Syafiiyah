@@ -27,7 +27,7 @@
             <div class="flex flex-col md:flex-row gap-4 items-end">
                 <div class="flex-1 w-full">
                     <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Pilih Jam Mengajar (Jadwal)</label>
-                    <select name="jadwal_pelajaran_id" required class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="jadwal_pelajaran_id" required class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="" class="text-black bg-white">-- Pilih Jam Mengajar --</option>
                         @foreach($jadwals as $j)
                             <option value="{{ $j->id }}" class="text-black bg-white" {{ $selectedJadwalId == $j->id ? 'selected' : '' }}>
@@ -40,10 +40,10 @@
                     <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Tanggal Absensi</label>
                     <input type="date" name="tanggal" required max="{{ date('Y-m-d') }}"
                            value="{{ $selectedTanggal }}"
-                           class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 <div class="w-full md:w-auto shrink-0 flex gap-2">
-                    <button type="submit" class="w-full md:w-auto px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm flex items-center justify-center gap-1.5">
+                    <button type="submit" class="w-full md:w-auto px-6 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm flex items-center justify-center gap-1.5">
                         <i class="fas fa-filter"></i> Tampilkan
                     </button>
                     @if($selectedJadwalId)
@@ -58,11 +58,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm md:text-base">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -93,11 +93,11 @@
                             Kelas: <strong class="text-blue-300">{{ $currentJadwal->kelas->kode_kelas }}</strong> | 
                             Mata Pelajaran: <strong class="text-emerald-300">{{ $currentJadwal->mapel->nama_mapel }}</strong> |
                             Jam Mengajar: <strong class="text-yellow-300">{{ $currentJadwal->hari }} ({{ $currentJadwal->jam_mulai }} - {{ $currentJadwal->jam_selesai }})</strong> |
-                            Tanggal: <strong class="text-purple-300">{{ \Carbon\Carbon::parse($selectedTanggal)->format('d M Y') }}</strong>
+                            Tanggal: <strong class="text-emerald-300">{{ \Carbon\Carbon::parse($selectedTanggal)->format('d M Y') }}</strong>
                         </p>
                     </div>
                     <div class="flex gap-2">
-                        <button type="button" onclick="showQrModal()" class="px-3.5 py-1.5 bg-purple-500/20 rounded-lg text-purple-400 text-xs font-semibold hover:bg-purple-500/30 transition flex items-center gap-1.5 border border-purple-500/20">
+                        <button type="button" onclick="showQrModal()" class="px-3.5 py-1.5 bg-blue-500/20 rounded-lg text-blue-400 text-xs font-semibold hover:bg-blue-500/30 transition flex items-center gap-1.5 border border-blue-500/20">
                             <i class="fas fa-qrcode"></i> QR Absensi
                         </button>
                         <a href="{{ route('guru.absensi.export', ['jadwal_pelajaran_id' => $selectedJadwalId, 'tanggal' => $selectedTanggal]) }}" class="px-3.5 py-1.5 bg-blue-500/20 rounded-lg text-blue-400 text-xs font-semibold hover:bg-blue-500/30 transition flex items-center gap-1.5">
@@ -105,15 +105,41 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Set Kehadiran Massal -->
+                <div class="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-white/5">
+                    <span class="text-white/60 text-xs font-semibold mr-2 uppercase tracking-wider">Set Kehadiran Massal:</span>
+                    <button type="button" onclick="checkAllStatus('H')" class="px-3 py-1.5 bg-blue-500/20 text-blue-400 text-xs font-bold rounded-lg border border-blue-500/30 hover:bg-blue-500/30 transition-all flex items-center gap-1">
+                        <i class="fas fa-check-double"></i> Hadir Semua
+                    </button>
+                    <button type="button" onclick="checkAllStatus('S')" class="px-3 py-1.5 bg-blue-500/10 text-blue-300 text-xs font-bold rounded-lg border border-white/10 hover:bg-white/5 transition-all flex items-center gap-1">
+                        <i class="fas fa-head-side-cough"></i> Sakit Semua
+                    </button>
+                    <button type="button" onclick="checkAllStatus('I')" class="px-3 py-1.5 bg-yellow-500/10 text-yellow-400 text-xs font-bold rounded-lg border border-yellow-500/20 hover:bg-yellow-500/20 transition-all flex items-center gap-1">
+                        <i class="fas fa-envelope"></i> Izin Semua
+                    </button>
+                    <button type="button" onclick="checkAllStatus('A')" class="px-3 py-1.5 bg-red-500/10 text-red-400 text-xs font-bold rounded-lg border border-red-500/20 hover:bg-red-500/20 transition-all flex items-center gap-1">
+                        <i class="fas fa-times-circle"></i> Alpa Semua
+                    </button>
+                </div>
             </div>
 
-            <form action="{{ route('guru.absensi.store') }}" method="POST">
+            <form action="{{ route('guru.absensi.store') }}" method="POST" id="absensiForm">
                 @csrf
                 <input type="hidden" name="jadwal_pelajaran_id" value="{{ $selectedJadwalId }}">
                 <input type="hidden" name="tanggal" value="{{ $selectedTanggal }}">
 
+                <!-- Fitur Pencarian Siswa -->
+                <div class="px-4 md:px-6 pt-4 pb-2 flex justify-between items-center bg-white/5 border-b border-white/5">
+                    <div class="relative w-full max-w-xs">
+                        <i class="fas fa-search absolute left-3 top-2.5 text-white/40 text-xs"></i>
+                        <input type="text" id="searchSiswaInput" onkeyup="filterSiswaTable()" placeholder="Cari nama atau NIS siswa..." class="w-full pl-9 pr-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white text-xs focus:border-blue-500 focus:outline-none">
+                    </div>
+                    <span class="text-white/40 text-xs font-medium" id="searchSiswaCount">Total: {{ $siswa->count() }} Siswa</span>
+                </div>
+
                 <div class="overflow-x-auto">
-                    <table class="w-full luxury-table min-w-[700px]">
+                    <table class="w-full luxury-table min-w-[700px]" id="siswaAbsenTable">
                         <thead class="border-b border-white/10 bg-white/5">
                             <tr>
                                 <th class="text-left p-3 md:p-4 text-white/60 text-xs font-semibold uppercase tracking-wider w-12">No</th>
@@ -133,7 +159,7 @@
                                 <tr class="border-b border-white/5 hover:bg-white/5">
                                     <td class="p-3 md:p-4 text-white/80 text-sm">{{ $index + 1 }}</td>
                                     <td class="p-3 md:p-4">
-                                        <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400">
+                                        <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                             {{ $item->nis }}
                                         </span>
                                     </td>
@@ -146,15 +172,15 @@
                                                 <input type="radio" 
                                                        name="absensi[{{ $item->id }}][status]" 
                                                        value="H" 
-                                                       class="text-purple-600 focus:ring-purple-500 bg-black/40 border-white/20"
+                                                       class="text-blue-600 focus:ring-emerald-500 bg-black/40 border-white/20"
                                                        {{ $currentStatus == 'H' ? 'checked' : '' }}>
-                                                <span class="text-xs font-bold text-emerald-400">Hadir</span>
+                                                <span class="text-xs font-bold text-blue-400">Hadir</span>
                                             </label>
                                             <label class="flex items-center gap-1 cursor-pointer px-2 py-0.5 rounded-lg transition hover:bg-white/5">
                                                 <input type="radio" 
                                                        name="absensi[{{ $item->id }}][status]" 
                                                        value="S" 
-                                                       class="text-purple-600 focus:ring-purple-500 bg-black/40 border-white/20"
+                                                       class="text-blue-600 focus:ring-emerald-500 bg-black/40 border-white/20"
                                                        {{ $currentStatus == 'S' ? 'checked' : '' }}>
                                                 <span class="text-xs font-bold text-blue-400">Sakit</span>
                                             </label>
@@ -162,7 +188,7 @@
                                                 <input type="radio" 
                                                        name="absensi[{{ $item->id }}][status]" 
                                                        value="I" 
-                                                       class="text-purple-600 focus:ring-purple-500 bg-black/40 border-white/20"
+                                                       class="text-blue-600 focus:ring-emerald-500 bg-black/40 border-white/20"
                                                        {{ $currentStatus == 'I' ? 'checked' : '' }}>
                                                 <span class="text-xs font-bold text-yellow-400">Izin</span>
                                             </label>
@@ -170,7 +196,7 @@
                                                 <input type="radio" 
                                                        name="absensi[{{ $item->id }}][status]" 
                                                        value="A" 
-                                                       class="text-purple-600 focus:ring-purple-500 bg-black/40 border-white/20"
+                                                       class="text-blue-600 focus:ring-emerald-500 bg-black/40 border-white/20"
                                                        {{ $currentStatus == 'A' ? 'checked' : '' }}>
                                                 <span class="text-xs font-bold text-red-400">Alpa</span>
                                             </label>
@@ -193,7 +219,7 @@
                                                name="absensi[{{ $item->id }}][keterangan]" 
                                                value="{{ old('absensi.'.$item->id.'.keterangan', $record ? $record->keterangan : '') }}"
                                                placeholder="Catatan sakit, terlambat, dll."
-                                               class="w-full px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-white text-xs focus:border-purple-500 focus:outline-none">
+                                               class="w-full px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-white text-xs focus:border-blue-500 focus:outline-none">
                                     </td>
                                 </tr>
                             @empty
@@ -210,7 +236,7 @@
 
                 @if($siswa->isNotEmpty())
                     <div class="p-4 md:p-6 border-t border-white/10 flex justify-end">
-                        <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-bold text-sm shadow-glow flex items-center gap-1.5">
+                        <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-bold text-sm shadow-glow flex items-center gap-1.5">
                             <i class="fas fa-save"></i> Simpan Absensi
                         </button>
                     </div>
@@ -226,7 +252,7 @@
             <!-- Modal Box -->
             <div class="relative bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 rounded-2xl w-full max-w-md p-6 overflow-hidden text-center bg-slate-950">
                 <div class="flex justify-between items-center mb-4 pb-3 border-b border-white/10 text-left">
-                    <h5 class="text-white font-bold text-lg"><i class="fas fa-qrcode text-purple-400 mr-1.5"></i> QR Code Absensi Kelas</h5>
+                    <h5 class="text-white font-bold text-lg"><i class="fas fa-qrcode text-blue-400 mr-1.5"></i> QR Code Absensi Kelas</h5>
                     <button onclick="closeQrModal()" class="text-white/40 hover:text-white"><i class="fas fa-times"></i></button>
                 </div>
                 
@@ -241,7 +267,7 @@
 
                 <div class="mt-4 p-3 bg-white/5 rounded-xl border border-white/5 text-xs text-white/50 space-y-1">
                     <p class="text-white/30 uppercase tracking-widest text-[9px]">KODE ABSENSI MANUAL</p>
-                    <p class="text-lg font-bold text-purple-300 font-mono tracking-widest">{{ substr(md5($selectedKelasId.$selectedMapelId.$selectedTanggal), 0, 6) }}</p>
+                    <p class="text-lg font-bold text-emerald-300 font-mono tracking-widest">{{ substr(md5($selectedKelasId.$selectedMapelId.$selectedTanggal), 0, 6) }}</p>
                 </div>
             </div>
         </div>
@@ -269,12 +295,57 @@
             function closeQrModal() {
                 document.getElementById('qrModal').style.display = 'none';
             }
+
+            function checkAllStatus(status) {
+                // Temukan semua radio input yang memiliki value sesuai status
+                const radios = document.querySelectorAll(`input[type="radio"][value="${status}"]`);
+                radios.forEach(radio => {
+                    radio.checked = true;
+                });
+            }
+
+            function filterSiswaTable() {
+                const input = document.getElementById('searchSiswaInput');
+                const filter = input.value.toLowerCase();
+                const table = document.getElementById('siswaAbsenTable');
+                const tr = table.getElementsByTagName('tr');
+                let matchCount = 0;
+                let totalStudents = 0;
+
+                // Loop through all table rows, skip table header (index 0)
+                for (let i = 1; i < tr.length; i++) {
+                    const row = tr[i];
+                    
+                    // Skip if it's the "No student" row (cols=6)
+                    if (row.cells.length < 3) continue;
+                    
+                    totalStudents++;
+
+                    const nisCell = row.cells[1];
+                    const namaCell = row.cells[2];
+                    
+                    if (nisCell && namaCell) {
+                        const nisValue = nisCell.textContent || nisCell.innerText;
+                        const namaValue = namaCell.textContent || namaCell.innerText;
+                        
+                        if (nisValue.toLowerCase().indexOf(filter) > -1 || namaValue.toLowerCase().indexOf(filter) > -1) {
+                            row.style.display = "";
+                            matchCount++;
+                        } else {
+                            row.style.display = "none";
+                        }
+                    }
+                }
+                
+                // Update total count indicator
+                document.getElementById('searchSiswaCount').textContent = `Ditemukan: ${matchCount} dari ${totalStudents} Siswa`;
+            }
         </script>
     @else
         <!-- Welcome / Instructions Panel -->
         <div class="luxury-card p-8 md:p-12 text-center text-white/80">
             <div class="max-w-md mx-auto space-y-4">
-                <div class="luxury-icon w-16 h-16 mx-auto bg-purple-500/20 flex items-center justify-center text-purple-400">
+                <div class="luxury-icon w-16 h-16 mx-auto bg-blue-500/20 flex items-center justify-center text-blue-400">
                     <i class="fas fa-calendar-alt text-3xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white tracking-tight">Pencatatan Absensi Harian</h3>
@@ -282,7 +353,7 @@
                     Silakan gunakan panel filter di atas untuk memilih **Jam Mengajar (Jadwal)** dan **Tanggal** absensi yang ingin Anda catat.
                 </p>
                 <div class="p-4 bg-white/5 rounded-xl border border-white/10 text-left text-xs space-y-2">
-                    <p class="font-semibold text-purple-400"><i class="fas fa-info-circle"></i> Info Absensi:</p>
+                    <p class="font-semibold text-blue-400"><i class="fas fa-info-circle"></i> Info Absensi:</p>
                     <ul class="list-disc list-inside space-y-1 text-white/60 pl-1">
                         <li>Pilihan default adalah <strong>Hadir</strong> untuk semua siswa.</li>
                         <li>Sertakan keterangan (seperti alasan sakit/izin) di kolom keterangan.</li>

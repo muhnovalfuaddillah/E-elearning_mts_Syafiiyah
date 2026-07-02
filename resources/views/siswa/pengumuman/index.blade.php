@@ -18,7 +18,7 @@
                 <p class="text-white/50 text-sm">Berikut adalah pengumuman sekolah dan pengumuman kelas Anda.</p>
             </div>
         </div>
-        <div class="px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 text-sm font-semibold shrink-0">
+        <div class="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl text-blue-400 text-sm font-semibold shrink-0">
             Kelas Anda: {{ auth()->user()->siswa->kelas->kode_kelas }}
         </div>
     </div>
@@ -33,11 +33,11 @@
                     <!-- Category Badge and Time -->
                     <div class="flex justify-between items-center mb-4">
                         @if($item->tipe === 'sekolah')
-                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30">
                                 <i class="fas fa-globe mr-1"></i> Sekolah
                             </span>
                         @else
-                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-pink-500/20 text-pink-400 border border-pink-500/30">
+                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-teal-500/20 text-teal-400 border border-teal-500/30">
                                 <i class="fas fa-graduation-cap mr-1"></i> Kelas
                             </span>
                         @endif
@@ -48,7 +48,7 @@
                     </div>
 
                     <!-- Title -->
-                    <h5 class="text-white font-bold text-lg mb-2 group-hover:text-purple-400 transition-colors line-clamp-1">
+                    <h5 class="text-white font-bold text-lg mb-2 group-hover:text-blue-400 transition-colors line-clamp-1">
                         {{ $item->judul }}
                     </h5>
 
@@ -63,7 +63,7 @@
                     <span class="text-white/40 text-xs">
                         Oleh: <strong class="text-white/60 font-medium">{{ $item->user->name }}</strong>
                     </span>
-                    <a href="{{ route('announcements.show-detail', $item->id) }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-all">
+                    <a href="{{ route('announcements.show-detail', $item->id) }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 group-hover:text-emerald-300 transition-all">
                         Baca Selengkapnya <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
                     </a>
                 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Log Aktivitas Sistem - Pembelajaran Digital')
 @section('breadcrumb', 'Log Aktivitas')
@@ -19,14 +19,14 @@
                                id="searchInput"
                                placeholder="Cari aktivitas, deskripsi, user, atau IP..." 
                                value="{{ request('search') }}"
-                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         @if(request('search'))
                             <i class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-white/40 cursor-pointer hover:text-white" onclick="clearSearch()"></i>
                         @endif
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm">
+                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm">
                         <i class="fas fa-search"></i> Cari
                     </button>
                     <a href="{{ route('admin.activity-logs.index') }}" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm flex items-center justify-center">
@@ -69,13 +69,13 @@
                             <td class="p-3 md:p-4">
                                 @php
                                     $actionColors = [
-                                        'login' => 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30',
+                                        'login' => 'bg-blue-500/20 text-blue-400 border border-blue-500/30',
                                         'logout' => 'bg-slate-500/20 text-slate-400 border border-slate-500/30',
                                         'backup_database' => 'bg-blue-500/20 text-blue-400 border border-blue-500/30',
-                                        'create_calendar_event' => 'bg-purple-500/20 text-purple-400 border border-purple-500/30',
+                                        'create_calendar_event' => 'bg-blue-500/20 text-blue-400 border border-blue-500/30',
                                         'absen_qr' => 'bg-teal-500/20 text-teal-400 border border-teal-500/30'
                                     ];
-                                    $class = $actionColors[$item->action] ?? 'bg-pink-500/20 text-pink-400 border border-pink-500/30';
+                                    $class = $actionColors[$item->action] ?? 'bg-teal-500/20 text-teal-400 border border-teal-500/30';
                                 @endphp
                                 <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider {{ $class }}">
                                     {{ str_replace('_', ' ', $item->action) }}
@@ -83,7 +83,7 @@
                             </td>
                             <td class="p-3 md:p-4 text-white/80 text-sm leading-normal">{{ $item->description }}</td>
                             <td class="p-3 md:p-4">
-                                <code class="px-1.5 py-0.5 rounded text-xs bg-white/5 text-purple-300 font-mono">
+                                <code class="px-1.5 py-0.5 rounded text-xs bg-white/5 text-emerald-300 font-mono">
                                     {{ $item->ip_address ?? '127.0.0.1' }}
                                 </code>
                             </td>

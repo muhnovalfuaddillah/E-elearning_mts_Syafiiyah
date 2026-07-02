@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Rekap Absensi Siswa - Pembelajaran Digital')
 @section('breadcrumb', 'Absensi')
@@ -35,7 +35,7 @@
                 <div>
                     <p class="text-white/50 text-xs uppercase tracking-wider">Total Absensi</p>
                     <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $total }}</h3>
-                    <p class="text-emerald-400 text-xs md:text-sm mt-2"><i class="fas fa-list-ol"></i> Records</p>
+                    <p class="text-blue-400 text-xs md:text-sm mt-2"><i class="fas fa-list-ol"></i> Records</p>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12">
                     <i class="fas fa-calendar-check text-white text-base md:text-xl"></i>
@@ -98,7 +98,7 @@
                                id="searchInput"
                                placeholder="Cari nama atau NIS siswa..." 
                                value="{{ request('search') }}"
-                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         @if(request('search'))
                             <i class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-white/40 cursor-pointer hover:text-white" onclick="clearSearch()"></i>
                         @endif
@@ -106,7 +106,7 @@
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
                     <div>
-                        <select name="kelas_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Kelas</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}" class="text-black bg-white" {{ request('kelas_id') == $k->id ? 'selected' : '' }}>
@@ -116,7 +116,7 @@
                         </select>
                     </div>
                     <div>
-                        <select name="mapel_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="mapel_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Pelajaran</option>
                             @foreach($mapels as $m)
                                 <option value="{{ $m->id }}" class="text-black bg-white" {{ request('mapel_id') == $m->id ? 'selected' : '' }}>
@@ -126,7 +126,7 @@
                         </select>
                     </div>
                     <div>
-                        <select name="status" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="status" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Status</option>
                             <option value="H" class="text-black bg-white" {{ request('status') == 'H' ? 'selected' : '' }}>Hadir (H)</option>
                             <option value="S" class="text-black bg-white" {{ request('status') == 'S' ? 'selected' : '' }}>Sakit (S)</option>
@@ -138,19 +138,19 @@
                         <input type="date" name="start_date" 
                                value="{{ request('start_date') }}"
                                onchange="document.getElementById('searchForm').submit()"
-                               class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                               class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                                title="Tanggal Mulai">
                     </div>
                     <div>
                         <input type="date" name="end_date" 
                                value="{{ request('end_date') }}"
                                onchange="document.getElementById('searchForm').submit()"
-                               class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                               class="w-full px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                                title="Tanggal Akhir">
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm">
+                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm">
                         <i class="fas fa-search"></i> Cari
                     </button>
                     <a href="{{ route('admin.absensi.index') }}" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm flex items-center justify-center">
@@ -206,7 +206,7 @@
                             {{ $item->created_at ? $item->created_at->format('H:i') : '-' }} WIB
                         </td>
                         <td class="p-3 md:p-4">
-                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400">
+                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                 {{ $item->siswa->nis ?? '-' }}
                             </span>
                         </td>
@@ -222,7 +222,7 @@
                         </td>
                         <td class="p-3 md:p-4 text-center text-sm">
                             @if($item->status == 'H')
-                                <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-400">Hadir</span>
+                                <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">Hadir</span>
                             @elseif($item->status == 'S')
                                 <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">Sakit</span>
                             @elseif($item->status == 'I')
@@ -269,21 +269,21 @@
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 @else
-                    <a href="{{ $absensi->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $absensi->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 @endif
 
                 @foreach ($absensi->getUrlRange(1, $absensi->lastPage()) as $page => $url)
                     @if($page == $absensi->currentPage())
-                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">{{ $page }}</a>
+                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm">{{ $page }}</a>
                     @else
-                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">{{ $page }}</a>
+                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">{{ $page }}</a>
                     @endif
                 @endforeach
 
                 @if($absensi->hasMorePages())
-                    <a href="{{ $absensi->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $absensi->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-right"></i>
                     </a>
                 @else

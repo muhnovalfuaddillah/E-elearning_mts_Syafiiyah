@@ -25,7 +25,7 @@
                 <p class="text-white/50 text-sm">Menampilkan semua profil siswa di kelas ini.</p>
             </div>
         </div>
-        <div class="px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 text-sm font-semibold shrink-0">
+        <div class="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl text-blue-400 text-sm font-semibold shrink-0">
             Total: {{ $kelasItem->siswa_count }} Siswa
         </div>
     </div>
@@ -63,7 +63,7 @@
                                     Laki-laki
                                 </span>
                             @else
-                                <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-pink-500/20 text-pink-300 border border-pink-500/30">
+                                <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30">
                                     Perempuan
                                 </span>
                             @endif

@@ -26,7 +26,7 @@
                     <!-- Class Header & Level Badge -->
                     <div class="flex justify-between items-start mb-4">
                         <div>
-                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                            <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30">
                                 Kelas {{ $item->tingkat == '10' || $item->tingkat == 'X' ? 'X' : ($item->tingkat == '11' || $item->tingkat == 'XI' ? 'XI' : ($item->tingkat == '12' || $item->tingkat == 'XII' ? 'XII' : $item->tingkat)) }}
                             </span>
                         </div>
@@ -36,7 +36,7 @@
                     </div>
 
                     <!-- Class Name and Info -->
-                    <h5 class="text-white font-bold text-xl mb-1 group-hover:text-purple-400 transition-colors">
+                    <h5 class="text-white font-bold text-xl mb-1 group-hover:text-blue-400 transition-colors">
                         {{ $item->kode_kelas }}
                     </h5>
                     <p class="text-white/50 text-sm mb-3">
@@ -53,10 +53,10 @@
                 <!-- Footer details with Student Count and Link -->
                 <div class="px-6 py-4 bg-white/5 border-t border-white/5 flex justify-between items-center">
                     <span class="text-white/60 text-sm">
-                        <i class="fas fa-users text-purple-400 mr-1.5"></i>
+                        <i class="fas fa-users text-blue-400 mr-1.5"></i>
                         <strong>{{ $item->siswa_count }}</strong> Siswa
                     </span>
-                    <a href="{{ route('guru.kelas.siswa', $item->id) }}" class="inline-flex items-center gap-1 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
+                    <a href="{{ route('guru.kelas.siswa', $item->id) }}" class="inline-flex items-center gap-1 text-xs font-bold text-blue-400 group-hover:text-emerald-300 transition-colors">
                         Lihat Siswa <i class="fas fa-arrow-right text-[10px]"></i>
                     </a>
                 </div>

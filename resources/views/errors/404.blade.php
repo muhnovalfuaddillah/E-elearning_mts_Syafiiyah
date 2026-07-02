@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Error â€” MTs Syafiiyah</title>
+  <title>Error - MTs Syafiiyah</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
@@ -150,7 +150,7 @@
 
     <!-- Footer -->
     <p class="anim-fadeup delay-6 mt-8 text-[11px] text-slate-600">
-      Â© 2024 MTs Syafiiyah â€” Aplikasi Pembelajaran Digital
+      &copy; 2024 MTs Syafiiyah - Aplikasi Pembelajaran Digital
     </p>
   </div>
 

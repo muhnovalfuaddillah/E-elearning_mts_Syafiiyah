@@ -1,8 +1,8 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Detail Pengumpulan Tugas - Pembelajaran Digital')
 @section('breadcrumb')
-<a href="{{ route('guru.tugas.index') }}" class="hover:text-purple-400">Tugas</a> / Detail
+<a href="{{ route('guru.tugas.index') }}" class="hover:text-blue-400">Tugas</a> / Detail
 @endsection
 @section('page-title', 'Detail Pengumpulan Tugas')
 
@@ -18,21 +18,21 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
     @endif
 
     <!-- Task Detail Info Card -->
-    <div class="luxury-card p-6 mb-8 bg-gradient-to-r from-slate-900/60 to-slate-950/60 border-purple-500/20">
+    <div class="luxury-card p-6 mb-8 bg-gradient-to-r from-slate-900/60 to-slate-950/60 border-blue-500/20">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-4 mb-4">
             <div>
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-pink-500/20 text-pink-400 border border-pink-500/30">
+                <span class="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-teal-500/20 text-teal-400 border border-teal-500/30">
                     {{ $tugas->mapel->nama_mapel ?? 'Mapel' }}
                 </span>
                 <span class="ml-2 px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-blue-500/20 text-blue-400 border border-blue-500/30">
@@ -43,7 +43,7 @@
             
             <div class="text-right">
                 <span class="text-white/40 text-xs block uppercase tracking-wider font-semibold">Tenggat Waktu</span>
-                <span class="text-sm font-bold {{ $tugas->deadline->isFuture() ? 'text-purple-400' : 'text-rose-400' }}">
+                <span class="text-sm font-bold {{ $tugas->deadline->isFuture() ? 'text-blue-400' : 'text-rose-400' }}">
                     {{ $tugas->deadline->format('d M Y, H:i') }} WIB
                     @if($tugas->deadline->isPast())
                         <span class="block text-[10px] text-rose-500/80 mt-1 uppercase font-bold">[ Waktu Habis ]</span>
@@ -79,8 +79,8 @@
                 <p class="text-white/40 text-xs md:text-sm">Berikut adalah seluruh siswa terdaftar di kelas dan status tugasnya.</p>
             </div>
             <div class="flex items-center gap-4 text-xs font-medium">
-                <div class="flex items-center gap-1.5 text-emerald-400">
-                    <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
+                <div class="flex items-center gap-1.5 text-blue-400">
+                    <span class="w-2.5 h-2.5 bg-blue-500 rounded-full"></span>
                     <span>Sudah: {{ $submissions->count() }}</span>
                 </div>
                 <div class="flex items-center gap-1.5 text-white/45">
@@ -123,7 +123,7 @@
                                     @if($isLate)
                                         <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">Terlambat</span>
                                     @else
-                                        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Tepat Waktu</span>
+                                        <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">Tepat Waktu</span>
                                     @endif
                                 @else
                                     <span class="px-2 py-0.5 rounded bg-white/5 text-white/40 border border-white/10">Belum Mengumpulkan</span>
@@ -154,7 +154,7 @@
                             <td class="p-3 md:p-4 text-sm font-bold text-center">
                                 @if($hasSubmitted)
                                     @if(!is_null($submission->nilai))
-                                        <span class="text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20">{{ $submission->nilai }}</span>
+                                        <span class="text-blue-400 bg-blue-500/10 px-2 py-1 rounded border border-blue-500/20">{{ $submission->nilai }}</span>
                                     @else
                                         <span class="text-yellow-400 bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/20 italic text-xs">Belum</span>
                                     @endif
@@ -166,7 +166,7 @@
                                 @if($hasSubmitted)
                                     <button type="button" 
                                             onclick="openGradeModal({{ $submission->id }}, '{{ addslashes($student->nama) }}', {{ $submission->nilai ?? 'null' }}, '{{ addslashes($submission->feedback ?? '') }}')"
-                                            class="px-3 py-1 bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 border border-purple-500/30 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 mx-auto transition shadow-glow">
+                                            class="px-3 py-1 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 border border-blue-500/30 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 mx-auto transition shadow-glow">
                                         <i class="fas fa-award"></i> {{ is_null($submission->nilai) ? 'Beri Nilai' : 'Ubah Nilai' }}
                                     </button>
                                 @else
@@ -198,7 +198,7 @@
     <!-- Modal Box -->
     <div class="relative bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 rounded-2xl w-full max-w-md p-6 overflow-hidden">
         <div class="flex justify-between items-center mb-4 pb-3 border-b border-white/10">
-            <h5 class="text-white font-bold text-lg"><i class="fas fa-award text-purple-400 mr-1.5"></i> Penilaian Tugas</h5>
+            <h5 class="text-white font-bold text-lg"><i class="fas fa-award text-blue-400 mr-1.5"></i> Penilaian Tugas</h5>
             <button onclick="closeGradeModal()" class="text-white/40 hover:text-white"><i class="fas fa-times"></i></button>
         </div>
         
@@ -213,13 +213,13 @@
                 <div>
                     <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider font-semibold">Nilai Tugas (0-100) <span class="text-red-400">*</span></label>
                     <input type="number" name="nilai" id="modal_nilai" required min="0" max="100" placeholder="Contoh: 85"
-                           class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none">
+                           class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none">
                 </div>
 
                 <div>
                     <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider font-semibold">Catatan Guru / Feedback (Opsional)</label>
                     <textarea name="feedback" id="modal_feedback" rows="3" placeholder="Tulis masukan atau koreksi tugas di sini..."
-                              class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-purple-500 focus:outline-none"></textarea>
+                              class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-blue-500 focus:outline-none"></textarea>
                 </div>
             </div>
 
@@ -227,7 +227,7 @@
                 <button type="button" onclick="closeGradeModal()" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-xs font-semibold">
                     Batal
                 </button>
-                <button type="submit" class="px-5 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-bold text-xs shadow-glow">
+                <button type="submit" class="px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-bold text-xs shadow-glow">
                     Simpan Nilai
                 </button>
             </div>

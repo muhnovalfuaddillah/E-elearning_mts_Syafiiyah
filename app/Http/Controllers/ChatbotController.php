@@ -141,15 +141,21 @@ class ChatbotController extends Controller
         $history = session()->get('chatbot_history', []);
 
         // Construct contents and request body based on API version
+        // Standardized for 2026 available models based on active API key permissions
         $models = [
-            ['version' => 'v1', 'name' => 'gemini-1.5-flash'],
-            ['version' => 'v1beta', 'name' => 'gemini-1.5-flash'],
             ['version' => 'v1beta', 'name' => 'gemini-2.5-flash'],
+            ['version' => 'v1', 'name' => 'gemini-2.5-flash'],
             ['version' => 'v1beta', 'name' => 'gemini-2.5-flash-lite'],
+            ['version' => 'v1', 'name' => 'gemini-2.5-flash-lite'],
+            ['version' => 'v1beta', 'name' => 'gemini-3.1-flash-lite'],
+            ['version' => 'v1beta', 'name' => 'gemini-3.5-flash'],
+            ['version' => 'v1beta', 'name' => 'gemini-2.0-flash-lite'],
+            ['version' => 'v1beta', 'name' => 'gemini-2.0-flash'],
+            ['version' => 'v1beta', 'name' => 'gemini-2.5-pro'],
         ];
 
         $aiResponse = null;
-        $lastError = 'Tidak ada model yang berhasil merespons.';
+        $errors = [];
 
         foreach ($models as $modelConfig) {
             $version = $modelConfig['version'];
@@ -242,10 +248,12 @@ class ChatbotController extends Controller
                 } else {
                     $errorData = $response->json();
                     $lastError = $errorData['error']['message'] ?? "Error {$response->status()}";
+                    $errors[] = "{$modelName}({$version}): {$lastError}";
                     Log::warning("Gemini model {$modelName} ({$version}) failed: {$lastError}");
                 }
             } catch (\Exception $e) {
                 $lastError = $e->getMessage();
+                $errors[] = "{$modelName}({$version}) exception: {$lastError}";
                 Log::warning("Gemini model {$modelName} ({$version}) exception: {$lastError}");
             }
         }
@@ -265,9 +273,10 @@ class ChatbotController extends Controller
                 'message' => $aiResponse,
             ]);
         } else {
+            $combinedError = implode(' | ', $errors);
             return response()->json([
                 'success' => false,
-                'message' => 'Asisten AI sedang sibuk atau mengalami kendala teknis: ' . $lastError,
+                'message' => 'Asisten AI sedang sibuk atau mengalami kendala teknis. Detail: ' . $combinedError,
             ], 500);
         }
     }

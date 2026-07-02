@@ -1,0 +1,11 @@
+{
+  "appId": "com.mtssyafiiyah.app",
+  "appName": "MTs Syafiiyah",
+  "webDir": "public",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://mts.edu.yasbahu.sch.id",
+    "cleartext": true
+  },
+  "appendUserAgent": "MTsSyafiiyah-ExamBrowser"
+}

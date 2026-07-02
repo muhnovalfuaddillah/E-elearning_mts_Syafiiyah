@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Dashboard Admin - Pembelajaran Digital')
 @section('page-title', 'Dashboard Ringkasan Sekolah')
 
@@ -36,9 +36,9 @@
           <div>
             <p class="text-white/50 text-xs uppercase tracking-wider font-semibold">Total Siswa</p>
             <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ $totalSiswa }}</h3>
-            <p class="text-purple-400 text-[10px] mt-2 font-semibold"><i class="fas fa-user-graduate"></i> Terdaftar aktif</p>
+            <p class="text-blue-400 text-[10px] mt-2 font-semibold"><i class="fas fa-user-graduate"></i> Terdaftar aktif</p>
           </div>
-          <div class="luxury-icon w-12 h-12 bg-purple-500/20 text-purple-400">
+          <div class="luxury-icon w-12 h-12 bg-blue-500/20 text-blue-400">
             <i class="fas fa-graduation-cap text-xl"></i>
           </div>
         </div>
@@ -49,9 +49,9 @@
           <div>
             <p class="text-white/50 text-xs uppercase tracking-wider font-semibold">Total Guru</p>
             <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ $totalGuru }}</h3>
-            <p class="text-blue-400 text-[10px] mt-2 font-semibold"><i class="fas fa-chalkboard-teacher"></i> Tenaga Pengajar</p>
+            <p class="text-teal-400 text-[10px] mt-2 font-semibold"><i class="fas fa-chalkboard-teacher"></i> Tenaga Pengajar</p>
           </div>
-          <div class="luxury-icon w-12 h-12 bg-blue-500/20 text-blue-400">
+          <div class="luxury-icon w-12 h-12 bg-teal-500/20 text-teal-400">
             <i class="fas fa-chalkboard-teacher text-xl"></i>
           </div>
         </div>
@@ -62,9 +62,9 @@
           <div>
             <p class="text-white/50 text-xs uppercase tracking-wider font-semibold">Total Kelas</p>
             <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ $totalKelas }}</h3>
-            <p class="text-pink-400 text-[10px] mt-2 font-semibold"><i class="fas fa-school"></i> Rombongan Belajar</p>
+            <p class="text-green-400 text-[10px] mt-2 font-semibold"><i class="fas fa-school"></i> Rombongan Belajar</p>
           </div>
-          <div class="luxury-icon w-12 h-12 bg-pink-500/20 text-pink-400">
+          <div class="luxury-icon w-12 h-12 bg-green-500/20 text-green-400">
             <i class="fas fa-school text-xl"></i>
           </div>
         </div>
@@ -75,9 +75,9 @@
           <div>
             <p class="text-white/50 text-xs uppercase tracking-wider font-semibold">Rata Kehadiran</p>
             <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ number_format($persentaseHadir, 1) }}%</h3>
-            <p class="text-emerald-400 text-[10px] mt-2 font-semibold"><i class="fas fa-calendar-check"></i> Kehadiran siswa</p>
+            <p class="text-amber-400 text-[10px] mt-2 font-semibold"><i class="fas fa-calendar-check"></i> Kehadiran siswa</p>
           </div>
-          <div class="luxury-icon w-12 h-12 bg-emerald-500/20 text-emerald-400">
+          <div class="luxury-icon w-12 h-12 bg-amber-500/20 text-amber-400">
             <i class="fas fa-calendar-check text-xl animate-pulse"></i>
           </div>
         </div>
@@ -110,7 +110,7 @@
         </div>
         <div class="mt-4 flex justify-around text-center text-xs text-white/50">
           <div>
-            <span class="block w-2.5 h-2.5 rounded-full bg-emerald-500 mx-auto"></span>
+            <span class="block w-2.5 h-2.5 rounded-full bg-blue-500 mx-auto"></span>
             <span class="mt-1 block">Hadir</span>
           </div>
           <div>
@@ -135,8 +135,8 @@
       <!-- Log Aktivitas Terakhir -->
       <div class="luxury-card overflow-hidden">
         <div class="p-6 border-b border-white/10 flex justify-between items-center">
-          <h6 class="text-white font-semibold text-lg flex items-center gap-1.5"><i class="fas fa-history text-purple-400"></i> Log Aktivitas Sistem</h6>
-          <a href="{{ route('admin.activity-logs.index') }}" class="text-xs text-purple-400 hover:underline">Lihat Semua</a>
+          <h6 class="text-white font-semibold text-lg flex items-center gap-1.5"><i class="fas fa-history text-blue-400"></i> Log Aktivitas Sistem</h6>
+          <a href="{{ route('admin.activity-logs.index') }}" class="text-xs text-blue-400 hover:underline">Lihat Semua</a>
         </div>
         <div class="p-4 space-y-3">
           @forelse($recentLogs as $log)
@@ -160,13 +160,13 @@
       <!-- Agenda Akademik Terdekat -->
       <div class="luxury-card overflow-hidden">
         <div class="p-6 border-b border-white/10 flex justify-between items-center">
-          <h6 class="text-white font-semibold text-lg flex items-center gap-1.5"><i class="fas fa-calendar-alt text-pink-400"></i> Kalender & Agenda Sekolah</h6>
-          <a href="{{ route('admin.calendar.index') }}" class="text-xs text-pink-400 hover:underline">Kelola Agenda</a>
+          <h6 class="text-white font-semibold text-lg flex items-center gap-1.5"><i class="fas fa-calendar-alt text-amber-400"></i> Kalender & Agenda Sekolah</h6>
+          <a href="{{ route('admin.calendar.index') }}" class="text-xs text-amber-400 hover:underline">Kelola Agenda</a>
         </div>
         <div class="p-4 space-y-3">
           @forelse($upcomingEvents as $event)
             <div class="flex items-center gap-4 p-3 bg-white/5 rounded-xl border border-white/5">
-                <div class="shrink-0 w-12 text-center py-1.5 rounded-lg {{ $event->type == 'libur' ? 'bg-red-500/20 text-red-400' : ($event->type == 'ujian' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-purple-500/20 text-purple-400') }}">
+                <div class="shrink-0 w-12 text-center py-1.5 rounded-lg {{ $event->type == 'libur' ? 'bg-red-500/20 text-red-400' : ($event->type == 'ujian' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-blue-500/20 text-blue-400') }}">
                     <span class="block text-[10px] font-bold uppercase">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</span>
                     <span class="block text-lg font-extrabold">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</span>
                 </div>
@@ -274,7 +274,7 @@
           labels: ['Hadir', 'Sakit', 'Izin', 'Alpa'],
           datasets: [{
             data: [finalHadir, finalSakit, finalIzin, finalAlpa],
-            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'],
+            backgroundColor: ['#3b82f6', '#3b82f6', '#f59e0b', '#ef4444'],
             borderWidth: 0
           }]
         },

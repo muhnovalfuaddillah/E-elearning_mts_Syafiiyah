@@ -52,6 +52,41 @@ class JurnalMengajarController extends Controller
     }
 
     /**
+     * Tampilkan halaman rekap jurnal untuk dicetak oleh admin.
+     */
+    public function rekap(Request $request)
+    {
+        $query = JurnalMengajar::with('guru', 'kelas', 'mapel');
+
+        // Apply filters
+        if ($request->filled('guru_id')) {
+            $query->where('guru_id', $request->guru_id);
+        }
+        if ($request->filled('kelas_id')) {
+            $query->where('kelas_id', $request->kelas_id);
+        }
+        if ($request->filled('mapel_id')) {
+            $query->where('mapel_id', $request->mapel_id);
+        }
+        if ($request->filled('tanggal_mulai')) {
+            $query->where('tanggal', '>=', $request->tanggal_mulai);
+        }
+        if ($request->filled('tanggal_selesai')) {
+            $query->where('tanggal', '<=', $request->tanggal_selesai);
+        }
+
+        $jurnals = $query->orderBy('tanggal', 'asc')->orderBy('pertemuan_ke', 'asc')->get();
+        
+        $guruFilter = $request->filled('guru_id') ? User::find($request->guru_id) : null;
+        $kelasFilter = $request->filled('kelas_id') ? Kelas::find($request->kelas_id) : null;
+        $mapelFilter = $request->filled('mapel_id') ? MataPelajaran::find($request->mapel_id) : null;
+        $tanggalMulai = $request->tanggal_mulai;
+        $tanggalSelesai = $request->tanggal_selesai;
+
+        return view('admin.jurnal.rekap', compact('jurnals', 'guruFilter', 'kelasFilter', 'mapelFilter', 'tanggalMulai', 'tanggalSelesai'));
+    }
+
+    /**
      * Hapus jurnal mengajar (oleh admin).
      */
     public function destroy($id)

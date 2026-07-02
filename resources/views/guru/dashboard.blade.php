@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Dashboard Guru - Pembelajaran Digital')
 @section('breadcrumb', 'Dashboard')
@@ -30,9 +30,9 @@
           <div>
             <p class="text-white/50 text-xs uppercase tracking-wider font-semibold">Materi Saya</p>
             <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ $totalMateri }}</h3>
-            <p class="text-purple-400 text-[10px] mt-2 font-semibold"><i class="fas fa-book"></i> Bahan ajar diupload</p>
+            <p class="text-blue-400 text-[10px] mt-2 font-semibold"><i class="fas fa-book"></i> Bahan ajar diupload</p>
           </div>
-          <div class="luxury-icon w-12 h-12 bg-purple-500/20 text-purple-400">
+          <div class="luxury-icon w-12 h-12 bg-blue-500/20 text-blue-400">
             <i class="fas fa-book-open text-xl"></i>
           </div>
         </div>
@@ -43,9 +43,9 @@
           <div>
             <p class="text-white/50 text-xs uppercase tracking-wider font-semibold">Tugas Dibuat</p>
             <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ $totalTugas }}</h3>
-            <p class="text-blue-400 text-[10px] mt-2 font-semibold"><i class="fas fa-file-alt"></i> Penugasan aktif</p>
+            <p class="text-teal-400 text-[10px] mt-2 font-semibold"><i class="fas fa-file-alt"></i> Penugasan aktif</p>
           </div>
-          <div class="luxury-icon w-12 h-12 bg-blue-500/20 text-blue-400">
+          <div class="luxury-icon w-12 h-12 bg-teal-500/20 text-teal-400">
             <i class="fas fa-file-alt text-xl"></i>
           </div>
         </div>
@@ -56,9 +56,9 @@
           <div>
             <p class="text-white/50 text-xs uppercase tracking-wider font-semibold">Rombel Kelas</p>
             <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ $totalKelas }}</h3>
-            <p class="text-pink-400 text-[10px] mt-2 font-semibold"><i class="fas fa-school"></i> Total Kelas aktif</p>
+            <p class="text-green-400 text-[10px] mt-2 font-semibold"><i class="fas fa-school"></i> Total Kelas aktif</p>
           </div>
-          <div class="luxury-icon w-12 h-12 bg-pink-500/20 text-pink-400">
+          <div class="luxury-icon w-12 h-12 bg-green-500/20 text-green-400">
             <i class="fas fa-school text-xl"></i>
           </div>
         </div>
@@ -69,9 +69,9 @@
           <div>
             <p class="text-white/50 text-xs uppercase tracking-wider font-semibold">Rata Ujian</p>
             <h3 class="text-2xl font-bold stat-number mt-1 text-white">{{ number_format($rataNilaiTugas, 1) }}</h3>
-            <p class="text-emerald-400 text-[10px] mt-2 font-semibold"><i class="fas fa-star"></i> Poin nilai tugas</p>
+            <p class="text-amber-400 text-[10px] mt-2 font-semibold"><i class="fas fa-star"></i> Poin nilai tugas</p>
           </div>
-          <div class="luxury-icon w-12 h-12 bg-emerald-500/20 text-emerald-400">
+          <div class="luxury-icon w-12 h-12 bg-amber-500/20 text-amber-400">
             <i class="fas fa-star text-xl"></i>
           </div>
         </div>
@@ -100,13 +100,13 @@
         <div class="space-y-6">
             <div class="luxury-card p-6">
                 <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                    <i class="fas fa-calendar-alt text-purple-400 text-lg"></i>
+                    <i class="fas fa-calendar-alt text-amber-400 text-lg"></i>
                     <h5 class="text-white font-bold text-lg">Agenda Sekolah Terdekat</h5>
                 </div>
                 <div class="space-y-4">
                     @forelse($upcomingEvents as $event)
                         <div class="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5">
-                            <div class="shrink-0 w-12 text-center py-1 rounded-lg {{ $event->type == 'libur' ? 'bg-red-500/20 text-red-400' : ($event->type == 'ujian' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-purple-500/20 text-purple-400') }}">
+                            <div class="shrink-0 w-12 text-center py-1 rounded-lg {{ $event->type == 'libur' ? 'bg-red-500/20 text-red-400' : ($event->type == 'ujian' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-blue-500/20 text-blue-400') }}">
                                 <span class="block text-[9px] font-bold uppercase">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</span>
                                 <span class="block text-base font-extrabold">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</span>
                             </div>
@@ -147,14 +147,14 @@
                     label: 'Rata-rata Nilai',
                     data: [{{ $avgTugas }}, {{ $avgUts }}, {{ $avgUas }}],
                     backgroundColor: [
-                        'rgba(168, 85, 247, 0.4)', // Purple
-                        'rgba(236, 72, 153, 0.4)',  // Pink
-                        'rgba(59, 130, 246, 0.4)'   // Blue
+                        'rgba(59, 130, 246, 0.4)', // Emerald
+                        'rgba(245, 158, 11, 0.4)',  // Amber
+                        'rgba(13, 148, 136, 0.4)'   // Teal
                     ],
                     borderColor: [
-                        'rgba(168, 85, 247, 1)',
-                        'rgba(236, 72, 153, 1)',
-                        'rgba(59, 130, 246, 1)'
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(13, 148, 136, 1)'
                     ],
                     borderWidth: 1.5,
                     borderRadius: 8

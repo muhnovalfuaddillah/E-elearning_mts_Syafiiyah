@@ -217,7 +217,7 @@ class TugasController extends Controller
 
         if ($request->hasFile('file_tugas')) {
             // Hapus file lama jika ada
-            if ($tugas->file_tugas && Storage::disk('public')->exists($tugas->file_tugas)) {
+            if (!empty($tugas->file_tugas) && Storage::disk('public')->exists($tugas->file_tugas)) {
                 Storage::disk('public')->delete($tugas->file_tugas);
             }
             
@@ -240,7 +240,7 @@ class TugasController extends Controller
         $tugas = Tugas::where('guru_id', auth()->id())->findOrFail($id);
 
         // Hapus file dari storage jika ada
-        if ($tugas->file_tugas && Storage::disk('public')->exists($tugas->file_tugas)) {
+        if (!empty($tugas->file_tugas) && Storage::disk('public')->exists($tugas->file_tugas)) {
             Storage::disk('public')->delete($tugas->file_tugas);
         }
 
@@ -284,7 +284,7 @@ class TugasController extends Controller
         
         // Verifikasi bahwa tugas ini milik guru yang sedang login
         $tugas = Tugas::findOrFail($submission->tugas_id);
-        if ($tugas->guru_id !== auth()->id()) {
+        if ($tugas->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 

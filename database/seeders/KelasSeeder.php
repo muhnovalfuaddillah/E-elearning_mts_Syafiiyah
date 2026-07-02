@@ -13,136 +13,94 @@ class KelasSeeder extends Seeder
     public function run(): void
     {
         $classes = [
-            // Kelas 10
+            // Kelas 7
             [
-                'kode_kelas' => 'KLS-10-MIPA1',
-                'nama_kelas' => 'MIPA 1',
-                'tingkat' => '10',
-                'jurusan' => 'MIPA',
-                'deskripsi' => 'Kelas X Matematika dan Ilmu Pengetahuan Alam 1'
+                'kode_kelas' => 'KLS-7A',
+                'nama_kelas' => '7-A',
+                'tingkat' => '7',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas VII-A Umum'
             ],
             [
-                'kode_kelas' => 'KLS-10-MIPA2',
-                'nama_kelas' => 'MIPA 2',
-                'tingkat' => '10',
-                'jurusan' => 'MIPA',
-                'deskripsi' => 'Kelas X Matematika dan Ilmu Pengetahuan Alam 2'
+                'kode_kelas' => 'KLS-7B',
+                'nama_kelas' => '7-B',
+                'tingkat' => '7',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas VII-B Umum'
             ],
             [
-                'kode_kelas' => 'KLS-10-IPS1',
-                'nama_kelas' => 'IPS 1',
-                'tingkat' => '10',
-                'jurusan' => 'IPS',
-                'deskripsi' => 'Kelas X Ilmu Pengetahuan Sosial 1'
+                'kode_kelas' => 'KLS-7C',
+                'nama_kelas' => '7-C',
+                'tingkat' => '7',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas VII-C Umum'
             ],
             [
-                'kode_kelas' => 'KLS-10-IPS2',
-                'nama_kelas' => 'IPS 2',
-                'tingkat' => '10',
-                'jurusan' => 'IPS',
-                'deskripsi' => 'Kelas X Ilmu Pengetahuan Sosial 2'
-            ],
-            [
-                'kode_kelas' => 'KLS-10-AGAMA',
-                'nama_kelas' => 'Keagamaan',
-                'tingkat' => '10',
+                'kode_kelas' => 'KLS-7-AGAMA',
+                'nama_kelas' => '7-Keagamaan',
+                'tingkat' => '7',
                 'jurusan' => 'Keagamaan',
-                'deskripsi' => 'Kelas X Peminatan Ilmu-Ilmu Keagamaan'
-            ],
-            [
-                'kode_kelas' => 'KLS-10-BAHASA',
-                'nama_kelas' => 'Bahasa',
-                'tingkat' => '10',
-                'jurusan' => 'Bahasa',
-                'deskripsi' => 'Kelas X Peminatan Bahasa dan Budaya'
+                'deskripsi' => 'Kelas VII Unggulan Keagamaan'
             ],
 
-            // Kelas 11
+            // Kelas 8
             [
-                'kode_kelas' => 'KLS-11-MIPA1',
-                'nama_kelas' => 'MIPA 1',
-                'tingkat' => '11',
-                'jurusan' => 'MIPA',
-                'deskripsi' => 'Kelas XI Matematika dan Ilmu Pengetahuan Alam 1'
+                'kode_kelas' => 'KLS-8A',
+                'nama_kelas' => '8-A',
+                'tingkat' => '8',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas VIII-A Umum'
             ],
             [
-                'kode_kelas' => 'KLS-11-MIPA2',
-                'nama_kelas' => 'MIPA 2',
-                'tingkat' => '11',
-                'jurusan' => 'MIPA',
-                'deskripsi' => 'Kelas XI Matematika dan Ilmu Pengetahuan Alam 2'
+                'kode_kelas' => 'KLS-8B',
+                'nama_kelas' => '8-B',
+                'tingkat' => '8',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas VIII-B Umum'
             ],
             [
-                'kode_kelas' => 'KLS-11-IPS1',
-                'nama_kelas' => 'IPS 1',
-                'tingkat' => '11',
-                'jurusan' => 'IPS',
-                'deskripsi' => 'Kelas XI Ilmu Pengetahuan Sosial 1'
+                'kode_kelas' => 'KLS-8C',
+                'nama_kelas' => '8-C',
+                'tingkat' => '8',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas VIII-C Umum'
             ],
             [
-                'kode_kelas' => 'KLS-11-IPS2',
-                'nama_kelas' => 'IPS 2',
-                'tingkat' => '11',
-                'jurusan' => 'IPS',
-                'deskripsi' => 'Kelas XI Ilmu Pengetahuan Sosial 2'
-            ],
-            [
-                'kode_kelas' => 'KLS-11-AGAMA',
-                'nama_kelas' => 'Keagamaan',
-                'tingkat' => '11',
+                'kode_kelas' => 'KLS-8-AGAMA',
+                'nama_kelas' => '8-Keagamaan',
+                'tingkat' => '8',
                 'jurusan' => 'Keagamaan',
-                'deskripsi' => 'Kelas XI Peminatan Ilmu-Ilmu Keagamaan'
-            ],
-            [
-                'kode_kelas' => 'KLS-11-BAHASA',
-                'nama_kelas' => 'Bahasa',
-                'tingkat' => '11',
-                'jurusan' => 'Bahasa',
-                'deskripsi' => 'Kelas XI Peminatan Bahasa dan Budaya'
+                'deskripsi' => 'Kelas VIII Unggulan Keagamaan'
             ],
 
-            // Kelas 12
+            // Kelas 9
             [
-                'kode_kelas' => 'KLS-12-MIPA1',
-                'nama_kelas' => 'MIPA 1',
-                'tingkat' => '12',
-                'jurusan' => 'MIPA',
-                'deskripsi' => 'Kelas XII Matematika dan Ilmu Pengetahuan Alam 1'
+                'kode_kelas' => 'KLS-9A',
+                'nama_kelas' => '9-A',
+                'tingkat' => '9',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas IX-A Umum'
             ],
             [
-                'kode_kelas' => 'KLS-12-MIPA2',
-                'nama_kelas' => 'MIPA 2',
-                'tingkat' => '12',
-                'jurusan' => 'MIPA',
-                'deskripsi' => 'Kelas XII Matematika dan Ilmu Pengetahuan Alam 2'
+                'kode_kelas' => 'KLS-9B',
+                'nama_kelas' => '9-B',
+                'tingkat' => '9',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas IX-B Umum'
             ],
             [
-                'kode_kelas' => 'KLS-12-IPS1',
-                'nama_kelas' => 'IPS 1',
-                'tingkat' => '12',
-                'jurusan' => 'IPS',
-                'deskripsi' => 'Kelas XII Ilmu Pengetahuan Sosial 1'
+                'kode_kelas' => 'KLS-9C',
+                'nama_kelas' => '9-C',
+                'tingkat' => '9',
+                'jurusan' => 'Umum',
+                'deskripsi' => 'Kelas IX-C Umum'
             ],
             [
-                'kode_kelas' => 'KLS-12-IPS2',
-                'nama_kelas' => 'IPS 2',
-                'tingkat' => '12',
-                'jurusan' => 'IPS',
-                'deskripsi' => 'Kelas XII Ilmu Pengetahuan Sosial 2'
-            ],
-            [
-                'kode_kelas' => 'KLS-12-AGAMA',
-                'nama_kelas' => 'Keagamaan',
-                'tingkat' => '12',
+                'kode_kelas' => 'KLS-9-AGAMA',
+                'nama_kelas' => '9-Keagamaan',
+                'tingkat' => '9',
                 'jurusan' => 'Keagamaan',
-                'deskripsi' => 'Kelas XII Peminatan Ilmu-Ilmu Keagamaan'
-            ],
-            [
-                'kode_kelas' => 'KLS-12-BAHASA',
-                'nama_kelas' => 'Bahasa',
-                'tingkat' => '12',
-                'jurusan' => 'Bahasa',
-                'deskripsi' => 'Kelas XII Peminatan Bahasa dan Budaya'
+                'deskripsi' => 'Kelas IX Unggulan Keagamaan'
             ],
         ];
 

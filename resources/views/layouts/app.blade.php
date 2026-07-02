@@ -1,9 +1,23 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#1d4ed8"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png"/>
   <title>@yield('title', 'LuxuryDash')</title>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('ServiceWorker registered', reg))
+          .catch(err => console.error('ServiceWorker registration failed', err));
+      });
+    }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -16,7 +30,7 @@
           fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
           boxShadow: {
             'luxury': '0 20px 35px -12px rgba(0, 0, 0, 0.15)',
-            'glow': '0 0 20px rgba(168, 85, 247, 0.3)',
+            'glow': '0 0 20px rgba(59, 130, 246, 0.3)',
           }
         }
       }
@@ -39,7 +53,7 @@
       right: 0;
       width: 100%;
       height: 40%;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
       z-index: 0;
     }
 
@@ -50,10 +64,10 @@
       bottom: 1rem;
       left: -280px;
       width: 260px;
-      background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #020b18 100%);
       border-radius: 1.5rem;
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(168, 85, 247, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.25);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
@@ -69,7 +83,7 @@
 
     #sidenav::-webkit-scrollbar { width: 4px; }
     #sidenav::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-    #sidenav::-webkit-scrollbar-thumb { background: #a855f7; border-radius: 10px; }
+    #sidenav::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
 
     #overlay {
       display: none;
@@ -97,32 +111,32 @@
       transition: all 0.3s ease;
     }
     .nav-link-luxury:hover {
-      background: rgba(168, 85, 247, 0.15);
+      background: rgba(59, 130, 246, 0.15);
       color: white;
       transform: translateX(4px);
     }
     .nav-link-active {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.1));
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(29, 78, 216, 0.1));
       color: white;
-      border: 1px solid rgba(168, 85, 247, 0.3);
+      border: 1px solid rgba(59, 130, 246, 0.3);
     }
 
     /* Cards & Icons */
     .luxury-card {
-      background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(15, 15, 26, 0.95));
+      background: linear-gradient(135deg, rgba(4, 30, 24, 0.95), rgba(2, 20, 16, 0.95));
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.15);
       border-radius: 1.5rem;
       box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
     }
     .luxury-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(168, 85, 247, 0.4);
-      box-shadow: 0 25px 40px -12px rgba(168, 85, 247, 0.2);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 25px 40px -12px rgba(59, 130, 246, 0.2);
     }
     .luxury-icon {
-      background: linear-gradient(135deg, #a855f7, #ec4899);
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
       width: 3rem;
       height: 3rem;
       border-radius: 1rem;
@@ -147,14 +161,14 @@
       right: 1.5rem;
       width: 3.5rem;
       height: 3.5rem;
-      background: linear-gradient(135deg, #a855f7, #ec4899);
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
       border-radius: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 990;
-      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
       transition: all 0.3s;
     }
     @media (min-width: 768px) {
@@ -162,7 +176,7 @@
     }
     .floating-btn:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
     }
 
     /* Style untuk Light Theme */
@@ -174,29 +188,29 @@
     }
     body.light-theme #sidenav {
       background: linear-gradient(135deg, #ffffff 0%, #f0f3f8 100%);
-      border: 1px solid rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.15);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
     }
     body.light-theme .nav-link-luxury {
       color: rgba(0, 0, 0, 0.6);
     }
     body.light-theme .nav-link-luxury:hover {
-      background: rgba(168, 85, 247, 0.08);
-      color: #7c3aed;
+      background: rgba(59, 130, 246, 0.08);
+      color: #3b82f6;
     }
     body.light-theme .nav-link-active {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.05));
-      color: #7c3aed;
-      border: 1px solid rgba(168, 85, 247, 0.2);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(29, 78, 216, 0.05));
+      color: #3b82f6;
+      border: 1px solid rgba(59, 130, 246, 0.2);
     }
     body.light-theme .luxury-card {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 247, 250, 0.95));
-      border: 1px solid rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.15);
       box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
     }
     body.light-theme .luxury-card:hover {
-      border-color: rgba(168, 85, 247, 0.3);
-      box-shadow: 0 25px 40px -12px rgba(168, 85, 247, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+      box-shadow: 0 25px 40px -12px rgba(59, 130, 246, 0.1);
     }
     body.light-theme .text-white {
       color: #1e293b !important;
@@ -235,7 +249,7 @@
     body.light-theme select:focus,
     body.light-theme input:focus,
     body.light-theme textarea:focus {
-      border-color: #7c3aed !important;
+      border-color: #3b82f6 !important;
       background-color: #ffffff !important;
     }
     body.light-theme .luxury-table thead {
@@ -266,14 +280,14 @@
       right: 1.5rem;
       width: 3.5rem;
       height: 3.5rem;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
       border-radius: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 990;
-      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4), 0 0 0 0px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4), 0 0 0 0px rgba(59, 130, 246, 0.4);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       animation: chatbotPulse 2s infinite;
     }
@@ -282,17 +296,17 @@
     }
     .chatbot-floating-btn:hover {
       transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 0 25px rgba(99, 102, 241, 0.7);
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.7);
     }
     @keyframes chatbotPulse {
       0% {
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4), 0 0 0 0px rgba(99, 102, 241, 0.4);
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4), 0 0 0 0px rgba(59, 130, 246, 0.4);
       }
       70% {
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4), 0 0 0 10px rgba(99, 102, 241, 0);
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4), 0 0 0 10px rgba(59, 130, 246, 0);
       }
       100% {
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4), 0 0 0 0px rgba(99, 102, 241, 0);
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4), 0 0 0 0px rgba(59, 130, 246, 0);
       }
     }
     
@@ -326,7 +340,7 @@
     
     /* Chat bubbles styling */
     .chat-bubble-user {
-      background: linear-gradient(135deg, #a855f7, #6366f1);
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
       color: white !important;
       border-bottom-right-radius: 0.25rem;
     }
@@ -346,7 +360,7 @@
     .typing-dot {
       width: 6px;
       height: 6px;
-      background-color: #a855f7;
+      background-color: #3b82f6;
       border-radius: 50%;
       animation: typingBounce 1.4s infinite ease-in-out both;
     }
@@ -440,6 +454,11 @@
             <span>Jurnal Mengajar</span>
         </a>
 
+        <a href="{{ route('admin.ujian.monitoring') }}" class="nav-link-luxury {{ request()->routeIs('admin.ujian.monitoring') ? 'nav-link-active' : '' }}">
+            <i class="fas fa-clipboard-list w-5"></i>
+            <span>Monitoring Ujian</span>
+        </a>
+
         <a href="{{ route('admin.pengumuman.index') }}" class="nav-link-luxury {{ request()->routeIs('admin.pengumuman.*') ? 'nav-link-active' : '' }}">
             <i class="fas fa-bullhorn w-5"></i>
             <span>Pengumuman Sekolah</span>
@@ -516,6 +535,11 @@
             <span>Tugas</span>
         </a>
 
+        <a href="{{ route('guru.ujian.index') }}" class="nav-link-luxury {{ request()->routeIs('guru.ujian.*') ? 'nav-link-active' : '' }}">
+            <i class="fas fa-clipboard-list w-5"></i>
+            <span>Ujian Online</span>
+        </a>
+
         <a href="{{ route('guru.penilaian.index') }}" class="nav-link-luxury {{ request()->routeIs('guru.penilaian.*') ? 'nav-link-active' : '' }}">
             <i class="fas fa-star w-5"></i>
             <span>Penilaian</span>
@@ -578,6 +602,11 @@
             <span>Tugas Mandiri</span>
         </a>
 
+        <a href="{{ route('siswa.ujian.index') }}" class="nav-link-luxury {{ request()->routeIs('siswa.ujian.*') ? 'nav-link-active' : '' }}">
+            <i class="fas fa-clipboard-list w-5"></i>
+            <span>Ujian Online</span>
+        </a>
+
         <a href="{{ route('siswa.penilaian.index') }}" class="nav-link-luxury {{ request()->routeIs('siswa.penilaian.*') ? 'nav-link-active' : '' }}">
             <i class="fas fa-star w-5"></i>
             <span>Nilai Saya</span>
@@ -620,10 +649,29 @@
         </button>
     </form>
 
+    <div class="px-4 mt-6 mb-3 border-t border-white/10 pt-4">
+        <p class="text-white/40 text-xs uppercase tracking-wider px-3">
+            Unduh Aplikasi
+        </p>
+    </div>
+    
+    <a href="#" class="nav-link-luxury install-pwa-btn text-blue-400 hover:text-blue-300">
+        <i class="fa-solid fa-laptop-code w-5 text-blue-400"></i>
+        <span>Pasang Web App (PWA)</span>
+    </a>
+    
+    <a href="/downloads/mts-syafiiyah.apk" download class="nav-link-luxury text-blue-400 hover:text-blue-300">
+        <i class="fab fa-android w-5 text-blue-400"></i>
+        <span>Aplikasi Android (.APK)</span>
+    </a>
+
+    <a href="#" onclick="Swal.fire({title: 'Aplikasi iOS', text: 'Aplikasi iOS saat ini sedang dalam proses review di Apple App Store.', icon: 'info', confirmButtonColor: '#3b82f6', background: '#041e18', color: '#fff'}); return false;" class="nav-link-luxury text-blue-400 hover:text-blue-300">
+        <i class="fab fa-apple w-5 text-blue-400"></i>
+        <span>Aplikasi iOS</span>
+    </a>
+
 </nav>
 </aside>
-
-<!-- ========== MAIN CONTENT ========== -->
 <main id="main-content" class="relative z-10 flex flex-col min-h-screen">
 
   <!-- Luxury Navbar -->
@@ -654,7 +702,7 @@
           <div class="hidden sm:block h-10 w-px bg-white/10 mx-2"></div>
           
           <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-xl shrink-0 self-start sm:self-auto">
-            <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <span class="text-xs font-medium text-slate-300 whitespace-nowrap">
@@ -667,49 +715,58 @@
         <div class="flex items-center gap-2 sm:gap-4 w-full lg:w-auto justify-between lg:justify-end mt-1 lg:mt-0">
           
           <div class="relative group flex-1 lg:flex-none">
-            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-xs group-focus-within:text-purple-400 transition-colors"></i>
+            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-xs group-focus-within:text-blue-400 transition-colors"></i>
             <input type="text" placeholder="Search..." 
-              class="w-full lg:w-56 pl-9 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-sm placeholder:text-white/30 focus:border-purple-500 focus:bg-white/10 focus:outline-none transition-all">
+              class="w-full lg:w-56 pl-9 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-sm placeholder:text-white/30 focus:border-blue-500 focus:bg-white/10 focus:outline-none transition-all">
           </div>
 
           <div class="flex items-center gap-2 shrink-0">
             <!-- Theme Toggle Button -->
-            <button onclick="toggleTheme()" class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-purple-400 hover:bg-white/20 transition-all" title="Toggle Theme">
+            <button onclick="toggleTheme()" class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-blue-400 hover:bg-white/20 transition-all" title="Toggle Theme">
               <i id="theme-toggle-icon" class="fas fa-sun"></i>
             </button>
 
-            <button class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-purple-400 hover:bg-white/20 transition-all">
+            <button class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-blue-400 hover:bg-white/20 transition-all">
              <a href="/pengaturan" class="btn-floating"><i class="fas fa-cog"></i></a>
             </button>
 
             <!-- Jadwal Sholat Dropdown -->
             <div class="relative">
-              <button onclick="toggleSholatDropdown(event)" class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-purple-400 hover:bg-white/20 transition-all relative group z-10" title="Jadwal Sholat Probolinggo">
+              <button onclick="toggleSholatDropdown(event)" class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-blue-400 hover:bg-white/20 transition-all relative group z-10" title="Jadwal Sholat Probolinggo">
                 <i class="fas fa-mosque"></i>
               </button>
               
               <!-- Dropdown Jadwal Sholat -->
               <div id="sholat-dropdown" class="hidden absolute right-[-10px] sm:right-0 mt-3 w-72 z-[1000] origin-top-right">
                 <!-- Segitiga Atas -->
-                <div class="absolute -top-2 right-[22px] sm:right-3.5 w-4 h-4 bg-slate-800 border-t border-l border-white/10 rotate-45 transform"></div>
+                <div class="absolute -top-2 right-[22px] sm:right-3.5 w-4 h-4 bg-[#031d16] border-t border-l border-blue-500/30 rotate-45 transform"></div>
                 
                 <!-- Inner Container -->
-                <div class="relative z-50 overflow-hidden rounded-2xl w-full shadow-2xl bg-slate-900/95 border border-white/10">
-                  <div class="px-4 py-3 border-b border-white/10 flex justify-between items-center bg-black/20">
-                    <span class="text-sm font-semibold text-white">Jadwal Sholat Hari Ini</span>
-                    <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full font-bold border border-purple-500/30">
-                      Probolinggo
-                    </span>
+                <div class="relative z-50 overflow-hidden rounded-2xl w-full shadow-2xl bg-[#031d16]/95 border border-blue-500/35 backdrop-blur-xl">
+                  <!-- Header with Live Clock -->
+                  <div class="bg-gradient-to-r from-emerald-950/70 to-teal-950/70 px-4 py-3 border-b border-blue-500/25 flex flex-col gap-1.5">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-bold text-white tracking-wide">Jadwal Sholat Hari Ini</span>
+                      <span class="text-[10px] bg-blue-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full font-bold border border-blue-500/30 shadow-[0_0_10px_rgba(59, 130, 246,0.1)]">
+                        Probolinggo
+                      </span>
+                    </div>
+                    <div class="flex justify-between items-center text-[10px] text-white/50">
+                      <span id="sholat-live-clock" class="font-medium font-mono text-blue-400/90"><i class="far fa-clock mr-1"></i> --:--:--</span>
+                      <span id="sholat-date-info" class="text-white/40">--</span>
+                    </div>
                   </div>
                   
-                  <div class="p-4 space-y-2.5 text-xs text-white" id="sholat-times-container">
+                  <!-- Times List -->
+                  <div class="p-3.5 space-y-2 text-xs text-white" id="sholat-times-container">
                     <div class="flex items-center justify-center py-4 text-white/50">
                       <i class="fas fa-spinner animate-spin mr-2"></i> Loading...
                     </div>
                   </div>
                   
-                  <div class="p-2 border-t border-white/10 bg-black/20 text-center">
-                    <span class="text-[9px] text-white/30" id="sholat-date-info">equran.id API</span>
+                  <!-- Footer -->
+                  <div class="p-2.5 border-t border-blue-500/10 bg-black/25 text-center">
+                    <span class="text-[9px] text-white/30" id="sholat-api-source"><i class="fas fa-info-circle mr-1"></i> Data Bulanan Bimas Islam via equran.id</span>
                   </div>
                 </div>
               </div>
@@ -723,10 +780,10 @@
               @endphp
             @endauth
             <div class="relative">
-              <button onclick="toggleNotif(event)" class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-purple-400 hover:bg-white/20 transition-all relative group z-10">
+              <button onclick="toggleNotif(event)" class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-blue-400 hover:bg-white/20 transition-all relative group z-10">
                 <i class="fas fa-bell group-hover:animate-swing"></i>
                 @if(isset($unreadCount) && $unreadCount > 0)
-                  <span class="absolute top-2 right-2 w-2 h-2 bg-pink-500 border-2 border-[#1e1e2d] rounded-full animate-pulse"></span>
+                  <span class="absolute top-2 right-2 w-2 h-2 bg-teal-500 border-2 border-[#1e1e2d] rounded-full animate-pulse"></span>
                 @endif
               </button>
               
@@ -752,9 +809,9 @@
                           <div class="w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs
                             @if($notif->type === 'pengumuman') bg-amber-500/20 text-amber-400
                             @elseif($notif->type === 'tugas') bg-blue-500/20 text-blue-400
-                            @elseif($notif->type === 'materi') bg-emerald-500/20 text-emerald-400
-                            @elseif($notif->type === 'nilai') bg-pink-500/20 text-pink-400
-                            @elseif($notif->type === 'absensi') bg-purple-500/20 text-purple-400
+                            @elseif($notif->type === 'materi') bg-blue-500/20 text-blue-400
+                            @elseif($notif->type === 'nilai') bg-teal-500/20 text-teal-400
+                            @elseif($notif->type === 'absensi') bg-blue-500/20 text-blue-400
                             @else bg-slate-500/20 text-slate-400
                             @endif">
                             @if($notif->type === 'pengumuman') <i class="fas fa-bullhorn"></i>
@@ -766,7 +823,7 @@
                             @endif
                           </div>
                           <div class="flex-1 min-w-0">
-                            <p class="text-white text-xs font-bold truncate group-hover:text-purple-400 transition-colors">
+                            <p class="text-white text-xs font-bold truncate group-hover:text-blue-400 transition-colors">
                               {{ $notif->title }}
                             </p>
                             <p class="text-white/60 text-[10px] mt-0.5 truncate">
@@ -776,7 +833,7 @@
                               {{ $notif->created_at->diffForHumans() }}
                             </p>
                           </div>
-                          <div class="w-2 h-2 rounded-full bg-pink-500 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(236,72,153,0.8)]"></div>
+                          <div class="w-2 h-2 rounded-full bg-teal-500 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(236,72,153,0.8)]"></div>
                         </a>
                       @endforeach
                     @else
@@ -789,7 +846,7 @@
                   
                   <div class="p-2 border-t border-white/10 bg-black/20 flex gap-2 justify-between">
                     @if(isset($unreadCount) && $unreadCount > 0)
-                      <a href="{{ route('notifications.read-all') }}" class="flex-1 py-1.5 text-[10px] text-center text-purple-400 hover:text-purple-300 hover:bg-white/5 transition-colors font-semibold rounded-lg">
+                      <a href="{{ route('notifications.read-all') }}" class="flex-1 py-1.5 text-[10px] text-center text-blue-400 hover:text-emerald-300 hover:bg-white/5 transition-colors font-semibold rounded-lg">
                         Tandai Semua Dibaca
                       </a>
                     @endif
@@ -814,9 +871,9 @@
   <!-- Footer -->
   <footer class="mt-auto px-4 md:px-6 pt-6 pb-8 border-t border-white/10">
     <div class="flex flex-wrap justify-between items-center gap-4">
-      <p class="text-white/30 text-sm w-full text-center sm:text-left sm:w-auto">Â© 2026 E-Learning MTs Syafiiyah. All rights reserved.</p>
+      <p class="text-white/30 text-sm w-full text-center sm:text-left sm:w-auto">&copy; 2026 E-Learning MTs Syafiiyah. All rights reserved.</p>
       <div class="flex gap-4 w-full justify-center sm:w-auto">
-        <span class="text-white/40 text-sm">Pembuat: <strong class="text-purple-400">Muh Noval Fuaddillah</strong></span>
+        <span class="text-white/40 text-sm">Pembuat: <strong class="text-blue-400">Muh Noval Fuaddillah</strong></span>
       </div>
     </div>
   </footer>
@@ -835,18 +892,18 @@
 </div>
 
 <!-- Chatbot Panel Container -->
-<div id="chatbot-panel" class="fixed bottom-24 right-4 md:right-8 w-[380px] max-w-[calc(100vw-2rem)] h-[550px] max-h-[80vh] flex flex-col z-[999] rounded-2xl overflow-hidden border border-purple-500/20 bg-slate-900/95 backdrop-blur-xl shadow-2xl">
+<div id="chatbot-panel" class="fixed bottom-24 right-4 md:right-8 w-[380px] max-w-[calc(100vw-2rem)] h-[550px] max-h-[80vh] flex flex-col z-[999] rounded-2xl overflow-hidden border border-blue-500/20 bg-slate-900/95 backdrop-blur-xl shadow-2xl">
   
   <!-- Chat Header -->
-  <div class="p-4 bg-gradient-to-r from-purple-900/90 to-indigo-900/90 border-b border-white/10 flex justify-between items-center">
+  <div class="p-4 bg-gradient-to-r from-emerald-900/90 to-teal-900/90 border-b border-white/10 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 relative">
+      <div class="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 relative">
         <i class="fas fa-robot text-lg"></i>
-        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
+        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-blue-500 border-2 border-slate-900 rounded-full"></span>
       </div>
       <div>
         <h5 class="text-white font-bold text-sm tracking-wide">Asisten AI Sekolah</h5>
-        <span class="text-[10px] text-emerald-400 font-medium">Online â€¢ Siap membantu</span>
+        <span class="text-[10px] text-blue-400 font-medium">Online &bull; Siap membantu</span>
       </div>
     </div>
     <div class="flex items-center gap-1.5">
@@ -863,25 +920,25 @@
   <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 scrollbar-thin text-xs md:text-sm">
     <!-- AI Welcome Message -->
     <div class="flex items-start gap-2.5 max-w-[85%]">
-      <div class="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+      <div class="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
         <i class="fas fa-robot text-xs"></i>
       </div>
       <div class="p-3 chat-bubble-ai rounded-2xl rounded-tl-none leading-relaxed text-slate-200">
-        Halo <strong>{{ auth()->user()->name }}</strong>! ðŸ‘‹ Saya Asisten AI Pembelajaran Digital. Ada yang bisa saya bantu hari ini?
+        Halo <strong>{{ auth()->user()->name }}</strong>! 👋 Saya Asisten AI Pembelajaran Digital. Ada yang bisa saya bantu hari ini?
       </div>
     </div>
     
     <!-- Quick Actions -->
     <div id="quick-actions" class="flex flex-col gap-2 pt-2 max-w-[85%] ml-10">
       <p class="text-[10px] text-white/40 uppercase tracking-wider font-semibold mb-1">Pilihan Cepat:</p>
-      <button onclick="sendQuickMessage('Bagaimana format upload excel data siswa yang benar?')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-purple-500/10 text-xs text-purple-300 font-medium rounded-xl transition-all">
-        ðŸ’¡ Format Excel error?
+      <button onclick="sendQuickMessage('Bagaimana format upload excel data siswa yang benar?')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/10 text-xs text-emerald-300 font-medium rounded-xl transition-all">
+        💡 Format Excel error?
       </button>
-      <button onclick="sendQuickMessage('Berikan daftar kode kelas yang valid di sistem')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-purple-500/10 text-xs text-purple-300 font-medium rounded-xl transition-all">
-        ðŸ”‘ Daftar Kode Kelas Valid
+      <button onclick="sendQuickMessage('Berikan daftar kode kelas yang valid di sistem')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/10 text-xs text-emerald-300 font-medium rounded-xl transition-all">
+        🔑 Daftar Kode Kelas Valid
       </button>
-      <button onclick="sendQuickMessage('Jelaskan apa saja menu yang bisa saya akses sebagai {{ auth()->user()->role }}')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-purple-500/10 text-xs text-purple-300 font-medium rounded-xl transition-all">
-        ðŸ“– Jelaskan menu dashboard saya
+      <button onclick="sendQuickMessage('Jelaskan apa saja menu yang bisa saya akses sebagai {{ auth()->user()->role }}')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/10 text-xs text-emerald-300 font-medium rounded-xl transition-all">
+        📖 Jelaskan menu dashboard saya
       </button>
     </div>
   </div>
@@ -889,8 +946,8 @@
   <!-- Chat Input -->
   <form id="chatbot-form" onsubmit="handleChatSubmit(event)" class="p-3 bg-black/20 border-t border-white/10 flex items-center gap-2">
     <input type="text" id="chat-input" placeholder="Tulis pesan Anda..." required autocomplete="off"
-           class="flex-1 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-xs md:text-sm placeholder:text-white/30 focus:border-purple-500 focus:outline-none transition-all">
-    <button type="submit" id="chat-send-btn" class="w-9.5 h-9.5 shrink-0 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center text-white shadow-[0_0_10px_rgba(168,85,247,0.3)] hover:scale-105 transition-all">
+           class="flex-1 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-xs md:text-sm placeholder:text-white/30 focus:border-blue-500 focus:outline-none transition-all">
+    <button type="submit" id="chat-send-btn" class="w-9.5 h-9.5 shrink-0 rounded-xl bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center text-white shadow-[0_0_10px_rgba(59, 130, 246,0.3)] hover:scale-105 transition-all">
       <i class="fas fa-paper-plane text-xs md:text-sm"></i>
     </button>
   </form>
@@ -937,8 +994,35 @@
     if (!dropdown.classList.contains('hidden')) {
       dropdown.classList.add('dropdown-enter');
       fetchJadwalSholat();
+      startSholatClock();
     } else {
       dropdown.classList.remove('dropdown-enter');
+      stopSholatClock();
+    }
+  }
+  
+  let sholatClockInterval = null;
+  function startSholatClock() {
+    if (sholatClockInterval) clearInterval(sholatClockInterval);
+    const clockEl = document.getElementById('sholat-live-clock');
+    
+    function updateClock() {
+      const now = new Date();
+      const hrs = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const secs = String(now.getSeconds()).padStart(2, '0');
+      if (clockEl) {
+        clockEl.innerHTML = `<i class="far fa-clock mr-1 text-blue-400"></i> ${hrs}:${mins}:${secs} WIB`;
+      }
+    }
+    updateClock();
+    sholatClockInterval = setInterval(updateClock, 1000);
+  }
+  
+  function stopSholatClock() {
+    if (sholatClockInterval) {
+      clearInterval(sholatClockInterval);
+      sholatClockInterval = null;
     }
   }
   
@@ -983,30 +1067,89 @@
       return;
     }
     
-    dateInfo.innerText = todayItem.tanggal + ' â€¢ Sumber: Bimas Islam';
+    dateInfo.innerText = todayItem.tanggal;
     
     const times = [
       { name: 'Imsak', time: todayItem.imsak, icon: 'fa-hourglass-start' },
-      { name: 'Subuh', time: todayItem.subuh, icon: 'fa-cloud-sun' },
+      { name: 'Subuh', time: todayItem.subuh, icon: 'fa-star-and-crescent' },
       { name: 'Terbit', time: todayItem.terbit, icon: 'fa-sun' },
       { name: 'Dhuha', time: todayItem.dhuha, icon: 'fa-sun' },
       { name: 'Dzuhur', time: todayItem.dzuhur, icon: 'fa-sun' },
-      { name: 'Ashar', time: todayItem.ashar, icon: 'fa-cloud-sun-rain' },
+      { name: 'Ashar', time: todayItem.ashar, icon: 'fa-cloud-sun' },
       { name: 'Maghrib', time: todayItem.maghrib, icon: 'fa-cloud-moon' },
       { name: 'Isya', time: todayItem.isya, icon: 'fa-moon' }
     ];
     
-    let html = '<div class="grid grid-cols-2 gap-3">';
-    times.forEach(t => {
-      html += `
-        <div class="flex items-center justify-between p-2 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 hover:border-purple-500/20 transition-all">
-          <div class="flex items-center gap-2">
-            <i class="fas ${t.icon} text-purple-400 text-[10px]"></i>
-            <span class="font-medium text-slate-300">${t.name}</span>
+    function timeToMinutes(tStr) {
+      if (!tStr) return 0;
+      const parts = tStr.split(':');
+      return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+    }
+    
+    const currentMinutes = today.getHours() * 60 + today.getMinutes();
+    let activeIndex = -1;
+    const timesWithMinutes = times.map((t, idx) => ({
+      ...t,
+      minutes: timeToMinutes(t.time),
+      index: idx
+    }));
+    
+    for (let i = 0; i < timesWithMinutes.length; i++) {
+      const curr = timesWithMinutes[i];
+      const next = timesWithMinutes[(i + 1) % timesWithMinutes.length];
+      const currMin = curr.minutes;
+      const nextMin = next.minutes;
+      
+      if (nextMin > currMin) {
+        if (currentMinutes >= currMin && currentMinutes < nextMin) {
+          activeIndex = curr.index;
+          break;
+        }
+      } else {
+        if (currentMinutes >= currMin || currentMinutes < nextMin) {
+          activeIndex = curr.index;
+          break;
+        }
+      }
+    }
+    
+    let html = '<div class="grid grid-cols-2 gap-2">';
+    times.forEach((t, idx) => {
+      const isActive = idx === activeIndex;
+      if (isActive) {
+        html += `
+          <div class="flex items-center justify-between p-2.5 bg-blue-500/10 border border-blue-500/40 rounded-xl shadow-[0_0_12px_rgba(59, 130, 246,0.15)] scale-[1.02] transition-all duration-300">
+            <div class="flex items-center gap-1.5 min-w-0">
+              <div class="w-6 h-6 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+                <i class="fas ${t.icon} text-[10px]"></i>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-bold text-emerald-300 text-[10px] leading-tight truncate">${t.name}</span>
+                <span class="text-[7px] text-blue-400/80 font-medium">Sekarang</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <span class="font-extrabold font-mono text-emerald-300 text-xs">${t.time}</span>
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400"></span>
+              </span>
+            </div>
           </div>
-          <span class="font-bold font-mono text-white text-xs">${t.time}</span>
-        </div>
-      `;
+        `;
+      } else {
+        html += `
+          <div class="flex items-center justify-between p-2.5 bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.08] hover:border-blue-500/20 rounded-xl transition-all duration-300">
+            <div class="flex items-center gap-1.5 min-w-0">
+              <div class="w-6 h-6 rounded-lg bg-white/5 flex items-center justify-center text-white/50 shrink-0">
+                <i class="fas ${t.icon} text-[10px]"></i>
+              </div>
+              <span class="font-medium text-slate-300 text-[10px] truncate">${t.name}</span>
+            </div>
+            <span class="font-bold font-mono text-white/70 text-xs shrink-0">${t.time}</span>
+          </div>
+        `;
+      }
     });
     html += '</div>';
     
@@ -1034,6 +1177,7 @@
       if (!isClickInsideSholat && !isClickOnSholatButton && !sholatDropdown.classList.contains('hidden')) {
         sholatDropdown.classList.add('hidden');
         sholatDropdown.classList.remove('dropdown-enter');
+        stopSholatClock();
       }
     }
   });
@@ -1089,7 +1233,7 @@
         text: `Anda akan menghapus ${type} ini. Tindakan ini tidak dapat dibatalkan!`,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#ec4899',
+        confirmButtonColor: '#ef4444',
         cancelButtonColor: '#64748b',
         confirmButtonText: 'Ya, hapus!',
         cancelButtonText: 'Batal',
@@ -1184,7 +1328,7 @@
       `;
     } else {
       messageDiv.innerHTML = `
-        <div class="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+        <div class="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
           <i class="fas fa-robot text-xs"></i>
         </div>
         <div class="p-3 chat-bubble-ai rounded-2xl rounded-tl-none leading-relaxed shadow-sm">
@@ -1202,7 +1346,7 @@
     indicatorDiv.id = 'typing-indicator';
     indicatorDiv.className = 'flex items-start gap-2.5 max-w-[85%]';
     indicatorDiv.innerHTML = `
-      <div class="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+      <div class="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
         <i class="fas fa-robot text-xs"></i>
       </div>
       <div class="p-3 chat-bubble-ai rounded-2xl rounded-tl-none flex items-center gap-1">
@@ -1285,7 +1429,7 @@
       text: "Anda akan mengosongkan riwayat obrolan dengan asisten AI ini.",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#a855f7',
+      confirmButtonColor: '#3b82f6',
       cancelButtonColor: '#64748b',
       confirmButtonText: 'Ya, hapus!',
       cancelButtonText: 'Batal',
@@ -1307,7 +1451,7 @@
           // Bersihkan UI chat, kembalikan ke welcome message
           chatMessages.innerHTML = `
             <div class="flex items-start gap-2.5 max-w-[85%]">
-              <div class="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
                 <i class="fas fa-robot text-xs"></i>
               </div>
               <div class="p-3 chat-bubble-ai rounded-2xl rounded-tl-none leading-relaxed text-slate-200">
@@ -1317,13 +1461,13 @@
             
             <div id="quick-actions" class="flex flex-col gap-2 pt-2 max-w-[85%] ml-10">
               <p class="text-[10px] text-white/40 uppercase tracking-wider font-semibold mb-1">Pilihan Cepat:</p>
-              <button onclick="sendQuickMessage('Bagaimana format upload excel data siswa yang benar?')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-purple-500/10 text-xs text-purple-300 font-medium rounded-xl transition-all">
+              <button onclick="sendQuickMessage('Bagaimana format upload excel data siswa yang benar?')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/10 text-xs text-emerald-300 font-medium rounded-xl transition-all">
                 ðŸ’¡ Format Excel error?
               </button>
-              <button onclick="sendQuickMessage('Berikan daftar kode kelas yang valid di sistem')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-purple-500/10 text-xs text-purple-300 font-medium rounded-xl transition-all">
+              <button onclick="sendQuickMessage('Berikan daftar kode kelas yang valid di sistem')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/10 text-xs text-emerald-300 font-medium rounded-xl transition-all">
                 ðŸ”‘ Daftar Kode Kelas Valid
               </button>
-              <button onclick="sendQuickMessage('Jelaskan apa saja menu yang bisa saya akses sebagai {{ auth()->user()->role }}')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-purple-500/10 text-xs text-purple-300 font-medium rounded-xl transition-all">
+              <button onclick="sendQuickMessage('Jelaskan apa saja menu yang bisa saya akses sebagai {{ auth()->user()->role }}')" class="text-left px-3 py-2 bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/10 text-xs text-emerald-300 font-medium rounded-xl transition-all">
                 ðŸ“– Jelaskan menu dashboard saya
               </button>
             </div>
@@ -1351,6 +1495,44 @@
       }
     }
   }
+
+  // PWA Install Flow
+  let deferredPrompt;
+  const pwaInstallButtons = document.querySelectorAll('.install-pwa-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      pwaInstallButtons.forEach(btn => {
+          btn.style.color = '#3b82f6';
+      });
+  });
+
+  pwaInstallButtons.forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          if (deferredPrompt) {
+              deferredPrompt.prompt();
+              const { outcome } = await deferredPrompt.userChoice;
+              console.log(`PWA install outcome: ${outcome}`);
+              deferredPrompt = null;
+          } else {
+              Swal.fire({
+                  title: 'Instal Aplikasi Web (PWA)',
+                  html: `<div class="text-left space-y-3 font-sans text-sm text-slate-300">
+                          <p>Aplikasi ini dapat diinstal langsung tanpa Play Store/App Store:</p>
+                          <p><strong>1. Pengguna Android / Chrome:</strong><br>Klik tombol menu titik tiga di pojok kanan atas browser, lalu pilih <strong>"Tambahkan ke Layar Utama"</strong> atau <strong>"Instal Aplikasi"</strong>.</p>
+                          <p><strong>2. Pengguna iPhone / Safari:</strong><br>Klik tombol <strong>"Share" (Bagikan)</strong> <i class="fa-solid fa-share-from-square text-blue-400"></i> di menu bawah, lalu pilih <strong>"Tambahkan ke Layar Utama"</strong>.</p>
+                         </div>`,
+                  icon: 'info',
+                  confirmButtonText: 'Mengerti',
+                  confirmButtonColor: '#3b82f6',
+                  background: '#041e18',
+                  color: '#fff'
+              });
+          }
+      });
+  });
 </script>
 
 </body>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Data Siswa - Pembelajaran Digital')
 @section('breadcrumb', 'Siswa')
@@ -28,7 +28,7 @@
                 <div>
                     <p class="text-white/50 text-xs uppercase tracking-wider">Total Siswa</p>
                     <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $siswa->total() }}</h3>
-                    <p class="text-emerald-400 text-xs md:text-sm mt-2"><i class="fas fa-user-graduate"></i> Aktif</p>
+                    <p class="text-blue-400 text-xs md:text-sm mt-2"><i class="fas fa-user-graduate"></i> Aktif</p>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12">
                     <i class="fas fa-users text-white text-base md:text-xl"></i>
@@ -58,8 +58,8 @@
                         {{ \App\Models\Siswa::where('jenis_kelamin', 'P')->count() }}
                     </h3>
                 </div>
-                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-pink-500/20">
-                    <i class="fas fa-venus text-pink-400 text-base md:text-xl"></i>
+                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-teal-500/20">
+                    <i class="fas fa-venus text-teal-400 text-base md:text-xl"></i>
                 </div>
             </div>
         </div>
@@ -72,8 +72,8 @@
                         {{ $kelas->count() }}
                     </h3>
                 </div>
-                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-purple-500/20">
-                    <i class="fas fa-school text-purple-400 text-base md:text-xl"></i>
+                <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-blue-500/20">
+                    <i class="fas fa-school text-blue-400 text-base md:text-xl"></i>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                                id="searchInput"
                                placeholder="Cari nama, NIS, atau NISN siswa..." 
                                value="{{ request('search') }}"
-                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         @if(request('search'))
                             <i class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-white/40 cursor-pointer hover:text-white" onclick="clearSearch()"></i>
                         @endif
@@ -99,7 +99,7 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <div>
-                        <select name="kelas_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Kelas</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}" class="text-black bg-white" {{ request('kelas_id') == $k->id ? 'selected' : '' }}>
@@ -109,14 +109,14 @@
                         </select>
                     </div>
                     <div>
-                        <select name="jenis_kelamin" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="jenis_kelamin" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Gender</option>
                             <option value="L" class="text-black bg-white" {{ request('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki (L)</option>
                             <option value="P" class="text-black bg-white" {{ request('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan (P)</option>
                         </select>
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <select name="sort_by" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="sort_by" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="created_at" {{ request('sort_by') == 'created_at' ? 'selected' : '' }}>Terbaru</option>
                             <option value="nama" {{ request('sort_by') == 'nama' ? 'selected' : '' }}>Nama Siswa</option>
                             <option value="nis" {{ request('sort_by') == 'nis' ? 'selected' : '' }}>NIS</option>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm">
+                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm">
                         <i class="fas fa-search"></i> Cari
                     </button>
                     <a href="{{ route('admin.siswa.index') }}" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm flex items-center justify-center">
@@ -138,11 +138,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm md:text-base">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -185,7 +185,7 @@
                     <button type="button" onclick="openImportModal()" class="px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm flex items-center gap-2">
                         <i class="fas fa-file-excel"></i> Upload Excel (CSV)
                     </button>
-                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-emerald-500/20 rounded-lg text-emerald-400 text-sm flex items-center gap-2">
+                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm flex items-center gap-2">
                         <i class="fas fa-plus"></i> Tambah Siswa
                     </button>
                 </div>
@@ -211,7 +211,7 @@
                     <tr class="border-b border-white/5 hover:bg-white/5">
                         <td class="p-3 md:p-4 text-white/80 text-sm">{{ $siswa->firstItem() + $index }}</td>
                         <td class="p-3 md:p-4">
-                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400">
+                            <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                 {{ $item->nis }}
                             </span>
                         </td>
@@ -226,7 +226,7 @@
                             @if($item->jenis_kelamin == 'L')
                                 <span class="px-2 py-0.5 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">Laki-laki</span>
                             @elseif($item->jenis_kelamin == 'P')
-                                <span class="px-2 py-0.5 rounded-lg text-xs font-semibold bg-pink-500/20 text-pink-400">Perempuan</span>
+                                <span class="px-2 py-0.5 rounded-lg text-xs font-semibold bg-teal-500/20 text-teal-400">Perempuan</span>
                             @else
                                 <span class="text-white/30">-</span>
                             @endif
@@ -255,7 +255,7 @@
                                     <button type="button" onclick="openImportModal()" class="px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm">
                                         <i class="fas fa-file-excel"></i> Upload Excel (CSV)
                                     </button>
-                                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-purple-500/20 rounded-lg text-purple-400 text-sm">
+                                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm">
                                         <i class="fas fa-plus"></i> Tambah Siswa
                                     </button>
                                 </div>
@@ -280,7 +280,7 @@
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 @else
-                    <a href="{{ $siswa->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $siswa->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 @endif
@@ -288,15 +288,15 @@
                 {{-- Pagination Elements --}}
                 @foreach ($siswa->getUrlRange(1, $siswa->lastPage()) as $page => $url)
                     @if($page == $siswa->currentPage())
-                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">{{ $page }}</a>
+                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm">{{ $page }}</a>
                     @else
-                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">{{ $page }}</a>
+                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">{{ $page }}</a>
                     @endif
                 @endforeach
 
                 {{-- Next Button --}}
                 @if($siswa->hasMorePages())
-                    <a href="{{ $siswa->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $siswa->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-right"></i>
                     </a>
                 @else
@@ -328,17 +328,17 @@
             <div class="p-4 md:p-6 space-y-4 text-white/80">
                 <!-- Panduan Upload -->
                 <div class="p-4 bg-white/5 rounded-xl border border-white/10 text-xs md:text-sm space-y-2">
-                    <p class="font-semibold text-purple-400"><i class="fas fa-info-circle"></i> Petunjuk Pengisian & Upload:</p>
+                    <p class="font-semibold text-blue-400"><i class="fas fa-info-circle"></i> Petunjuk Pengisian & Upload:</p>
                     <ol class="list-decimal list-inside space-y-1 text-white/60 pl-1">
                         <li>Unduh template file dengan mengklik tombol <strong>Unduh Template</strong> di bawah ini.</li>
                         <li>Buka file di Microsoft Excel, lalu isi data siswa Anda.</li>
-                        <li>Pastikan kolom <strong>kode_kelas</strong> diisi dengan Kode Kelas yang sudah terdaftar di sistem (Contoh: <code class="text-purple-300">KLS-10-MIPA1</code>).</li>
-                        <li>Kolom <strong>jenis_kelamin</strong> hanya boleh diisi huruf <strong class="text-blue-300">L</strong> (Laki-laki) atau <strong class="text-pink-300">P</strong> (Perempuan).</li>
+                        <li>Pastikan kolom <strong>kode_kelas</strong> diisi dengan Kode Kelas yang sudah terdaftar di sistem (Contoh: <code class="text-emerald-300">KLS-10-MIPA1</code>).</li>
+                        <li>Kolom <strong>jenis_kelamin</strong> hanya boleh diisi huruf <strong class="text-blue-300">L</strong> (Laki-laki) atau <strong class="text-teal-300">P</strong> (Perempuan).</li>
                         <li>Setelah selesai, pilih menu <strong>Save As</strong> di Excel dan pilih format file <strong>CSV (Comma delimited) (*.csv)</strong>.</li>
                         <li>Unggah file CSV tersebut melalui form di bawah ini.</li>
                     </ol>
                     <div class="pt-2">
-                        <a href="{{ route('admin.siswa.download-template') }}" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-lg text-xs font-semibold hover:bg-purple-500/30 transition">
+                        <a href="{{ route('admin.siswa.download-template') }}" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-lg text-xs font-semibold hover:bg-blue-500/30 transition">
                             <i class="fas fa-download"></i> Unduh Template Excel (CSV)
                         </a>
                     </div>
@@ -347,7 +347,7 @@
                 <div>
                     <label class="text-white/75 text-sm block mb-2 font-semibold">Pilih File CSV <span class="text-red-400">*</span></label>
                     <input type="file" name="file" accept=".csv, .txt" required
-                           class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white/70 focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white/70 focus:border-blue-500 focus:outline-none text-sm">
                 </div>
             </div>
             
@@ -355,7 +355,7 @@
                 <button type="button" onclick="closeImportModal()" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm">
                     Batal
                 </button>
-                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
                     <i class="fas fa-upload"></i> Mulai Impor Data
                 </button>
             </div>
@@ -368,7 +368,7 @@
     <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl w-full max-w-[95%] md:max-w-lg mx-4 my-8 shadow-2xl border border-white/10">
         <div class="p-4 md:p-6 border-b border-white/10 flex justify-between items-center">
             <h3 class="text-white text-lg md:text-xl font-bold">
-                <i class="fas fa-plus-circle text-purple-400 mr-2"></i>
+                <i class="fas fa-plus-circle text-blue-400 mr-2"></i>
                 Tambah Siswa
             </h3>
             <button type="button" onclick="closeCreateModal()" class="text-white/50 hover:text-white">
@@ -382,26 +382,26 @@
                     <div>
                         <label class="text-white/70 text-sm block mb-1">NIS (Nomor Induk Siswa) <span class="text-red-400">*</span></label>
                         <input type="text" name="nis" required
-                               class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                               class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                                placeholder="Contoh: 202610...">
                     </div>
                     <div>
                         <label class="text-white/70 text-sm block mb-1">NISN (Nasional)</label>
                         <input type="text" name="nisn"
-                               class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                               class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                                placeholder="Contoh: 009876...">
                     </div>
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Nama Siswa <span class="text-red-400">*</span></label>
                     <input type="text" name="nama" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                            placeholder="Nama Lengkap Siswa">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="text-white/70 text-sm block mb-1">Pilih Kelas <span class="text-red-400">*</span></label>
-                        <select name="kelas_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="">Pilih Kelas</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}">{{ $k->nama_lengkap }}</option>
@@ -410,7 +410,7 @@
                     </div>
                     <div>
                         <label class="text-white/70 text-sm block mb-1">Jenis Kelamin <span class="text-red-400">*</span></label>
-                        <select name="jenis_kelamin" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="jenis_kelamin" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="">Pilih Jenis Kelamin</option>
                             <option value="L">Laki-laki (L)</option>
                             <option value="P">Perempuan (P)</option>
@@ -420,13 +420,13 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-1">No. Telp Siswa / Wali</label>
                     <input type="text" name="telp"
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                            placeholder="Contoh: 081234...">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Alamat</label>
                     <textarea name="alamat" rows="2"
-                              class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                              class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                               placeholder="Alamat lengkap tinggal siswa"></textarea>
                 </div>
             </div>
@@ -434,7 +434,7 @@
                 <button type="button" onclick="closeCreateModal()" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm">
                     Batal
                 </button>
-                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
                     <i class="fas fa-save"></i> Simpan
                 </button>
             </div>
@@ -462,23 +462,23 @@
                     <div>
                         <label class="text-white/70 text-sm block mb-1">NIS (Nomor Induk Siswa) <span class="text-red-400">*</span></label>
                         <input type="text" name="nis" id="edit_nis" required
-                               class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                               class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                     </div>
                     <div>
                         <label class="text-white/70 text-sm block mb-1">NISN (Nasional)</label>
                         <input type="text" name="nisn" id="edit_nisn"
-                               class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                               class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                     </div>
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Nama Siswa <span class="text-red-400">*</span></label>
                     <input type="text" name="nama" id="edit_nama" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="text-white/70 text-sm block mb-1">Pilih Kelas <span class="text-red-400">*</span></label>
-                        <select name="kelas_id" id="edit_kelas_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" id="edit_kelas_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}">{{ $k->nama_lengkap }}</option>
                             @endforeach
@@ -486,7 +486,7 @@
                     </div>
                     <div>
                         <label class="text-white/70 text-sm block mb-1">Jenis Kelamin <span class="text-red-400">*</span></label>
-                        <select name="jenis_kelamin" id="edit_jenis_kelamin" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="jenis_kelamin" id="edit_jenis_kelamin" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="L">Laki-laki (L)</option>
                             <option value="P">Perempuan (P)</option>
                         </select>
@@ -495,12 +495,12 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-1">No. Telp Siswa / Wali</label>
                     <input type="text" name="telp" id="edit_telp"
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Alamat</label>
                     <textarea name="alamat" id="edit_alamat" rows="2"
-                              class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"></textarea>
+                              class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"></textarea>
                 </div>
             </div>
             <div class="p-4 md:p-6 border-t border-white/10 flex gap-3 justify-end">

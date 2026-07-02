@@ -14,10 +14,10 @@
             <p class="text-white/40 text-sm">Unduh atau cetak data profil guru terdaftar di sekolah.</p>
         </div>
         <div class="flex gap-2 w-full sm:w-auto">
-            <a href="{{ route('admin.laporan.guru', ['export' => 'pdf']) }}" target="_blank" class="w-full sm:w-auto px-5 py-2.5 bg-pink-500/20 border border-pink-500/30 rounded-xl text-pink-400 font-semibold text-sm hover:bg-pink-500/35 transition-all text-center">
+            <a href="{{ route('admin.laporan.guru', ['export' => 'pdf']) }}" target="_blank" class="w-full sm:w-auto px-5 py-2.5 bg-teal-500/20 border border-teal-500/30 rounded-xl text-teal-400 font-semibold text-sm hover:bg-teal-500/35 transition-all text-center">
                 <i class="fas fa-file-pdf mr-1.5"></i> Cetak PDF
             </a>
-            <a href="{{ route('admin.laporan.guru', ['export' => 'excel']) }}" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-semibold text-sm hover:bg-emerald-500/35 transition-all text-center">
+            <a href="{{ route('admin.laporan.guru', ['export' => 'excel']) }}" class="w-full sm:w-auto px-5 py-2.5 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-semibold text-sm hover:bg-blue-500/35 transition-all text-center">
                 <i class="fas fa-file-excel mr-1.5"></i> Ekspor Excel
             </a>
         </div>
@@ -30,7 +30,7 @@
                 <h6 class="text-white font-semibold text-lg">Pratinjau Data Guru</h6>
                 <p class="text-white/40 text-sm">Menampilkan seluruh data guru aktif</p>
             </div>
-            <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-purple-500/20 text-purple-400 border border-purple-500/30">
+            <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30">
                 {{ $gurus->count() }} Guru
             </span>
         </div>
@@ -60,7 +60,7 @@
                             @if($item->jenis_kelamin === 'L')
                                 <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/10 text-blue-400">Laki-laki</span>
                             @elseif($item->jenis_kelamin === 'P')
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-pink-500/10 text-pink-400">Perempuan</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/10 text-teal-400">Perempuan</span>
                             @else
                                 <span class="text-white/40 text-xs">-</span>
                             @endif

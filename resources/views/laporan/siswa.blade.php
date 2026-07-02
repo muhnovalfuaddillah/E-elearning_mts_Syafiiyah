@@ -19,7 +19,7 @@
         <form method="GET" action="{{ route('admin.laporan.siswa') }}" class="m-0 flex flex-col sm:flex-row gap-4 items-end">
             <div class="flex-1 w-full">
                 <label class="block text-white/70 text-sm mb-2 font-medium">Pilih Kelas</label>
-                <select name="kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                <select name="kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                     <option value="">-- Pilih Kelas --</option>
                     @foreach($kelas as $k)
                         <option value="{{ $k->id }}" {{ $selectedKelasId == $k->id ? 'selected' : '' }}>
@@ -29,14 +29,14 @@
                 </select>
             </div>
             <div class="flex gap-2 w-full sm:w-auto">
-                <button type="submit" class="w-full sm:w-auto px-5 py-2.5 bg-purple-500/20 border border-purple-500/30 rounded-xl text-purple-400 font-semibold text-sm hover:bg-purple-500/30 transition-all">
+                <button type="submit" class="w-full sm:w-auto px-5 py-2.5 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-semibold text-sm hover:bg-blue-500/30 transition-all">
                     <i class="fas fa-search mr-1.5"></i> Tampilkan
                 </button>
                 @if($selectedKelasId)
-                    <a href="{{ route('admin.laporan.siswa', ['kelas_id' => $selectedKelasId, 'export' => 'pdf']) }}" target="_blank" class="w-full sm:w-auto px-5 py-2.5 bg-pink-500/20 border border-pink-500/30 rounded-xl text-pink-400 font-semibold text-sm hover:bg-pink-500/35 transition-all text-center">
+                    <a href="{{ route('admin.laporan.siswa', ['kelas_id' => $selectedKelasId, 'export' => 'pdf']) }}" target="_blank" class="w-full sm:w-auto px-5 py-2.5 bg-teal-500/20 border border-teal-500/30 rounded-xl text-teal-400 font-semibold text-sm hover:bg-teal-500/35 transition-all text-center">
                         <i class="fas fa-file-pdf mr-1.5"></i> Cetak PDF
                     </a>
-                    <a href="{{ route('admin.laporan.siswa', ['kelas_id' => $selectedKelasId, 'export' => 'excel']) }}" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-semibold text-sm hover:bg-emerald-500/35 transition-all text-center">
+                    <a href="{{ route('admin.laporan.siswa', ['kelas_id' => $selectedKelasId, 'export' => 'excel']) }}" class="w-full sm:w-auto px-5 py-2.5 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-semibold text-sm hover:bg-blue-500/35 transition-all text-center">
                         <i class="fas fa-file-excel mr-1.5"></i> Ekspor Excel
                     </a>
                 @endif
@@ -52,7 +52,7 @@
                     <h6 class="text-white font-semibold text-lg">Pratinjau Data Siswa</h6>
                     <p class="text-white/40 text-sm">Kelas: {{ $selectedKelas ? $selectedKelas->kode_kelas : '' }}</p>
                 </div>
-                <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30">
                     {{ $siswa->count() }} Siswa
                 </span>
             </div>
@@ -78,7 +78,7 @@
                             <td class="p-4 text-white/80 text-sm">{{ $item->nisn ?? '-' }}</td>
                             <td class="p-4 text-white font-bold text-sm">{{ $item->nama }}</td>
                             <td class="p-4">
-                                <span class="px-2 py-0.5 rounded text-xs font-bold {{ $item->jenis_kelamin === 'L' ? 'bg-blue-500/10 text-blue-400' : 'bg-pink-500/10 text-pink-400' }}">
+                                <span class="px-2 py-0.5 rounded text-xs font-bold {{ $item->jenis_kelamin === 'L' ? 'bg-blue-500/10 text-blue-400' : 'bg-teal-500/10 text-teal-400' }}">
                                     {{ $item->jenis_kelamin }}
                                 </span>
                             </td>
@@ -101,7 +101,7 @@
         </div>
     @else
         <div class="luxury-card p-10 text-center text-white/30">
-            <i class="fas fa-info-circle text-4xl mb-3 block text-purple-500/20"></i>
+            <i class="fas fa-info-circle text-4xl mb-3 block text-blue-500/20"></i>
             Silakan pilih kelas terlebih dahulu untuk melihat pratinjau data laporan siswa.
         </div>
     @endif

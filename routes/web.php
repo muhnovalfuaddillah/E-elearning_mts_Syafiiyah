@@ -24,6 +24,8 @@ use App\Http\Controllers\JadwalPelajaranController;
 use App\Http\Controllers\Guru\KelasSiswaController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ChatbotController;
+use App\Http\Controllers\Guru\UjianController as GuruUjianController;
+use App\Http\Controllers\Siswa\UjianController as SiswaUjianController;
 
 
 
@@ -71,6 +73,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
         Route::resource('/calendar', AcademicCalendarController::class);
         Route::resource('/pengumuman', PengumumanController::class);
         Route::resource('/jadwal', JadwalPelajaranController::class);
+        Route::get('/ujian/monitoring', [\App\Http\Controllers\Admin\UjianMonitoringController::class, 'index'])->name('ujian.monitoring');
         
         // Rute Laporan Admin
         Route::get('/laporan/siswa', [LaporanController::class, 'siswa'])->name('laporan.siswa');
@@ -79,6 +82,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
         Route::get('/laporan/nilai', [LaporanController::class, 'nilai'])->name('laporan.nilai');
 
         // Rute Jurnal Mengajar Admin
+        Route::get('/jurnal/rekap', [\App\Http\Controllers\Admin\JurnalMengajarController::class, 'rekap'])->name('jurnal.rekap');
         Route::resource('/jurnal', \App\Http\Controllers\Admin\JurnalMengajarController::class)->only(['index', 'show', 'destroy']);
     });
 
@@ -110,7 +114,18 @@ Route::middleware(['auth', 'role:guru'])
             Route::get('/laporan/nilai', [LaporanController::class, 'nilai'])->name('laporan.nilai');
 
             // Rute Jurnal Mengajar Guru
+            Route::get('/jurnal/rekap', [\App\Http\Controllers\Guru\JurnalMengajarController::class, 'rekap'])->name('jurnal.rekap');
             Route::resource('/jurnal', \App\Http\Controllers\Guru\JurnalMengajarController::class);
+
+            // Rute Ujian Guru
+            Route::resource('/ujian', GuruUjianController::class);
+            Route::get('/ujian/{ujian}/soal', [GuruUjianController::class, 'soal'])->name('ujian.soal');
+            Route::post('/ujian/{ujian}/soal', [GuruUjianController::class, 'storeSoal'])->name('ujian.soal.store');
+            Route::put('/ujian/soal/{soal}', [GuruUjianController::class, 'updateSoal'])->name('ujian.soal.update');
+            Route::delete('/ujian/soal/{soal}', [GuruUjianController::class, 'destroySoal'])->name('ujian.soal.destroy');
+            Route::get('/ujian/{ujian}/hasil', [GuruUjianController::class, 'hasil'])->name('ujian.hasil');
+            Route::get('/ujian/{ujian}/export-pdf', [GuruUjianController::class, 'exportPdf'])->name('ujian.export-pdf');
+            Route::get('/ujian/{ujian}/export-word', [GuruUjianController::class, 'exportWord'])->name('ujian.export-word');
         });
     });
 
@@ -149,6 +164,17 @@ Route::middleware(['auth', 'role:siswa'])
         Route::get('/absen-qr-code', [SiswaDashboardController::class, 'scanQrGet'])->name('absensi.scan-qr-get');
         Route::get('/pengumuman', [PengumumanController::class, 'siswaIndex'])->name('pengumuman.index');
         Route::get('/jadwal', [JadwalPelajaranController::class, 'siswaIndex'])->name('jadwal.index');
+
+        // Rute Ujian Siswa (Hanya bisa diakses via Exambro)
+        Route::middleware(['exambro'])->group(function () {
+            Route::get('/ujian', [SiswaUjianController::class, 'index'])->name('ujian.index');
+            Route::get('/ujian/{ujian}', [SiswaUjianController::class, 'show'])->name('ujian.show');
+            Route::post('/ujian/{ujian}/mulai', [SiswaUjianController::class, 'mulai'])->name('ujian.mulai');
+            Route::get('/ujian/{ujian}/kerjakan', [SiswaUjianController::class, 'kerjakan'])->name('ujian.kerjakan');
+            Route::post('/ujian/{ujian}/simpan-jawaban', [SiswaUjianController::class, 'simpanJawaban'])->name('ujian.simpan-jawaban');
+            Route::post('/ujian/{ujian}/selesai', [SiswaUjianController::class, 'selesai'])->name('ujian.selesai');
+            Route::get('/ujian/{ujian}/hasil', [SiswaUjianController::class, 'hasil'])->name('ujian.hasil');
+        });
     });
 
 
@@ -168,4 +194,17 @@ Route::middleware(['auth', 'role:siswa'])
     );
 
     return $response->body();
+});
+
+Route::get('/debug-headers', function (\Illuminate\Http\Request $request) {
+    return response()->json([
+        'user_agent_from_method' => $request->userAgent(),
+        'user_agent_from_header' => $request->header('User-Agent'),
+        'user_agent_from_server' => $request->server('HTTP_USER_AGENT'),
+        'x_requested_with' => $request->header('X-Requested-With'),
+        'all_headers' => $request->headers->all(),
+        'server_variables' => array_filter($_SERVER, function($key) {
+            return str_starts_with($key, 'HTTP_') || in_array($key, ['REQUEST_URI', 'REQUEST_METHOD', 'REMOTE_ADDR']);
+        }, ARRAY_FILTER_USE_KEY)
+    ]);
 });

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Materi Pelajaran Saya - Pembelajaran Digital')
 @section('breadcrumb', 'Materi Pelajaran')
@@ -28,7 +28,7 @@
                 <div>
                     <p class="text-white/50 text-xs uppercase tracking-wider">Materi Saya</p>
                     <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $materi->total() }}</h3>
-                    <p class="text-emerald-400 text-xs md:text-sm mt-2"><i class="fas fa-book"></i> Aktif</p>
+                    <p class="text-blue-400 text-xs md:text-sm mt-2"><i class="fas fa-book"></i> Aktif</p>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12">
                     <i class="fas fa-folder text-white text-base md:text-xl"></i>
@@ -91,7 +91,7 @@
                                id="searchInput"
                                placeholder="Cari judul materi saya..." 
                                value="{{ request('search') }}"
-                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                               class="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         @if(request('search'))
                             <i class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-white/40 cursor-pointer hover:text-white" onclick="clearSearch()"></i>
                         @endif
@@ -99,7 +99,7 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <div>
-                        <select name="kelas_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Kelas</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}" class="text-black bg-white" {{ request('kelas_id') == $k->id ? 'selected' : '' }}>
@@ -109,7 +109,7 @@
                         </select>
                     </div>
                     <div>
-                        <select name="mapel_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="mapel_id" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="" class="text-black bg-white">Semua Mapel</option>
                             @foreach($mapels as $m)
                                 <option value="{{ $m->id }}" class="text-black bg-white" {{ request('mapel_id') == $m->id ? 'selected' : '' }}>
@@ -119,14 +119,14 @@
                         </select>
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <select name="sort_by" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="sort_by" onchange="document.getElementById('searchForm').submit()" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="created_at" {{ request('sort_by') == 'created_at' ? 'selected' : '' }}>Terbaru</option>
                             <option value="judul" {{ request('sort_by') == 'judul' ? 'selected' : '' }}>Judul Materi</option>
                         </select>
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm">
+                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm">
                         <i class="fas fa-search"></i> Cari
                     </button>
                     <a href="{{ route('guru.materi.index') }}" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm flex items-center justify-center">
@@ -139,11 +139,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm md:text-base">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -158,7 +158,7 @@
                     <p class="text-white/40 text-sm">Menampilkan {{ $materi->firstItem() ?? 0 }} - {{ $materi->lastItem() ?? 0 }} dari {{ $materi->total() }} data</p>
                 </div>
                 <div>
-                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-emerald-500/20 rounded-lg text-emerald-400 text-sm flex items-center gap-2">
+                    <button type="button" onclick="openCreateModal()" class="px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm flex items-center gap-2">
                         <i class="fas fa-plus"></i> Terbitkan Materi Baru
                     </button>
                 </div>
@@ -211,7 +211,7 @@
                         </td>
                         <td class="p-3 md:p-4 text-sm">
                             @if($item->file_materi)
-                                <a href="{{ asset('storage/' . $item->file_materi) }}" target="_blank" class="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-semibold">
+                                <a href="{{ asset('storage/' . $item->file_materi) }}" target="_blank" class="inline-flex items-center gap-1 text-blue-400 hover:text-emerald-300 font-semibold">
                                     <i class="fas fa-download"></i> Unduh File
                                 </a>
                             @elseif($item->link_video)
@@ -241,7 +241,7 @@
                             <div class="text-center">
                                 <i class="fas fa-book text-6xl text-white/20 mb-4"></i>
                                 <p class="text-white/50">Belum ada materi pelajaran yang Anda terbitkan</p>
-                                <button type="button" onclick="openCreateModal()" class="mt-4 px-4 py-2 bg-purple-500/20 rounded-lg text-purple-400 text-sm">
+                                <button type="button" onclick="openCreateModal()" class="mt-4 px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm">
                                     <i class="fas fa-plus"></i> Terbitkan Materi
                                 </button>
                             </div>
@@ -264,21 +264,21 @@
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 @else
-                    <a href="{{ $materi->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $materi->previousPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 @endif
 
                 @foreach ($materi->getUrlRange(1, $materi->lastPage()) as $page => $url)
                     @if($page == $materi->currentPage())
-                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">{{ $page }}</a>
+                        <a href="#" class="px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm">{{ $page }}</a>
                     @else
-                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">{{ $page }}</a>
+                        <a href="{{ $url }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">{{ $page }}</a>
                     @endif
                 @endforeach
 
                 @if($materi->hasMorePages())
-                    <a href="{{ $materi->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-purple-500/20 transition">
+                    <a href="{{ $materi->nextPageUrl() }}" class="px-3 py-1 rounded-lg bg-white/5 text-white/60 text-sm hover:bg-blue-500/20 transition">
                         <i class="fas fa-chevron-right"></i>
                     </a>
                 @else
@@ -297,7 +297,7 @@
     <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl w-full max-w-[95%] md:max-w-lg mx-4 my-8 shadow-2xl border border-white/10">
         <div class="p-4 md:p-6 border-b border-white/10 flex justify-between items-center">
             <h3 class="text-white text-lg md:text-xl font-bold flex items-center">
-                <i class="fas fa-plus-circle text-purple-400 mr-2"></i>
+                <i class="fas fa-plus-circle text-blue-400 mr-2"></i>
                 Terbitkan Materi Baru
             </h3>
             <button type="button" onclick="closeCreateModal()" class="text-white/50 hover:text-white">
@@ -310,14 +310,14 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Judul Materi <span class="text-red-400">*</span></label>
                     <input type="text" name="judul" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                            placeholder="Contoh: Pengenalan Aljabar Linear">
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="text-white/70 text-sm block mb-1">Pilih Kelas <span class="text-red-400">*</span></label>
-                        <select name="kelas_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="">-- Pilih Kelas --</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}">{{ $k->nama_lengkap }}</option>
@@ -326,7 +326,7 @@
                     </div>
                     <div>
                         <label class="text-white/70 text-sm block mb-1">Mata Pelajaran <span class="text-red-400">*</span></label>
-                        <select name="mapel_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="mapel_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="">-- Pilih Mapel --</option>
                             @foreach($mapels as $m)
                                 <option value="{{ $m->id }}">{{ $m->nama_mapel }}</option>
@@ -336,17 +336,17 @@
                 </div>
 
                 <div class="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
-                    <p class="text-xs font-semibold text-purple-400 uppercase tracking-wider"><i class="fas fa-file-upload"></i> Lampirkan File atau Video (Opsional)</p>
+                    <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider"><i class="fas fa-file-upload"></i> Lampirkan File atau Video (Opsional)</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
                         <div>
                             <label class="text-white/70 block mb-1">File Dokumen <span class="text-white/30">(PDF, PPT, Word, Excel - Max 10MB)</span></label>
                             <input type="file" name="file_materi"
-                                   class="w-full px-2 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white/75 text-xs focus:border-purple-500 focus:outline-none">
+                                   class="w-full px-2 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white/75 text-xs focus:border-blue-500 focus:outline-none">
                         </div>
                         <div>
                             <label class="text-white/70 block mb-1">Tautan Video <span class="text-white/30">(YouTube / Google Drive Link)</span></label>
                             <input type="url" name="link_video"
-                                   class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-xs"
+                                   class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-xs"
                                    placeholder="https://youtube.com/...">
                         </div>
                     </div>
@@ -355,7 +355,7 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Keterangan Tambahan / Deskripsi</label>
                     <textarea name="deskripsi" rows="4"
-                              class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"
+                              class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
                               placeholder="Ketik keterangan tambahan mengenai materi di sini..."></textarea>
                 </div>
             </div>
@@ -364,7 +364,7 @@
                 <button type="button" onclick="closeCreateModal()" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm">
                     Batal
                 </button>
-                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
                     <i class="fas fa-save"></i> Terbitkan
                 </button>
             </div>
@@ -391,13 +391,13 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Judul Materi <span class="text-red-400">*</span></label>
                     <input type="text" name="judul" id="edit_judul" required
-                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="text-white/70 text-sm block mb-1">Pilih Kelas <span class="text-red-400">*</span></label>
-                        <select name="kelas_id" id="edit_kelas_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" id="edit_kelas_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}">{{ $k->nama_lengkap }}</option>
                             @endforeach
@@ -405,7 +405,7 @@
                     </div>
                     <div>
                         <label class="text-white/70 text-sm block mb-1">Mata Pelajaran <span class="text-red-400">*</span></label>
-                        <select name="mapel_id" id="edit_mapel_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="mapel_id" id="edit_mapel_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                             @foreach($mapels as $m)
                                 <option value="{{ $m->id }}">{{ $m->nama_mapel }}</option>
                             @endforeach
@@ -414,17 +414,17 @@
                 </div>
 
                 <div class="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
-                    <p class="text-xs font-semibold text-purple-400 uppercase tracking-wider"><i class="fas fa-file-upload"></i> Ganti Lampiran File / Tautan Video</p>
+                    <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider"><i class="fas fa-file-upload"></i> Ganti Lampiran File / Tautan Video</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
                         <div>
                             <label class="text-white/70 block mb-1">Ganti File Dokumen <span class="text-xs text-white/40">(Kosongkan jika tetap)</span></label>
                             <input type="file" name="file_materi"
-                                   class="w-full px-2 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white/75 text-xs focus:border-purple-500 focus:outline-none">
+                                   class="w-full px-2 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white/75 text-xs focus:border-blue-500 focus:outline-none">
                         </div>
                         <div>
                             <label class="text-white/70 block mb-1">Ubah Tautan Video</label>
                             <input type="url" name="link_video" id="edit_link_video"
-                                   class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-xs">
+                                   class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-xs">
                         </div>
                     </div>
                 </div>
@@ -432,7 +432,7 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-1">Keterangan Tambahan / Deskripsi</label>
                     <textarea name="deskripsi" id="edit_deskripsi" rows="4"
-                              class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm"></textarea>
+                              class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"></textarea>
                 </div>
             </div>
             

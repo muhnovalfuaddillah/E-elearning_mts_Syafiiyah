@@ -20,7 +20,7 @@
             <div class="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Pilih Kelas</label>
-                    <select name="kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="">-- Pilih Kelas --</option>
                         @foreach($kelas as $k)
                             <option value="{{ $k->id }}" {{ $selectedKelasId == $k->id ? 'selected' : '' }}>
@@ -31,18 +31,18 @@
                 </div>
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Pilih Bulan</label>
-                    <input type="month" name="bulan" required value="{{ $selectedBulan }}" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm font-mono">
+                    <input type="month" name="bulan" required value="{{ $selectedBulan }}" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm font-mono">
                 </div>
             </div>
             <div class="flex gap-2 w-full md:w-auto">
-                <button type="submit" class="w-full md:w-auto px-5 py-2.5 bg-purple-500/20 border border-purple-500/30 rounded-xl text-purple-400 font-semibold text-sm hover:bg-purple-500/30 transition-all">
+                <button type="submit" class="w-full md:w-auto px-5 py-2.5 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-semibold text-sm hover:bg-blue-500/30 transition-all">
                     <i class="fas fa-search mr-1.5"></i> Tampilkan
                 </button>
                 @if($selectedKelasId)
-                    <a href="{{ route(auth()->user()->role . '.laporan.absensi', ['kelas_id' => $selectedKelasId, 'bulan' => $selectedBulan, 'export' => 'pdf']) }}" target="_blank" class="w-full md:w-auto px-5 py-2.5 bg-pink-500/20 border border-pink-500/30 rounded-xl text-pink-400 font-semibold text-sm hover:bg-pink-500/35 transition-all text-center">
+                    <a href="{{ route(auth()->user()->role . '.laporan.absensi', ['kelas_id' => $selectedKelasId, 'bulan' => $selectedBulan, 'export' => 'pdf']) }}" target="_blank" class="w-full md:w-auto px-5 py-2.5 bg-teal-500/20 border border-teal-500/30 rounded-xl text-teal-400 font-semibold text-sm hover:bg-teal-500/35 transition-all text-center">
                         <i class="fas fa-file-pdf mr-1.5"></i> Cetak PDF
                     </a>
-                    <a href="{{ route(auth()->user()->role . '.laporan.absensi', ['kelas_id' => $selectedKelasId, 'bulan' => $selectedBulan, 'export' => 'excel']) }}" class="w-full md:w-auto px-5 py-2.5 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-semibold text-sm hover:bg-emerald-500/35 transition-all text-center">
+                    <a href="{{ route(auth()->user()->role . '.laporan.absensi', ['kelas_id' => $selectedKelasId, 'bulan' => $selectedBulan, 'export' => 'excel']) }}" class="w-full md:w-auto px-5 py-2.5 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-semibold text-sm hover:bg-blue-500/35 transition-all text-center">
                         <i class="fas fa-file-excel mr-1.5"></i> Ekspor Excel
                     </a>
                 @endif
@@ -58,7 +58,7 @@
                     <h6 class="text-white font-semibold text-lg">Pratinjau Rekap Kehadiran Siswa</h6>
                     <p class="text-white/40 text-sm">Periode: {{ $formattedBulan }}</p>
                 </div>
-                <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-purple-500/20 text-purple-400 border border-purple-500/30 font-mono">
+                <span class="px-3 py-1 rounded-xl text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30 font-mono">
                     Bulan: {{ $selectedBulan }}
                 </span>
             </div>
@@ -70,7 +70,7 @@
                             <th class="text-left p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">No</th>
                             <th class="text-left p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">NIS</th>
                             <th class="text-left p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">Nama Siswa</th>
-                            <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-emerald-500/10 text-emerald-400">Hadir (H)</th>
+                            <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-400">Hadir (H)</th>
                             <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-400">Sakit (S)</th>
                             <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-amber-500/10 text-amber-400">Izin (I)</th>
                             <th class="text-center p-4 text-white/60 text-xs font-semibold uppercase tracking-wider bg-red-500/10 text-red-400">Alpa (A)</th>
@@ -87,14 +87,14 @@
                             <td class="p-4 text-white/60 text-sm">{{ $index + 1 }}</td>
                             <td class="p-4 text-white text-sm font-semibold">{{ $item->nis }}</td>
                             <td class="p-4 text-white font-bold text-sm">{{ $item->nama }}</td>
-                            <td class="p-4 text-center text-emerald-400 font-semibold bg-emerald-500/5">{{ $itemRekap['H'] }}</td>
+                            <td class="p-4 text-center text-blue-400 font-semibold bg-blue-500/5">{{ $itemRekap['H'] }}</td>
                             <td class="p-4 text-center text-blue-400 font-semibold bg-blue-500/5">{{ $itemRekap['S'] }}</td>
                             <td class="p-4 text-center text-amber-400 font-semibold bg-amber-500/5">{{ $itemRekap['I'] }}</td>
                             <td class="p-4 text-center text-red-400 font-semibold bg-red-500/5">{{ $itemRekap['A'] }}</td>
                             <td class="p-4 text-center text-white/80 text-sm font-mono">{{ $itemRekap['total'] }}</td>
                             <td class="p-4 text-center">
                                 <span class="px-2.5 py-1 rounded-lg text-xs font-bold font-mono 
-                                    @if($itemRekap['percentage'] >= 90) bg-emerald-500/20 text-emerald-400
+                                    @if($itemRekap['percentage'] >= 90) bg-blue-500/20 text-blue-400
                                     @elseif($itemRekap['percentage'] >= 75) bg-amber-500/20 text-amber-400
                                     @else bg-red-500/20 text-red-400
                                     @endif">
@@ -116,7 +116,7 @@
         </div>
     @else
         <div class="luxury-card p-10 text-center text-white/30">
-            <i class="fas fa-info-circle text-4xl mb-3 block text-purple-500/20"></i>
+            <i class="fas fa-info-circle text-4xl mb-3 block text-blue-500/20"></i>
             Silakan pilih kelas dan bulan terlebih dahulu untuk melihat pratinjau rekap absensi.
         </div>
     @endif

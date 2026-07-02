@@ -13,8 +13,11 @@
             <h6 class="text-white font-semibold text-lg">Riwayat Jurnal Mengajar Anda</h6>
             <p class="text-white/40 text-xs md:text-sm">Dokumentasikan seluruh aktivitas pembelajaran kelas Anda.</p>
         </div>
-        <div>
-            <a href="{{ route('guru.jurnal.create') }}" class="px-5 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-bold text-sm shadow-glow flex items-center justify-center gap-2">
+        <div class="flex gap-2">
+            <button type="button" onclick="openRekapModal()" class="px-5 py-2.5 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-bold text-sm hover:bg-blue-500/30 transition-all flex items-center justify-center gap-2">
+                <i class="fas fa-file-pdf"></i> Rekap Jurnal (PDF)
+            </button>
+            <a href="{{ route('guru.jurnal.create') }}" class="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-bold text-sm shadow-glow flex items-center justify-center gap-2">
                 <i class="fas fa-plus"></i> Buat Jurnal Baru
             </a>
         </div>
@@ -26,7 +29,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
                 <div class="w-full">
                     <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Filter Kelas</label>
-                    <select name="kelas_id" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="kelas_id" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="" class="text-black bg-white">Semua Kelas</option>
                         @foreach($kelas as $k)
                             <option value="{{ $k->id }}" class="text-black bg-white" {{ request('kelas_id') == $k->id ? 'selected' : '' }}>
@@ -37,7 +40,7 @@
                 </div>
                 <div class="w-full">
                     <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Filter Mata Pelajaran</label>
-                    <select name="mapel_id" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <select name="mapel_id" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="" class="text-black bg-white">Semua Mapel</option>
                         @foreach($mapels as $m)
                             <option value="{{ $m->id }}" class="text-black bg-white" {{ request('mapel_id') == $m->id ? 'selected' : '' }}>
@@ -48,10 +51,10 @@
                 </div>
                 <div class="w-full">
                     <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Filter Tanggal</label>
-                    <input type="date" name="tanggal" value="{{ request('tanggal') }}" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <input type="date" name="tanggal" value="{{ request('tanggal') }}" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="flex-1 px-4 py-2 bg-purple-500/20 border border-purple-500/30 rounded-lg text-purple-400 font-semibold text-sm hover:bg-purple-500/30 transition-all flex items-center justify-center gap-1.5">
+                    <button type="submit" class="flex-1 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 font-semibold text-sm hover:bg-blue-500/30 transition-all flex items-center justify-center gap-1.5">
                         <i class="fas fa-filter"></i> Terapkan
                     </button>
                     @if(request('kelas_id') || request('mapel_id') || request('tanggal'))
@@ -66,11 +69,11 @@
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm md:text-base">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -99,7 +102,7 @@
                                 {{ \Carbon\Carbon::parse($item->tanggal)->format('d/m/Y') }}
                             </td>
                             <td class="p-4">
-                                <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400">
+                                <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                     {{ $item->kelas->kode_kelas }}
                                 </span>
                             </td>
@@ -155,7 +158,7 @@
     <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
     <div class="relative w-full max-w-lg luxury-card overflow-hidden z-10">
         <div class="p-4 md:p-6 border-b border-white/10 bg-white/5 flex justify-between items-center">
-            <h5 class="text-white font-bold text-lg"><i class="fas fa-file-alt text-purple-400 mr-2"></i> Detail Jurnal Mengajar</h5>
+            <h5 class="text-white font-bold text-lg"><i class="fas fa-file-alt text-blue-400 mr-2"></i> Detail Jurnal Mengajar</h5>
             <button onclick="closeModal()" class="text-white/50 hover:text-white"><i class="fas fa-times text-xl"></i></button>
         </div>
         <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto text-white/80">
@@ -166,7 +169,7 @@
                 </div>
                 <div>
                     <span class="text-white/40 block text-xs uppercase">Pertemuan Ke</span>
-                    <strong id="modal-pertemuan" class="text-purple-300"></strong>
+                    <strong id="modal-pertemuan" class="text-emerald-300"></strong>
                 </div>
                 <div>
                     <span class="text-white/40 block text-xs uppercase">Kelas</span>
@@ -196,6 +199,56 @@
     </div>
 </div>
 
+<!-- Modal Rekap Jurnal -->
+<div id="rekapModal" class="fixed inset-0 z-[1100] flex items-center justify-center hidden p-4">
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" onclick="closeRekapModal()"></div>
+    <div class="relative w-full max-w-md luxury-card overflow-hidden z-10">
+        <div class="p-4 md:p-6 border-b border-white/10 bg-white/5 flex justify-between items-center">
+            <h5 class="text-white font-bold text-lg"><i class="fas fa-file-pdf text-blue-400 mr-2"></i> Rekap Jurnal Mengajar</h5>
+            <button onclick="closeRekapModal()" class="text-white/50 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+        </div>
+        <form action="{{ route('guru.jurnal.rekap') }}" method="GET" target="_blank" onsubmit="closeRekapModal()">
+            <div class="p-6 space-y-4 text-white/80">
+                <div class="w-full">
+                    <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Pilih Kelas</label>
+                    <select name="kelas_id" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
+                        <option value="" class="text-black bg-white">Semua Kelas</option>
+                        @foreach($kelas as $k)
+                            <option value="{{ $k->id }}" class="text-black bg-white">{{ $k->nama_lengkap }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="w-full">
+                    <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Pilih Mata Pelajaran</label>
+                    <select name="mapel_id" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
+                        <option value="" class="text-black bg-white">Semua Mapel</option>
+                        @foreach($mapels as $m)
+                            <option value="{{ $m->id }}" class="text-black bg-white">{{ $m->nama_mapel }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Tanggal Mulai</label>
+                        <input type="date" name="tanggal_mulai" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="text-white/70 text-xs block mb-1 uppercase tracking-wider">Tanggal Selesai</label>
+                        <input type="date" name="tanggal_selesai" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
+                    </div>
+                </div>
+                <p class="text-[10px] text-white/40 italic mt-2"><i class="fas fa-info-circle"></i> Catatan: Lembar rekap PDF yang dihasilkan akan membuka dialog cetak browser secara otomatis.</p>
+            </div>
+            <div class="p-4 border-t border-white/10 bg-white/5 flex justify-end gap-2">
+                <button type="button" onclick="closeRekapModal()" class="px-5 py-2 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 text-white text-sm font-semibold">Batal</button>
+                <button type="submit" class="px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white text-sm font-bold shadow-glow flex items-center gap-1.5">
+                    <i class="fas fa-print"></i> Cetak Rekap PDF
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
     function showJurnalDetail(jurnal, kelasName, mapelName) {
         document.getElementById('modal-tanggal').innerText = new Date(jurnal.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'});
@@ -213,6 +266,18 @@
 
     function closeModal() {
         const modal = document.getElementById('detailModal');
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    function openRekapModal() {
+        const modal = document.getElementById('rekapModal');
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeRekapModal() {
+        const modal = document.getElementById('rekapModal');
         modal.classList.add('hidden');
         document.body.classList.remove('overflow-hidden');
     }

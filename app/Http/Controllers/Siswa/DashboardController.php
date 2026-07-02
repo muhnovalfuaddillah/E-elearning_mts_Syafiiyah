@@ -135,7 +135,7 @@ class DashboardController extends Controller
 
             // Hapus file lama jika ada update pengumpulan
             $oldSubmission = PengumpulanTugas::where('tugas_id', $tugasId)->where('siswa_id', $siswa->id)->first();
-            if ($oldSubmission) {
+            if ($oldSubmission && !empty($oldSubmission->file_submit)) {
                 Storage::disk('public')->delete($oldSubmission->file_submit);
             }
 

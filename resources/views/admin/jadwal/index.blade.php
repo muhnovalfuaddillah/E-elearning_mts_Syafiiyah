@@ -19,7 +19,7 @@
         <div class="luxury-card p-4 md:p-6 flex-1">
             <form method="GET" action="{{ route('admin.jadwal.index') }}" class="m-0 flex flex-col sm:flex-row gap-3">
                 <div class="flex-1">
-                    <select name="kelas_id" onchange="this.form.submit()" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm md:text-base">
+                    <select name="kelas_id" onchange="this.form.submit()" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm md:text-base">
                         <option value="">-- Semua Kelas --</option>
                         @foreach($kelas as $k)
                             <option value="{{ $k->id }}" {{ $selectedKelasId == $k->id ? 'selected' : '' }}>
@@ -29,7 +29,7 @@
                     </select>
                 </div>
                 <div class="flex gap-2">
-                    <button type="submit" class="px-4 py-2 bg-purple-500/20 border border-purple-500/30 rounded-xl text-purple-400 font-semibold text-sm hover:bg-purple-500/30">
+                    <button type="submit" class="px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 font-semibold text-sm hover:bg-blue-500/30">
                         <i class="fas fa-filter mr-1.5"></i> Filter
                     </button>
                     @if($selectedKelasId)
@@ -41,18 +41,18 @@
             </form>
         </div>
         
-        <button onclick="openCreateModal()" class="px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-bold text-sm hover:opacity-90 transition-all shadow-glow shrink-0">
+        <button onclick="openCreateModal()" class="px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-bold text-sm hover:opacity-90 transition-all shadow-glow shrink-0">
             <i class="fas fa-plus mr-2"></i> Tambah Jadwal Baru
         </button>
     </div>
 
     <!-- Alert Messages -->
     @if(session('success'))
-    <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+    <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
         <div class="text-sm">
             <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
         </div>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+        <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -93,7 +93,7 @@
                     @forelse($jadwal as $item)
                     <tr class="border-b border-white/5 hover:bg-white/5">
                         <td class="p-4">
-                            <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-500/20 text-purple-400">
+                            <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
                                 {{ $item->hari }}
                             </span>
                         </td>
@@ -157,7 +157,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Kelas</label>
-                        <select name="kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="">-- Pilih Kelas --</option>
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}" {{ $selectedKelasId == $k->id ? 'selected' : '' }}>{{ $k->nama_lengkap }}</option>
@@ -167,7 +167,7 @@
 
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Mata Pelajaran</label>
-                        <select name="mapel_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="mapel_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="">-- Pilih Mapel --</option>
                             @foreach($mapels as $m)
                                 <option value="{{ $m->id }}">
@@ -181,7 +181,7 @@
                 <div class="grid grid-cols-3 gap-3">
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Hari</label>
-                        <select name="hari" required class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="hari" required class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="Senin">Senin</option>
                             <option value="Selasa">Selasa</option>
                             <option value="Rabu">Rabu</option>
@@ -194,25 +194,25 @@
 
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Jam Mulai</label>
-                        <input type="text" name="jam_mulai" required placeholder="07:30" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm font-mono">
+                        <input type="text" name="jam_mulai" required placeholder="07:30" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm font-mono">
                     </div>
 
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Jam Selesai</label>
-                        <input type="text" name="jam_selesai" required placeholder="09:00" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm font-mono">
+                        <input type="text" name="jam_selesai" required placeholder="09:00" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm font-mono">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Ruangan (Opsional)</label>
-                    <input type="text" name="ruangan" placeholder="Contoh: R. Laboratorium IPA, R-105" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <input type="text" name="ruangan" placeholder="Contoh: R. Laboratorium IPA, R-105" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
 
                 <div class="flex justify-end gap-3 pt-4 border-t border-white/10">
                     <button type="button" onclick="closeCreateModal()" class="px-4 py-2 bg-white/5 rounded-xl text-white/70 hover:text-white text-sm font-semibold">
                         Batal
                     </button>
-                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
+                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
                         Simpan
                     </button>
                 </div>
@@ -238,7 +238,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Kelas</label>
-                        <select name="kelas_id" id="edit_kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="kelas_id" id="edit_kelas_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             @foreach($kelas as $k)
                                 <option value="{{ $k->id }}">{{ $k->nama_lengkap }}</option>
                             @endforeach
@@ -247,7 +247,7 @@
 
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Mata Pelajaran</label>
-                        <select name="mapel_id" id="edit_mapel_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="mapel_id" id="edit_mapel_id" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             @foreach($mapels as $m)
                                 <option value="{{ $m->id }}">{{ $m->nama_mapel }}</option>
                             @endforeach
@@ -258,7 +258,7 @@
                 <div class="grid grid-cols-3 gap-3">
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Hari</label>
-                        <select name="hari" id="edit_hari" required class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                        <select name="hari" id="edit_hari" required class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                             <option value="Senin">Senin</option>
                             <option value="Selasa">Selasa</option>
                             <option value="Rabu">Rabu</option>
@@ -271,25 +271,25 @@
 
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Jam Mulai</label>
-                        <input type="text" name="jam_mulai" id="edit_jam_mulai" required placeholder="07:30" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm font-mono">
+                        <input type="text" name="jam_mulai" id="edit_jam_mulai" required placeholder="07:30" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm font-mono">
                     </div>
 
                     <div>
                         <label class="block text-white/70 text-sm mb-2 font-medium">Jam Selesai</label>
-                        <input type="text" name="jam_selesai" id="edit_jam_selesai" required placeholder="09:00" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm font-mono">
+                        <input type="text" name="jam_selesai" id="edit_jam_selesai" required placeholder="09:00" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm font-mono">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-white/70 text-sm mb-2 font-medium">Ruangan (Opsional)</label>
-                    <input type="text" name="ruangan" id="edit_ruangan" placeholder="Contoh: R. Laboratorium IPA, R-105" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-purple-500 focus:outline-none text-sm">
+                    <input type="text" name="ruangan" id="edit_ruangan" placeholder="Contoh: R. Laboratorium IPA, R-105" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-blue-500 focus:outline-none text-sm">
                 </div>
 
                 <div class="flex justify-end gap-3 pt-4 border-t border-white/10">
                     <button type="button" onclick="closeEditModal()" class="px-4 py-2 bg-white/5 rounded-xl text-white/70 hover:text-white text-sm font-semibold">
                         Batal
                     </button>
-                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
+                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-semibold text-sm hover:opacity-90 transition-all shadow-glow">
                         Simpan Perubahan
                     </button>
                 </div>

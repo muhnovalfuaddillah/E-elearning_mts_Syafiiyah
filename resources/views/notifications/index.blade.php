@@ -16,7 +16,7 @@
             </div>
             
             @if(auth()->user()->unreadAppNotifications()->count() > 0)
-                <a href="{{ route('notifications.read-all') }}" class="inline-flex items-center gap-1.5 px-4 py-2 bg-purple-500/20 border border-purple-500/30 rounded-xl text-purple-400 text-sm font-semibold hover:bg-purple-500/35 transition-colors">
+                <a href="{{ route('notifications.read-all') }}" class="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 text-sm font-semibold hover:bg-blue-500/35 transition-colors">
                     <i class="fas fa-check-double mr-1.5"></i> Tandai Semua Dibaca
                 </a>
             @endif
@@ -24,11 +24,11 @@
 
         <!-- Alert messages -->
         @if(session('success'))
-        <div class="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400 flex items-center justify-between">
+        <div class="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 flex items-center justify-between">
             <div class="text-sm">
                 <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
             </div>
-            <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-300">
+            <button onclick="this.parentElement.remove()" class="text-blue-400 hover:text-emerald-300">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -38,15 +38,15 @@
         <div class="luxury-card overflow-hidden">
             <div class="p-2 divide-y divide-white/5">
                 @forelse($notifications as $notif)
-                    <div class="flex items-start gap-4 p-4 hover:bg-white/5 transition-all duration-200 relative group {{ !$notif->is_read ? 'bg-purple-500/5' : '' }}">
+                    <div class="flex items-start gap-4 p-4 hover:bg-white/5 transition-all duration-200 relative group {{ !$notif->is_read ? 'bg-blue-500/5' : '' }}">
                         
                         <!-- Notification Type Icon -->
                         <div class="w-10 h-10 shrink-0 rounded-xl flex items-center justify-center text-sm shadow-inner
                             @if($notif->type === 'pengumuman') bg-amber-500/20 text-amber-400 border border-amber-500/30
                             @elseif($notif->type === 'tugas') bg-blue-500/20 text-blue-400 border border-blue-500/30
-                            @elseif($notif->type === 'materi') bg-emerald-500/20 text-emerald-400 border border-emerald-500/30
-                            @elseif($notif->type === 'nilai') bg-pink-500/20 text-pink-400 border border-pink-500/30
-                            @elseif($notif->type === 'absensi') bg-purple-500/20 text-purple-400 border border-purple-500/30
+                            @elseif($notif->type === 'materi') bg-blue-500/20 text-blue-400 border border-blue-500/30
+                            @elseif($notif->type === 'nilai') bg-teal-500/20 text-teal-400 border border-teal-500/30
+                            @elseif($notif->type === 'absensi') bg-blue-500/20 text-blue-400 border border-blue-500/30
                             @else bg-slate-500/20 text-slate-400 border border-slate-500/30
                             @endif">
                             @if($notif->type === 'pengumuman') <i class="fas fa-bullhorn"></i>
@@ -69,7 +69,7 @@
                                 </span>
                             </div>
 
-                            <h5 class="text-white font-bold text-sm sm:text-base mt-1 line-clamp-1 group-hover:text-purple-400 transition-colors">
+                            <h5 class="text-white font-bold text-sm sm:text-base mt-1 line-clamp-1 group-hover:text-blue-400 transition-colors">
                                 {{ $notif->title }}
                             </h5>
                             
@@ -79,11 +79,11 @@
 
                             <!-- Read more link / Redirect -->
                             @if($notif->link)
-                                <a href="{{ route('notifications.read', $notif->id) }}" class="inline-flex items-center gap-1 text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors mt-2">
+                                <a href="{{ route('notifications.read', $notif->id) }}" class="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 hover:text-emerald-300 transition-colors mt-2">
                                     Lihat Detail <i class="fas fa-chevron-right text-[10px]"></i>
                                 </a>
                             @elseif(!$notif->is_read)
-                                <a href="{{ route('notifications.read', $notif->id) }}" class="inline-flex items-center gap-1 text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors mt-2">
+                                <a href="{{ route('notifications.read', $notif->id) }}" class="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 hover:text-emerald-300 transition-colors mt-2">
                                     Tandai Dibaca <i class="fas fa-check text-[10px]"></i>
                                 </a>
                             @endif
@@ -91,7 +91,7 @@
 
                         <!-- Unread status dot -->
                         @if(!$notif->is_read)
-                            <div class="w-2.5 h-2.5 rounded-full bg-pink-500 shadow-[0_0_8px_rgba(236,72,153,0.8)] mt-1.5 shrink-0 self-center sm:self-auto sm:mt-5" title="Belum dibaca"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-teal-500 shadow-[0_0_8px_rgba(236,72,153,0.8)] mt-1.5 shrink-0 self-center sm:self-auto sm:mt-5" title="Belum dibaca"></div>
                         @endif
 
                     </div>

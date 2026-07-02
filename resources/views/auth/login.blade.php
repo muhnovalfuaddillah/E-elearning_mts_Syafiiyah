@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#1d4ed8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
     <title>Login | MTs Syafiiyah</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('ServiceWorker registered', reg))
+            .catch(err => console.error('ServiceWorker registration failed', err));
+        });
+      }
+    </script>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -34,7 +49,7 @@
         .login-image {
             flex: 1;
             position: relative;
-            background: url('https://ppbubesukprobolinggo.com/wp-content/uploads/2025/11/foto-bersama.jpg');
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiowz5xixVx1WncqK-Bj0m3IYDAn9Uf5VWAQ&s');
             background-size: cover;
             background-position: center;
             overflow: hidden;
@@ -71,13 +86,13 @@
         .brand-icon {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
 
         .brand-icon i {
@@ -88,7 +103,7 @@
             font-size: 1.5rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #fff, #e9d5ff);
+            background: linear-gradient(135deg, #fff, #a7f3d0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -102,7 +117,7 @@
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #a855f7, #ec4899, #fbbf24);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8, #fbbf24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -132,7 +147,7 @@
         .stat-number {
             font-size: 1.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -170,7 +185,7 @@
         .form-header h2 {
             font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #fff, #e9d5ff);
+            background: linear-gradient(135deg, #fff, #a7f3d0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
@@ -211,13 +226,13 @@
 
         .input-group input:focus {
             outline: none;
-            border-color: #a855f7;
+            border-color: #3b82f6;
             background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
         .input-group input:focus + i:not(.password-toggle) {
-            color: #a855f7;
+            color: #3b82f6;
         }
 
         .input-group input::placeholder {
@@ -237,7 +252,7 @@
         }
 
         .password-toggle:hover {
-            color: #a855f7;
+            color: #3b82f6;
         }
 
         .checkbox-group {
@@ -259,25 +274,25 @@
         .checkbox-group input[type="checkbox"] {
             width: 1rem;
             height: 1rem;
-            accent-color: #a855f7;
+            accent-color: #3b82f6;
             cursor: pointer;
         }
 
         .forgot-link {
-            color: #a855f7;
+            color: #3b82f6;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
         }
 
         .forgot-link:hover {
-            color: #ec4899;
+            color: #fbbf24;
         }
 
         .login-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: white;
             border: none;
             border-radius: 1rem;
@@ -295,7 +310,7 @@
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px -5px rgba(168, 85, 247, 0.5);
+            box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.5);
         }
 
         .login-btn:disabled {
@@ -474,7 +489,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #a855f7;
+            background: #3b82f6;
             border-radius: 3px;
         }
     </style>
@@ -566,6 +581,30 @@
             <div class="divider">
                 <span>Lupa Password?</span>
                 <a href="#" class="forgot-link" onclick="forgotPassword(event)">Klik di sini</a>
+            </div>
+
+            <!-- Unduh & Pasang Aplikasi -->
+            <div class="app-download-section" style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1.5rem;">
+                <p style="color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; margin-bottom: 0.75rem; text-align: center;">Pasang & Unduh Aplikasi Portal</p>
+                <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+                    <!-- PWA Install Button -->
+                    <button class="install-pwa-btn" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 0.75rem; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                        <i class="fa-solid fa-laptop-code" style="color: #3b82f6; font-size: 1rem;"></i>
+                        Pasang Aplikasi Web (PWA)
+                    </button>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
+                        <!-- Android APK Download -->
+                        <a href="/downloads/mts-syafiiyah.apk" download style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.75rem; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border-radius: 0.75rem; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                            <i class="fab fa-android" style="font-size: 1rem;"></i>
+                            Android (.APK)
+                        </a>
+                        <!-- iOS App Store -->
+                        <a href="#" onclick="Swal.fire({title: 'Aplikasi iOS', text: 'Aplikasi iOS saat ini sedang dalam proses review di Apple App Store.', icon: 'info', confirmButtonColor: '#3b82f6', background: '#041e18', color: '#fff'}); return false;" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 0.75rem; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                            <i class="fab fa-apple" style="font-size: 1rem;"></i>
+                            iOS App
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -673,6 +712,44 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (errorDiv) errorDiv.classList.remove('show');
     if (successDiv) successDiv.classList.remove('show');
+});
+
+// PWA Install Flow
+let deferredPrompt;
+const pwaInstallButtons = document.querySelectorAll('.install-pwa-btn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    pwaInstallButtons.forEach(btn => {
+        btn.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+        btn.style.background = 'rgba(59, 130, 246, 0.05)';
+    });
+});
+
+pwaInstallButtons.forEach(btn => {
+    btn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`PWA install outcome: ${outcome}`);
+            deferredPrompt = null;
+        } else {
+            Swal.fire({
+                title: 'Instal Aplikasi Web (PWA)',
+                html: `<div class="text-left space-y-3 font-sans text-sm text-slate-300">
+                        <p>Aplikasi ini dapat diinstal langsung tanpa Play Store/App Store:</p>
+                        <p><strong>1. Pengguna Android / Chrome:</strong><br>Klik tombol menu titik tiga di pojok kanan atas browser, lalu pilih <strong>"Tambahkan ke Layar Utama"</strong> atau <strong>"Instal Aplikasi"</strong>.</p>
+                        <p><strong>2. Pengguna iPhone / Safari:</strong><br>Klik tombol <strong>"Share" (Bagikan)</strong> <i class="fa-solid fa-share-from-square text-blue-400"></i> di menu bawah, lalu pilih <strong>"Tambahkan ke Layar Utama"</strong>.</p>
+                       </div>`,
+                icon: 'info',
+                confirmButtonText: 'Mengerti',
+                confirmButtonColor: '#3b82f6',
+                background: '#041e18',
+                color: '#fff'
+            });
+        }
+    });
 });
 </script>
 
