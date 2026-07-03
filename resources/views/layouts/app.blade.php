@@ -387,7 +387,7 @@
         <i class="fas fa-user-astronaut"></i>
       </div>
       <div>
-        <h5 class="text-white font-bold text-lg">Pembelajaran Digital  </h5>
+        <h5 class="text-white font-bold text-lg">E-elearning</h5>
         <p class="text-white/40 text-xs">{{ auth()->user()->role }} Dashboard</p>
       </div>
     </div>

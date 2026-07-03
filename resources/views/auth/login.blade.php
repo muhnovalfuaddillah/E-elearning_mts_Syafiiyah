@@ -510,7 +510,7 @@
             
             <div class="welcome-text">
                 <h1>
-                    Aplikasi<br>
+                    Aplikasi E-elearning<br>
                     <span class="gradient-text">Pembelajaran Digital</span>
                 </h1>
                 <p>Sistem pembelajaran digital modern untuk MTs Syafiiyah.</p>
@@ -518,15 +518,15 @@
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">10K+</div>
+                    <div class="stat-number">{{ $siswa }}</div>
                     <div class="stat-label">Total Siswa</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">100+</div>
+                    <div class="stat-number">{{ $guru }}</div>
                     <div class="stat-label">Total Guru</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">24/7</div>
+                    <div class="stat-number">{{ $totalAkses }}</div>
                     <div class="stat-label">Akses</div>
                 </div>
             </div>

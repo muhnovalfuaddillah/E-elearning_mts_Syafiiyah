@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+
 
 class AuthController extends Controller
 {
     public function loginForm()
     {
-        return view('auth.login');
+        $siswa = \App\Models\Siswa::count();
+        $guru = \App\Models\user::count();
+        $totalAkses = \App\Models\ActivityLog::count();
+        return view('auth.login', compact('siswa', 'guru', 'totalAkses'));
     }
 
     public function login(Request $request)
