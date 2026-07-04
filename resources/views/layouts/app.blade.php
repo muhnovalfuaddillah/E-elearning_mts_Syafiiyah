@@ -410,34 +410,44 @@
         <a href="{{ route('admin.dashboard') }}" class="nav-link-luxury {{ request()->is('admin/dashboard') ? 'nav-link-active text-white font-semibold bg-white/10 rounded-lg' : 'text-white/50 hover:text-white transition-colors duration-200' }}">
                 <i class="fas fa-chart-line w-5"></i><span>Dashboard</span>
             </a>
-            <a href="{{ route('admin.kelas.index') }}" 
-              class="nav-link-luxury {{ request()->routeIs('admin.kelas.*') ? 'nav-link-active' : '' }}">
-                <i class="fas fa-school w-5"></i>
-                <span>Data Kelas</span>
-            </a>
 
-            <a href="{{ route('admin.guru.index') }}" 
-              class="nav-link-luxury {{ request()->routeIs('admin.guru.*') ? 'nav-link-active' : '' }}">
-                <i class="fas fa-chalkboard-teacher w-5"></i>
-                <span>Data Guru</span>
-            </a>
-
-            <a href="{{ route('admin.siswa.index') }}" 
-              class="nav-link-luxury {{ request()->routeIs('admin.siswa.*') ? 'nav-link-active' : '' }}">
-                <i class="fas fa-users w-5"></i>
-                <span>Data Siswa</span>
-            </a>
-
-            <a href="{{ route('admin.mata-pelajaran.index') }}" 
-              class="nav-link-luxury {{ request()->routeIs('admin.mata-pelajaran.*') ? 'nav-link-active' : '' }}">
-                <i class="fas fa-book w-5"></i>
-                <span>Mata Pelajaran</span>
-            </a>
-
-        <a href="{{ route('admin.materi.index') }}" class="nav-link-luxury {{ request()->routeIs('admin.materi.*') ? 'nav-link-active' : '' }}">
-            <i class="fas fa-book w-5"></i>
-            <span>Materi</span>
-        </a>
+            <details class="group" {{ request()->routeIs('admin.kelas.*') || request()->routeIs('admin.guru.*') || request()->routeIs('admin.siswa.*') || request()->routeIs('admin.mata-pelajaran.*') || request()->routeIs('admin.materi.*') || request()->routeIs('admin.tahun-akademik.*') ? 'open' : '' }}>
+                <summary class="nav-link-luxury cursor-pointer list-none {{ request()->routeIs('admin.kelas.*') || request()->routeIs('admin.guru.*') || request()->routeIs('admin.siswa.*') || request()->routeIs('admin.mata-pelajaran.*') || request()->routeIs('admin.materi.*') || request()->routeIs('admin.tahun-akademik.*') ? 'nav-link-active' : '' }}">
+                    <div class="flex items-center justify-between w-full">
+                        <span class="flex items-center gap-3">
+                            <i class="fas fa-database w-5"></i>
+                            <span>Master Data</span>
+                        </span>
+                        <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 group-open:rotate-180"></i>
+                    </div>
+                </summary>
+                <div class="ml-4 mt-2 space-y-1">
+                    <a href="{{ route('admin.kelas.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.kelas.*') ? 'bg-white/10 text-white' : '' }}">
+                        <i class="fas fa-school w-4"></i>
+                        <span>Data Kelas</span>
+                    </a>
+                    <a href="{{ route('admin.guru.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.guru.*') ? 'bg-white/10 text-white' : '' }}">
+                        <i class="fas fa-chalkboard-teacher w-4"></i>
+                        <span>Data Guru</span>
+                    </a>
+                    <a href="{{ route('admin.siswa.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.siswa.*') ? 'bg-white/10 text-white' : '' }}">
+                        <i class="fas fa-users w-4"></i>
+                        <span>Data Siswa</span>
+                    </a>
+                    <a href="{{ route('admin.mata-pelajaran.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.mata-pelajaran.*') ? 'bg-white/10 text-white' : '' }}">
+                        <i class="fas fa-book w-4"></i>
+                        <span>Mata Pelajaran</span>
+                    </a>
+                    <a href="{{ route('admin.materi.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.materi.*') ? 'bg-white/10 text-white' : '' }}">
+                        <i class="fas fa-book-open w-4"></i>
+                        <span>Materi</span>
+                    </a>
+                    <a href="{{ route('admin.tahun-akademik.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.tahun-akademik.*') ? 'bg-white/10 text-white' : '' }}">
+                        <i class="fas fa-calendar-alt w-4"></i>
+                        <span>Tahun Akademik</span>
+                    </a>
+                </div>
+            </details>
 
         <a href="{{ route('admin.penilaian.index') }}" class="nav-link-luxury {{ request()->routeIs('admin.penilaian.*') ? 'nav-link-active' : '' }}">
             <i class="fas fa-star w-5"></i>
@@ -474,6 +484,11 @@
             <span>Agenda Sekolah</span>
         </a>
 
+        <a href="{{ route('admin.tahun-akademik.index') }}" class="nav-link-luxury {{ request()->routeIs('admin.tahun-akademik.*') ? 'nav-link-active' : '' }}">
+            <i class="fas fa-school w-5"></i>
+            <span>Tahun Akademik</span>
+        </a>
+
         <a href="{{ route('admin.activity-logs.index') }}" class="nav-link-luxury {{ request()->routeIs('admin.activity-logs.*') ? 'nav-link-active' : '' }}">
             <i class="fas fa-history w-5"></i>
             <span>Log Aktivitas</span>
@@ -484,27 +499,35 @@
             <span>Backup Database</span>
         </a>
 
-        <div class="px-4 mt-4 mb-2">
-            <p class="text-white/40 text-xs uppercase tracking-wider px-3">
-                Laporan & Rekap
-            </p>
-        </div>
-        <a href="{{ route('admin.laporan.siswa') }}" class="nav-link-luxury {{ request()->routeIs('admin.laporan.siswa') ? 'nav-link-active' : '' }}">
-            <i class="fas fa-file-invoice w-5"></i>
-            <span>Laporan Siswa</span>
-        </a>
-        <a href="{{ route('admin.laporan.guru') }}" class="nav-link-luxury {{ request()->routeIs('admin.laporan.guru') ? 'nav-link-active' : '' }}">
-            <i class="fas fa-file-invoice w-5"></i>
-            <span>Laporan Guru</span>
-        </a>
-        <a href="{{ route('admin.laporan.absensi') }}" class="nav-link-luxury {{ request()->routeIs('admin.laporan.absensi') ? 'nav-link-active' : '' }}">
-            <i class="fas fa-clipboard-list w-5"></i>
-            <span>Rekap Absensi</span>
-        </a>
-        <a href="{{ route('admin.laporan.nilai') }}" class="nav-link-luxury {{ request()->routeIs('admin.laporan.nilai') ? 'nav-link-active' : '' }}">
-            <i class="fas fa-graduation-cap w-5"></i>
-            <span>Rekap Nilai</span>
-        </a>
+        <details class="group mt-3" {{ request()->routeIs('admin.laporan.siswa') || request()->routeIs('admin.laporan.guru') || request()->routeIs('admin.laporan.absensi') || request()->routeIs('admin.laporan.nilai') ? 'open' : '' }}>
+            <summary class="nav-link-luxury cursor-pointer list-none {{ request()->routeIs('admin.laporan.siswa') || request()->routeIs('admin.laporan.guru') || request()->routeIs('admin.laporan.absensi') || request()->routeIs('admin.laporan.nilai') ? 'nav-link-active' : '' }}">
+                <div class="flex items-center justify-between w-full">
+                    <span class="flex items-center gap-3">
+                        <i class="fas fa-file-alt w-5"></i>
+                        <span>Laporan & Rekap</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 group-open:rotate-180"></i>
+                </div>
+            </summary>
+            <div class="ml-4 mt-2 space-y-1">
+                <a href="{{ route('admin.laporan.siswa') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.laporan.siswa') ? 'bg-white/10 text-white' : '' }}">
+                    <i class="fas fa-user-graduate w-4"></i>
+                    <span>Laporan Siswa</span>
+                </a>
+                <a href="{{ route('admin.laporan.guru') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.laporan.guru') ? 'bg-white/10 text-white' : '' }}">
+                    <i class="fas fa-chalkboard-teacher w-4"></i>
+                    <span>Laporan Guru</span>
+                </a>
+                <a href="{{ route('admin.laporan.absensi') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.laporan.absensi') ? 'bg-white/10 text-white' : '' }}">
+                    <i class="fas fa-clipboard-list w-4"></i>
+                    <span>Rekap Absensi</span>
+                </a>
+                <a href="{{ route('admin.laporan.nilai') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.laporan.nilai') ? 'bg-white/10 text-white' : '' }}">
+                    <i class="fas fa-graduation-cap w-4"></i>
+                    <span>Rekap Nilai</span>
+                </a>
+            </div>
+        </details>
 
     {{-- MENU GURU --}}
     @elseif(auth()->user()->role == 'guru')

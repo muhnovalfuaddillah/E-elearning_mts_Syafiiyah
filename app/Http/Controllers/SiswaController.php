@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\User;
@@ -139,6 +140,44 @@ class SiswaController extends Controller
 
         return redirect()->route('admin.siswa.index')
                         ->with('success', 'Siswa berhasil dihapus!');
+    }
+
+    public function kenaikanKelas(Request $request)
+    {
+        $selectedSiswaIds = $request->input('siswa_ids');
+
+        if (is_string($selectedSiswaIds) && $selectedSiswaIds !== '') {
+            $selectedSiswaIds = array_values(array_filter(array_map('trim', explode(',', $selectedSiswaIds))));
+            $request->merge(['siswa_ids' => $selectedSiswaIds]);
+        } elseif (empty($selectedSiswaIds)) {
+            $request->merge(['siswa_ids' => []]);
+        }
+
+        $request->validate([
+            'kelas_asal_id' => 'required|exists:kelas,id',
+            'kelas_tujuan_id' => 'required|exists:kelas,id|different:kelas_asal_id',
+            'siswa_ids' => 'nullable|array',
+            'siswa_ids.*' => 'exists:siswa,id',
+        ], [
+            'kelas_asal_id.required' => 'Kelas asal wajib dipilih',
+            'kelas_tujuan_id.required' => 'Kelas tujuan wajib dipilih',
+            'kelas_tujuan_id.different' => 'Kelas tujuan harus berbeda dari kelas asal',
+        ]);
+
+        $query = Siswa::where('kelas_id', $request->kelas_asal_id);
+
+        if (!empty($request->siswa_ids)) {
+            $query->whereIn('id', $request->siswa_ids);
+        }
+
+        $updatedCount = $query->update([
+            'kelas_id' => $request->kelas_tujuan_id,
+        ]);
+
+        ActivityLog::log('kenaikan_kelas', 'Memindahkan siswa dari kelas ' . $request->kelas_asal_id . ' ke kelas ' . $request->kelas_tujuan_id . ' sebanyak ' . $updatedCount . ' siswa');
+
+        return redirect()->route('admin.siswa.index')
+            ->with('success', 'Kenaikan kelas berhasil dilakukan untuk ' . $updatedCount . ' siswa.');
     }
 
     /**

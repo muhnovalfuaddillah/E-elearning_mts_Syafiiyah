@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\AcademicCalendarController;
 use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
+use App\Http\Controllers\TahunAkademikController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\NotificationController;
@@ -59,6 +60,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
         Route::resource('/guru', GuruController::class);
         Route::get('/siswa/download-template', [SiswaController::class, 'downloadTemplate'])->name('siswa.download-template');
         Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
+        Route::post('/siswa/kenaikan-kelas', [SiswaController::class, 'kenaikanKelas'])->name('siswa.kenaikan-kelas');
         Route::resource('/siswa', SiswaController::class);
         Route::resource('/mata-pelajaran', MataPelajaranController::class);
         Route::resource('/materi', MateriController::class);
@@ -71,6 +73,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
         Route::get('/backup', [BackupController::class, 'backup'])->name('backup');
         Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity-logs.index');
         Route::resource('/calendar', AcademicCalendarController::class);
+        Route::resource('/tahun-akademik', TahunAkademikController::class);
         Route::resource('/pengumuman', PengumumanController::class);
         Route::resource('/jadwal', JadwalPelajaranController::class);
         Route::get('/ujian/monitoring', [\App\Http\Controllers\Admin\UjianMonitoringController::class, 'index'])->name('ujian.monitoring');

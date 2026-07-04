@@ -182,6 +182,9 @@
                     <p class="text-white/40 text-sm">Menampilkan {{ $siswa->firstItem() ?? 0 }} - {{ $siswa->lastItem() ?? 0 }} dari {{ $siswa->total() }} data</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
+                    <button type="button" onclick="openKenaikanKelasModal()" class="px-4 py-2 bg-emerald-500/20 rounded-lg text-emerald-400 text-sm flex items-center gap-2">
+                        <i class="fas fa-arrow-up"></i> Kenaikan Kelas
+                    </button>
                     <button type="button" onclick="openImportModal()" class="px-4 py-2 bg-blue-500/20 rounded-lg text-blue-400 text-sm flex items-center gap-2">
                         <i class="fas fa-file-excel"></i> Upload Excel (CSV)
                     </button>
@@ -196,6 +199,9 @@
             <table class="w-full luxury-table min-w-[800px]">
                 <thead class="border-b border-white/10 bg-white/5">
                     <tr>
+                        <th class="text-left p-3 md:p-4 text-white/60 text-xs font-semibold uppercase tracking-wider w-10">
+                            <input type="checkbox" id="selectAllStudents" class="rounded border-white/20 bg-white/10 text-emerald-500 focus:ring-emerald-500" title="Pilih semua">
+                        </th>
                         <th class="text-left p-3 md:p-4 text-white/60 text-xs font-semibold uppercase tracking-wider w-12">No</th>
                         <th class="text-left p-3 md:p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">NIS</th>
                         <th class="text-left p-3 md:p-4 text-white/60 text-xs font-semibold uppercase tracking-wider">NISN</th>
@@ -209,6 +215,9 @@
                 <tbody>
                     @forelse($siswa as $index => $item)
                     <tr class="border-b border-white/5 hover:bg-white/5">
+                        <td class="p-3 md:p-4">
+                            <input type="checkbox" name="siswa_ids[]" value="{{ $item->id }}" class="student-checkbox rounded border-white/20 bg-white/10 text-emerald-500 focus:ring-emerald-500">
+                        </td>
                         <td class="p-3 md:p-4 text-white/80 text-sm">{{ $siswa->firstItem() + $index }}</td>
                         <td class="p-3 md:p-4">
                             <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
@@ -307,6 +316,56 @@
             </div>
         </div>
         @endif      
+    </div>
+</div>
+
+<!-- Modal Kenaikan Kelas -->
+<div id="kenaikanKelasModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 overflow-y-auto">
+    <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl w-full max-w-[95%] md:max-w-lg mx-4 my-8 shadow-2xl border border-white/10">
+        <div class="p-4 md:p-6 border-b border-white/10 flex justify-between items-center">
+            <h3 class="text-white text-lg md:text-xl font-bold">
+                <i class="fas fa-arrow-up text-emerald-400 mr-2"></i>
+                Kenaikan Kelas Siswa
+            </h3>
+            <button type="button" onclick="closeKenaikanKelasModal()" class="text-white/50 hover:text-white">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <form id="kenaikanKelasForm" action="{{ route('admin.siswa.kenaikan-kelas') }}" method="POST">
+            @csrf
+            <input type="hidden" name="siswa_ids" id="selectedStudentIds">
+            <div class="p-4 md:p-6 space-y-4">
+                <div>
+                    <label class="text-white/70 text-sm block mb-1">Kelas Asal <span class="text-red-400">*</span></label>
+                    <select name="kelas_asal_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-emerald-500 focus:outline-none text-sm">
+                        <option value="">Pilih Kelas Asal</option>
+                        @foreach($kelas as $k)
+                            <option value="{{ $k->id }}">{{ $k->nama_lengkap }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label class="text-white/70 text-sm block mb-1">Kelas Tujuan <span class="text-red-400">*</span></label>
+                    <select name="kelas_tujuan_id" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-emerald-500 focus:outline-none text-sm">
+                        <option value="">Pilih Kelas Tujuan</option>
+                        @foreach($kelas as $k)
+                            <option value="{{ $k->id }}">{{ $k->nama_lengkap }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm">
+                    <i class="fas fa-info-circle mr-2"></i> Centang siswa yang naik kelas, atau biarkan kosong untuk memproses semua siswa dari kelas asal.
+                </div>
+            </div>
+            <div class="p-4 md:p-6 border-t border-white/10 flex gap-3 justify-end">
+                <button type="button" onclick="closeKenaikanKelasModal()" class="px-4 py-2 bg-white/5 rounded-lg text-white/70 hover:text-white text-sm">
+                    Batal
+                </button>
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg text-white font-semibold text-sm flex items-center gap-1.5">
+                    <i class="fas fa-arrow-up"></i> Proses Kenaikan
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -566,6 +625,56 @@
         modal.classList.remove('flex');
     }
 
+    // Modal Kenaikan Kelas
+    function openKenaikanKelasModal() {
+        const modal = document.getElementById('kenaikanKelasModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function closeKenaikanKelasModal() {
+        const modal = document.getElementById('kenaikanKelasModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAll = document.getElementById('selectAllStudents');
+        const checkboxes = document.querySelectorAll('.student-checkbox');
+        const form = document.getElementById('kenaikanKelasForm');
+        const hiddenInput = document.getElementById('selectedStudentIds');
+
+        if (selectAll) {
+            selectAll.addEventListener('change', function () {
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = selectAll.checked;
+                });
+            });
+        }
+
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                if (!checkbox.checked && selectAll) {
+                    selectAll.checked = false;
+                }
+            });
+        });
+
+        if (form) {
+            form.addEventListener('submit', function () {
+                const selected = Array.from(checkboxes).filter(function (checkbox) {
+                    return checkbox.checked;
+                }).map(function (checkbox) {
+                    return checkbox.value;
+                });
+
+                if (hiddenInput) {
+                    hiddenInput.value = selected.join(',');
+                }
+            });
+        }
+    });
+
     // Modal Edit
     function openEditModal(siswa) {
         document.getElementById('edit_nis').value = siswa.nis || '';
@@ -603,6 +712,7 @@
     const importModal = document.getElementById('importModal');
     const createModal = document.getElementById('createModal');
     const editModal = document.getElementById('editModal');
+    const kenaikanKelasModal = document.getElementById('kenaikanKelasModal');
     
     if (importModal) {
         importModal.addEventListener('click', function(e) {
@@ -619,6 +729,12 @@
     if (editModal) {
         editModal.addEventListener('click', function(e) {
             if (e.target === this) closeEditModal();
+        });
+    }
+
+    if (kenaikanKelasModal) {
+        kenaikanKelasModal.addEventListener('click', function(e) {
+            if (e.target === this) closeKenaikanKelasModal();
         });
     }
 </script>
