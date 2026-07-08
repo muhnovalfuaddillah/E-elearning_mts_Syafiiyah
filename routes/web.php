@@ -172,9 +172,15 @@ Route::middleware(['auth', 'role:siswa'])
         Route::middleware(['exambro'])->group(function () {
             Route::get('/ujian', [SiswaUjianController::class, 'index'])->name('ujian.index');
             Route::get('/ujian/{ujian}', [SiswaUjianController::class, 'show'])->name('ujian.show');
+            Route::get('/ujian/{ujian}/mulai', function($ujian) {
+                return redirect()->route('siswa.ujian.show', $ujian);
+            });
             Route::post('/ujian/{ujian}/mulai', [SiswaUjianController::class, 'mulai'])->name('ujian.mulai');
             Route::get('/ujian/{ujian}/kerjakan', [SiswaUjianController::class, 'kerjakan'])->name('ujian.kerjakan');
             Route::post('/ujian/{ujian}/simpan-jawaban', [SiswaUjianController::class, 'simpanJawaban'])->name('ujian.simpan-jawaban');
+            Route::get('/ujian/{ujian}/selesai', function($ujian) {
+                return redirect()->route('siswa.ujian.show', $ujian);
+            });
             Route::post('/ujian/{ujian}/selesai', [SiswaUjianController::class, 'selesai'])->name('ujian.selesai');
             Route::get('/ujian/{ujian}/hasil', [SiswaUjianController::class, 'hasil'])->name('ujian.hasil');
         });
