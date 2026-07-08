@@ -203,8 +203,8 @@ class SiswaController extends Controller
             fputcsv($file, $columns, ';');
             
             // Tambahkan baris contoh
-            fputcsv($file, ['10001', '0098765432', 'Budi Santoso', 'KLS-10-MIPA1', 'L', '081234567890', 'Jl. Sudirman No. 12'], ';');
-            fputcsv($file, ['10002', '0098765433', 'Rina Marlina', 'KLS-11-MIPA2', 'P', '085712345678', 'Jl. Gatot Subroto No. 45'], ';');
+            fputcsv($file, ['10001', '0098765432', 'Budi Santoso', 'KLS-7A', 'L', '081234567890', 'Jl. Sudirman No. 12'], ';');
+            fputcsv($file, ['10002', '0098765433', 'Rina Marlina', 'KLS-8B', 'P', '085712345678', 'Jl. Gatot Subroto No. 45'], ';');
             
             fclose($file);
         };

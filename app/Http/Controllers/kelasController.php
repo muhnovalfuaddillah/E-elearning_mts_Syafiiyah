@@ -51,7 +51,7 @@ class KelasController extends Controller
         $request->validate([
             'kode_kelas' => 'required|unique:kelas|max:20',
             'nama_kelas' => 'required|max:100',
-            'tingkat' => 'required|in:10,11,12',
+            'tingkat' => 'required|in:7,8,9',
             'jurusan' => 'required|max:50',
         ], [
             'kode_kelas.required' => 'Kode kelas wajib diisi',
@@ -79,7 +79,7 @@ class KelasController extends Controller
         $request->validate([
             'kode_kelas' => 'required|max:20|unique:kelas,kode_kelas,' . $id,
             'nama_kelas' => 'required|max:100',
-            'tingkat' => 'required|in:10,11,12',
+            'tingkat' => 'required|in:7,8,9',
             'jurusan' => 'required|max:50',
         ], [
             'kode_kelas.required' => 'Kode kelas wajib diisi',

@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Data Siswa - Pembelajaran Digital')
 @section('breadcrumb', 'Siswa')
@@ -391,7 +391,7 @@
                     <ol class="list-decimal list-inside space-y-1 text-white/60 pl-1">
                         <li>Unduh template file dengan mengklik tombol <strong>Unduh Template</strong> di bawah ini.</li>
                         <li>Buka file di Microsoft Excel, lalu isi data siswa Anda.</li>
-                        <li>Pastikan kolom <strong>kode_kelas</strong> diisi dengan Kode Kelas yang sudah terdaftar di sistem (Contoh: <code class="text-emerald-300">KLS-10-MIPA1</code>).</li>
+                        <li>Pastikan kolom <strong>kode_kelas</strong> diisi dengan Kode Kelas yang sudah terdaftar di sistem (Contoh: <code class="text-emerald-300">KLS-7A</code>).</li>
                         <li>Kolom <strong>jenis_kelamin</strong> hanya boleh diisi huruf <strong class="text-blue-300">L</strong> (Laki-laki) atau <strong class="text-teal-300">P</strong> (Perempuan).</li>
                         <li>Setelah selesai, pilih menu <strong>Save As</strong> di Excel dan pilih format file <strong>CSV (Comma delimited) (*.csv)</strong>.</li>
                         <li>Unggah file CSV tersebut melalui form di bawah ini.</li>

@@ -7,6 +7,7 @@ use App\Models\JurnalMengajar;
 use App\Models\Kelas;
 use App\Models\MataPelajaran;
 use App\Models\JadwalPelajaran;
+use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
 
 class JurnalMengajarController extends Controller
@@ -192,7 +193,7 @@ class JurnalMengajarController extends Controller
     public function rekap(Request $request)
     {
         $guruId = auth()->id();
-        $query = JurnalMengajar::with('kelas', 'mapel')->where('guru_id', $guruId);
+        $query = JurnalMengajar::with('guru', 'kelas', 'mapel')->where('guru_id', $guruId);
 
         // Apply filters
         if ($request->filled('kelas_id')) {
@@ -214,8 +215,9 @@ class JurnalMengajarController extends Controller
         $mapelFilter = $request->filled('mapel_id') ? MataPelajaran::find($request->mapel_id) : null;
         $tanggalMulai = $request->tanggal_mulai;
         $tanggalSelesai = $request->tanggal_selesai;
+        $activeTahun = TahunAkademik::active()->first();
 
-        return view('guru.jurnal.rekap', compact('jurnals', 'kelasFilter', 'mapelFilter', 'tanggalMulai', 'tanggalSelesai'));
+        return view('guru.jurnal.rekap', compact('jurnals', 'kelasFilter', 'mapelFilter', 'tanggalMulai', 'tanggalSelesai', 'activeTahun'));
     }
 
     /**

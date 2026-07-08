@@ -57,7 +57,7 @@ class ChatbotController extends Controller
         if (str_contains($lowerMsg, 'siswa') && (str_contains($lowerMsg, 'kelas') || str_contains($lowerMsg, 'daftar') || str_contains($lowerMsg, 'siapa'))) {
             $kelasModelList = Kelas::all();
             foreach ($kelasModelList as $k) {
-                // If message contains class code (e.g. KLS-10-MIPA1) or class name (e.g. MIPA 1)
+                // If message contains class code (e.g. KLS-7A) or class name (e.g. 7-A)
                 if (str_contains($lowerMsg, strtolower($k->kode_kelas)) || str_contains($lowerMsg, strtolower($k->nama_kelas))) {
                     $siswaInClass = \App\Models\Siswa::where('kelas_id', $k->id)->get();
                     if ($siswaInClass->isNotEmpty()) {
@@ -133,7 +133,7 @@ class ChatbotController extends Controller
             . $dynamicContext
             . "INSTRUKSI PENTING:\n"
             . "1. Jawablah pertanyaan seputar jumlah siswa, guru, kelas, pengumuman terbaru, jadwal pelajaran, atau daftar siswa menggunakan [DATA REALTIME] atau [STATISTIK APLIKASI] yang disediakan di atas.\n"
-            . "2. Jika pengguna bertanya tentang ERROR IMPORT EXCEL/CSV (misalnya kelas tidak terdaftar seperti 'X-RPL-1'), arahkan mereka untuk menggunakan kode kelas yang valid (contoh: 'KLS-10-MIPA1').\n"
+            . "2. Jika pengguna bertanya tentang ERROR IMPORT EXCEL/CSV (misalnya kelas tidak terdaftar seperti '7-A'), arahkan mereka untuk menggunakan kode kelas yang valid (contoh: 'KLS-7A').\n"
             . "3. Jawablah menggunakan Bahasa Indonesia yang ramah, sopan, komunikatif, dan ringkas.\n"
             . "4. Gunakan pemformatan Markdown (bold, list, bullet) agar pesan rapi.";
 

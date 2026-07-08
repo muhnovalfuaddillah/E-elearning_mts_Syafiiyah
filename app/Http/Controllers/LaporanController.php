@@ -32,7 +32,8 @@ class LaporanController extends Controller
 
         // Export PDF
         if ($request->get('export') === 'pdf' && $selectedKelasId) {
-            return view('laporan.print.siswa-pdf', compact('siswa', 'selectedKelas'));
+            $activeTahun = \App\Models\TahunAkademik::active()->first();
+            return view('laporan.print.siswa-pdf', compact('siswa', 'selectedKelas', 'activeTahun'));
         }
 
         // Export Excel (CSV Stream)
@@ -77,7 +78,8 @@ class LaporanController extends Controller
 
         // Export PDF
         if ($request->get('export') === 'pdf') {
-            return view('laporan.print.guru-pdf', compact('gurus'));
+            $activeTahun = \App\Models\TahunAkademik::active()->first();
+            return view('laporan.print.guru-pdf', compact('gurus', 'activeTahun'));
         }
 
         // Export Excel (CSV Stream)
@@ -172,7 +174,8 @@ class LaporanController extends Controller
 
         // Export PDF
         if ($request->get('export') === 'pdf' && $selectedKelasId) {
-            return view('laporan.print.absensi-pdf', compact('siswa', 'rekap', 'selectedKelas', 'selectedBulan', 'formattedBulan'));
+            $activeTahun = \App\Models\TahunAkademik::active()->first();
+            return view('laporan.print.absensi-pdf', compact('siswa', 'rekap', 'selectedKelas', 'selectedBulan', 'formattedBulan', 'activeTahun'));
         }
 
         // Export Excel (CSV Stream)
@@ -340,10 +343,11 @@ class LaporanController extends Controller
 
         // Export PDF
         if ($request->get('export') === 'pdf' && $selectedKelasId && $selectedMapelId) {
+            $activeTahun = \App\Models\TahunAkademik::active()->first();
             if ($selectedMapelId === 'all') {
-                return view('laporan.print.nilai-all-pdf', compact('siswa', 'grades', 'selectedKelas', 'allMapels', 'averages', 'classRanks'));
+                return view('laporan.print.nilai-all-pdf', compact('siswa', 'grades', 'selectedKelas', 'allMapels', 'averages', 'classRanks', 'activeTahun'));
             } else {
-                return view('laporan.print.nilai-pdf', compact('siswa', 'grades', 'selectedKelas', 'selectedMapel', 'utsRanks', 'uasRanks', 'finalRanks'));
+                return view('laporan.print.nilai-pdf', compact('siswa', 'grades', 'selectedKelas', 'selectedMapel', 'utsRanks', 'uasRanks', 'finalRanks', 'activeTahun'));
             }
         }
 

@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Data Kelas - MTs Syafiiyah')
 @section('breadcrumb', 'Kelas')
@@ -40,8 +40,8 @@
         <div class="luxury-card p-3 md:p-5">
             <div class="flex justify-between items-start">
                 <div>
-                    <p class="text-white/50 text-xs uppercase tracking-wider">Kelas X</p>
-                    <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->where('tingkat', '10')->count() + $kelas->where('tingkat', 'X')->count() }}</h3>
+                    <p class="text-white/50 text-xs uppercase tracking-wider">Kelas VII</p>
+                    <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->where('tingkat', '7')->count() + $kelas->where('tingkat', 'VII')->count() }}</h3>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-blue-500/20">
                     <i class="fas fa-layer-group text-blue-400 text-base md:text-xl"></i>
@@ -52,8 +52,8 @@
         <div class="luxury-card p-3 md:p-5">
             <div class="flex justify-between items-start">
                 <div>
-                    <p class="text-white/50 text-xs uppercase tracking-wider">Kelas XI</p>
-                    <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->where('tingkat', '11')->count() + $kelas->where('tingkat', 'XI')->count() }}</h3>
+                    <p class="text-white/50 text-xs uppercase tracking-wider">Kelas VIII</p>
+                    <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->where('tingkat', '8')->count() + $kelas->where('tingkat', 'VIII')->count() }}</h3>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-blue-500/20">
                     <i class="fas fa-layer-group text-blue-400 text-base md:text-xl"></i>
@@ -64,8 +64,8 @@
         <div class="luxury-card p-3 md:p-5">
             <div class="flex justify-between items-start">
                 <div>
-                    <p class="text-white/50 text-xs uppercase tracking-wider">Kelas XII</p>
-                    <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->where('tingkat', '12')->count() + $kelas->where('tingkat', 'XII')->count() }}</h3>
+                    <p class="text-white/50 text-xs uppercase tracking-wider">Kelas IX</p>
+                    <h3 class="text-xl md:text-2xl font-bold stat-number mt-1 text-white">{{ $kelas->where('tingkat', '9')->count() + $kelas->where('tingkat', 'IX')->count() }}</h3>
                 </div>
                 <div class="luxury-icon w-10 h-10 md:w-12 md:h-12 bg-blue-500/20">
                     <i class="fas fa-layer-group text-blue-400 text-base md:text-xl"></i>
@@ -95,9 +95,9 @@
                 <div class="w-full md:w-40">
                     <select name="tingkat" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm md:text-base">
                         <option value="" class="text-black bg-white">Semua Tingkat</option>
-                        <option value="10" class="text-black bg-white" {{ request('tingkat') == '10' || request('tingkat') == 'X' ? 'selected' : '' }}>Kelas X</option>
-                        <option value="11" class="text-black bg-white" {{ request('tingkat') == '11' || request('tingkat') == 'XI' ? 'selected' : '' }}>Kelas XI</option>
-                        <option value="12" class="text-black bg-white" {{ request('tingkat') == '12' || request('tingkat') == 'XII' ? 'selected' : '' }}>Kelas XII</option>
+                        <option value="7" class="text-black bg-white" {{ request('tingkat') == '7' || request('tingkat') == 'VII' ? 'selected' : '' }}>Kelas VII</option>
+                        <option value="8" class="text-black bg-white" {{ request('tingkat') == '8' || request('tingkat') == 'VIII' ? 'selected' : '' }}>Kelas VIII</option>
+                        <option value="9" class="text-black bg-white" {{ request('tingkat') == '9' || request('tingkat') == 'IX' ? 'selected' : '' }}>Kelas IX</option>
                     </select>
                 </div>
                 <div class="w-full md:w-40">
@@ -182,7 +182,7 @@
                         <td class="p-3 md:p-4 text-white font-medium text-sm">{{ $item->nama_kelas }}</td>
                         <td class="p-3 md:p-4">
                             @php
-                                $tingkatRomawi = ['10' => 'X', '11' => 'XI', '12' => 'XII', 'X' => 'X', 'XI' => 'XI', 'XII' => 'XII'];
+                                $tingkatRomawi = ['7' => 'VII', '8' => 'VIII', '9' => 'IX', 'VII' => 'VII', 'VIII' => 'VIII', 'IX' => 'IX'];
                                 $romawi = $tingkatRomawi[$item->tingkat] ?? $item->tingkat;
                             @endphp
                             <span class="px-2 py-1 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-400">
@@ -284,21 +284,21 @@
                     <label class="text-white/70 text-sm block mb-2">Kode Kelas <span class="text-red-400">*</span></label>
                     <input type="text" name="kode_kelas" required
                            class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
-                           placeholder="Contoh: XII-RPL-1">
+                           placeholder="Contoh: KLS-7A">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Nama Kelas <span class="text-red-400">*</span></label>
                     <input type="text" name="nama_kelas" required
                            class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm"
-                           placeholder="Contoh: XII Rekayasa Perangkat Lunak 1">
+                           placeholder="Contoh: 7-A">
                 </div>
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Tingkat <span class="text-red-400">*</span></label>
                     <select name="tingkat" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
                         <option value="">Pilih Tingkat</option>
-                        <option value="10">Kelas 10</option>
-                        <option value="11">Kelas 11</option>
-                        <option value="12">Kelas 12</option>
+                        <option value="7">Kelas 7</option>
+                        <option value="8">Kelas 8</option>
+                        <option value="9">Kelas 9</option>
                     </select>
                 </div>
                 <div>
@@ -349,9 +349,9 @@
                 <div>
                     <label class="text-white/70 text-sm block mb-2">Tingkat <span class="text-red-400">*</span></label>
                     <select name="tingkat" id="edit_tingkat" required class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:border-blue-500 focus:outline-none text-sm">
-                        <option value="10">Kelas 10</option>
-                        <option value="11">Kelas 11</option>
-                        <option value="12">Kelas 12</option>
+                        <option value="7">Kelas 7</option>
+                        <option value="8">Kelas 8</option>
+                        <option value="9">Kelas 9</option>
                     </select>
                 </div>
                 <div>

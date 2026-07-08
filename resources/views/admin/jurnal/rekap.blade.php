@@ -16,6 +16,8 @@
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
+
+        /* ================= PRINT RULES ================= */
         @media print {
             body {
                 background-color: #ffffff;
@@ -31,6 +33,28 @@
                 box-shadow: none !important;
                 border: none !important;
                 padding: 0 !important;
+                border-radius: 0 !important;
+            }
+            /* Ulangi header tabel di setiap halaman */
+            table thead {
+                display: table-header-group;
+            }
+            table tfoot {
+                display: table-footer-group;
+            }
+            /* Cegah baris terpotong di tengah antar halaman */
+            tr {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            /* Cegah blok tanda tangan terpotong */
+            .signature-block {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            /* Nomor surat & footer tetap rapi */
+            .doc-footer {
+                page-break-inside: avoid;
             }
             @page {
                 size: A4 landscape;
@@ -53,12 +77,12 @@
 
     <!-- Main Document Container -->
     <div class="max-w-7xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 document-card">
-        
+
         <!-- ==================== KOP SURAT RESMI (LETTERHEAD) ==================== -->
-        <div class="flex items-center justify-between pb-4 border-b-4 border-double border-slate-900 gap-4 mb-6">
+        <div class="flex items-center justify-between pb-4 border-b-4 border-double border-slate-900 gap-4 mb-2">
             <!-- Logo Madrasah -->
             <div class="w-20 h-20 bg-slate-100 rounded-xl border border-slate-200 flex items-center justify-center text-slate-500 text-3xl font-bold shrink-0">
-                <i class="fas fa-school text-blue-600"></i>
+                <img src="https://mts-syafiiyah.yasbahu.sch.id/logo.jpeg" alt="Logo MTs Syafiiyah" class="w-16 h-16 object-contain">
             </div>
             <!-- Letterhead Text -->
             <div class="text-center flex-1">
@@ -71,10 +95,16 @@
             <div class="w-20 h-20 opacity-0 shrink-0 hidden md:block"></div>
         </div>
 
+        <!-- Nomor Surat -->
+        <div class="flex justify-between items-center mb-6 pb-3 border-b border-slate-200 text-[11px] text-slate-500 font-semibold">
+            <p>Nomor: {{ $nomorSurat ?? str_pad(rand(1,999), 3, '0', STR_PAD_LEFT) . '/MTsS/JRN/' . \Carbon\Carbon::now()->format('m/Y') }}</p>
+            <p>Sifat: Laporan Rutin</p>
+        </div>
+
         <!-- Document Title -->
         <div class="text-center mb-6">
             <h3 class="font-extrabold text-base md:text-lg uppercase tracking-wider text-slate-800 underline">Laporan Rekapitulasi Jurnal Mengajar Guru</h3>
-            <p class="text-xs text-slate-500 font-medium mt-1">Tahun Ajaran 2025/2026</p>
+            <p class="text-xs text-slate-500 font-medium mt-1">Tahun Ajaran {{ $activeTahun ? $activeTahun->nama_tahun : '2025/2026' }}</p>
         </div>
 
         <!-- Metadata Cards Grid -->
@@ -108,7 +138,7 @@
         </div>
 
         <!-- Jurnal Table -->
-        <div class="overflow-hidden rounded-2xl border border-slate-100 mb-6">
+        <div class="overflow-hidden rounded-2xl border border-slate-100 mb-4">
             <table class="w-full text-xs md:text-sm">
                 <thead>
                     <tr class="bg-blue-600 text-white">
@@ -163,7 +193,44 @@
             </table>
         </div>
 
-        <div class="flex justify-between items-center text-[10px] text-slate-400 mt-8 pt-4 border-t border-slate-100 font-medium">
+        <!-- Ringkasan Total -->
+        <div class="flex justify-end mb-10">
+            <div class="bg-slate-50 border border-slate-100 rounded-xl px-5 py-2.5 text-xs font-bold text-slate-600">
+                Total Jurnal Tercatat: <span class="text-blue-600">{{ $jurnals->count() }}</span> entri
+            </div>
+        </div>
+
+        <!-- ==================== BLOK TANDA TANGAN ==================== -->
+        <div class="signature-block mt-6">
+            <div class="flex justify-end mb-6">
+                <p class="text-xs text-slate-600 font-medium text-center w-64">
+                    Probolinggo, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 text-center text-xs">
+                <!-- Kepala Madrasah -->
+                <div class="space-y-1">
+                    <p class="font-semibold text-slate-600">Mengetahui,</p>
+                    <p class="font-bold text-slate-800 uppercase tracking-wide">Kepala MTs Syafiiyah</p>
+                    <div class="h-20"></div>
+                    <p class="font-bold text-slate-800 underline">{{ $kepalaMadrasah ?? 'H. Sholehuddin, S. Ag' }}</p>
+                    <p class="text-slate-500">NIP/NIY: {{ $nipKepala ?? '.........................................' }}</p>
+                </div>
+
+                <!-- Biro Pendidikan Yayasan -->
+                <div class="space-y-1">
+                    <p class="font-semibold text-slate-600">Menyetujui,</p>
+                    <p class="font-bold text-slate-800 uppercase tracking-wide">Biro Pendidikan Yayasan</p>
+                    <p class="font-bold text-slate-800 uppercase tracking-wide">Pendidikan Islam Syafiiyah</p>
+                    <div class="h-14"></div>
+                    <p class="font-bold text-slate-800 underline">{{ $kepalaBiro ?? '.........................................' }}</p>
+                    <p class="text-slate-500">NIP/NIY: {{ $nipBiro ?? '.........................................' }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-footer flex justify-between items-center text-[10px] text-slate-400 mt-10 pt-4 border-t border-slate-100 font-medium">
             <p>MTs Syafiiyah Digital Report</p>
             <p>Dicetak pada: {{ \Carbon\Carbon::now()->format('d M Y H:i') }} WIB</p>
         </div>
