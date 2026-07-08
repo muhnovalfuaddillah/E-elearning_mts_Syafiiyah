@@ -46,8 +46,13 @@ class UjianController extends Controller
     public function show($id)
     {
         if (env('ENFORCE_EXAMBROWSER', true)) {
-            $userAgent = request()->header('User-Agent');
+            $userAgent = request()->header('User-Agent') ?: 'Tidak terdeteksi';
             $userAgentLower = strtolower($userAgent);
+            $requestedWith = request()->header('X-Requested-With') 
+                ?: (request()->server('HTTP_X_REQUESTED_WITH') 
+                ?: 'Tidak terdeteksi');
+            $requestedWithLower = strtolower($requestedWith);
+
             $isExamBrowser = str_contains($userAgentLower, 'exambrowser') || 
                              str_contains($userAgentLower, 'exambro') || 
                              str_contains($userAgentLower, 'seb') ||
@@ -55,7 +60,8 @@ class UjianController extends Controller
                              str_contains($userAgentLower, '; wv') || 
                              str_contains($userAgentLower, ' wv') ||
                              str_contains($userAgentLower, 'mtssyafiiyah') ||
-                             str_contains($userAgentLower, 'androidmobile');
+                             str_contains($userAgentLower, 'androidmobile') ||
+                             $requestedWithLower === 'com.mtssyafiiyah.app';
             if (!$isExamBrowser) {
                 return response()->view('siswa.ujian.download-exambro', [
                     'downloadUrl' => 'https://play.google.com/store/apps/details?id=com.exambrowser.app',
@@ -137,8 +143,13 @@ class UjianController extends Controller
     public function kerjakan($id)
     {
         if (env('ENFORCE_EXAMBROWSER', true)) {
-            $userAgent = request()->header('User-Agent');
+            $userAgent = request()->header('User-Agent') ?: 'Tidak terdeteksi';
             $userAgentLower = strtolower($userAgent);
+            $requestedWith = request()->header('X-Requested-With') 
+                ?: (request()->server('HTTP_X_REQUESTED_WITH') 
+                ?: 'Tidak terdeteksi');
+            $requestedWithLower = strtolower($requestedWith);
+
             $isExamBrowser = str_contains($userAgentLower, 'exambrowser') || 
                              str_contains($userAgentLower, 'exambro') || 
                              str_contains($userAgentLower, 'seb') ||
@@ -146,7 +157,8 @@ class UjianController extends Controller
                              str_contains($userAgentLower, '; wv') || 
                              str_contains($userAgentLower, ' wv') ||
                              str_contains($userAgentLower, 'mtssyafiiyah') ||
-                             str_contains($userAgentLower, 'androidmobile');
+                             str_contains($userAgentLower, 'androidmobile') ||
+                             $requestedWithLower === 'com.mtssyafiiyah.app';
             if (!$isExamBrowser) {
                 return response()->view('siswa.ujian.download-exambro', [
                     'downloadUrl' => 'https://play.google.com/store/apps/details?id=com.exambrowser.app',
