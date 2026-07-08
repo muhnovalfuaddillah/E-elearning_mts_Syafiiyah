@@ -26,6 +26,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Relasi ke model MataPelajaran (jika role adalah guru).
+     */
+    public function mataPelajarans()
+    {
+        return $this->hasMany(MataPelajaran::class, 'guru_id');
+    }
+
+    /**
      * Relasi ke model AppNotification (semua notifikasi in-app).
      */
     public function appNotifications()
